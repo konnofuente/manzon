@@ -1,5 +1,5 @@
-import 'package:manzon/manzon.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/manzon.dart';
 import 'package:manzon/config/translations.dart';
 
 void main() async {
