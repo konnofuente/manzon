@@ -1,6 +1,10 @@
 import 'package:manzon/manzon.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/config/translations.dart';
 
-void main() {
-  runApp(ManzonApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final AppTranslations translations = AppTranslations();
+  await translations.loadTranslations();
+  runApp(ManzonApp(translations: translations));
 }

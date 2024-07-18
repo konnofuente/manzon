@@ -6,11 +6,9 @@ import 'package:manzon/presentation/utils/theme/app_theme.dart';
 import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 
 class ManzonApp extends StatelessWidget {
-  final AppTranslations translations = AppTranslations();
+   final AppTranslations translations;
 
-  ManzonApp() {
-    translations.loadTranslations();
-  }
+  ManzonApp({required this.translations});
 
   @override
   Widget build(BuildContext context) {
