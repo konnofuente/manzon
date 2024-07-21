@@ -13,9 +13,9 @@ class ManzonApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtils.init(context);
+    ScreenSize.init(context);
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       title: 'Manzon',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

@@ -18,7 +18,7 @@ class SplashView extends StatelessWidget {
         children: [
           Center(
             child: SizedBox(
-              width: ScreenUtils.blockSizeHorizontal * 70,
+              width: ScreenSize.blockSizeHorizontal * 70,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
