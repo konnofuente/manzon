@@ -55,4 +55,7 @@ class AppColors {
   static const Color fontLightPrimary = Color(0xFF262527);
   static const Color fontLightSecondary = Color(0xFF5a5d6c);
   static const Color fontLightDisabled = Color(0xFFb1aca5);
+
+  
+  static const Color white = Color.fromARGB(255, 255, 255, 255);
 }

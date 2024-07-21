@@ -5,7 +5,9 @@ import 'package:manzon/presentation/utils/screen_util.dart';
 import 'package:manzon/presentation/utils/theme/app_theme.dart';
 import 'package:manzon/presentation/utils/theme/app_colors.dart';
 import 'package:manzon/presentation/utils/theme/font_manager.dart';
+import 'package:manzon/presentation/utils/enums/button_status.dart';
 import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/presentation/widgets/buttons/rounded_button.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -136,43 +138,29 @@ class OnboardingView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(
-                                onTap: () => controller.previousPage(),
-                                child: Center(
-                                  child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    decoration: ShapeDecoration(
-                                      shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            width: 1.5,
-                                            color: Color(0xFFC27F33)),
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      ),
-                                    ),
-                                    child: Icon(Icons.arrow_back,
-                                        color: Color(0xFFC27F33)),
-                                  ),
+                        
+                               RoundedButton(
+                                  onTap: () => controller.previousPage(),
+                                  backgroundColor: AppColors.white,
+                                  status: ButtonState.enable,
+                                  contentColor: AppColors.primaryNormal,
+                                  hasElevation: false,
+                                  borderSize: 1.5,
+                                  icon: Icon(Icons.arrow_back, color: AppColors.primaryNormal),
                                 ),
-                              ),
                               Spacer(),
-                              GestureDetector(
-                                onTap: () => controller.nextPage(),
-                                child: Center(
-                                  child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFC38029),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      ),
-                                    ),
-                                    child: Icon(Icons.arrow_forward,
-                                        color: Colors.white),
-                                  ),
+                              RoundedButton(
+                                  onTap: () => controller.nextPage(),
+                                  backgroundColor:AppColors.primaryNormal ,
+                                  borderColor: AppColors.primaryNormal,
+                                  status: ButtonState.enable,
+                                  contentColor: AppColors.blackLight,
+                                  loaderSize: 24.0,
+                                  borderSize: 0.0,
+                                  hasElevation: false,
+                                  icon: Icon(Icons.arrow_forward, color: AppColors.blackLight),
                                 ),
-                              )
+                            
                             ],
                           ),
                         ),
