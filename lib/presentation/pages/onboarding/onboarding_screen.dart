@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 
-class SplashScreen extends StatelessWidget {
+class onBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Simulate a delay for splash screen

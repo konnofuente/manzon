@@ -1,5 +1,12 @@
 {
     "hello": "Hello",
-    "user": "User"
+    "user": "User",
+    "splash_title": "Bienvenue à Manzon",
+    "splash_description": "Digitalisez la gestion de votre tontine en toute simplicité.",
+    "login": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "login_button": "Se connecter",
+    "welcome_message": "Bienvenue, @name"
   }
   

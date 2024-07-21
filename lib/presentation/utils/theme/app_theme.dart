@@ -6,9 +6,7 @@ class AppTheme {
     primaryColor: AppColors.primaryNormal,
     primaryColorDark: AppColors.primaryDarker,
     hintColor: AppColors.secondaryNormal,
-    backgroundColor: AppColors.secondaryLight,
     scaffoldBackgroundColor: AppColors.secondaryLight,
-    errorColor: AppColors.blackDarker,
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryNormal,
       secondary: AppColors.secondaryNormal,
@@ -28,9 +26,7 @@ class AppTheme {
     primaryColor: AppColors.primaryNormal,
     primaryColorDark: AppColors.primaryDarker,
     hintColor: AppColors.secondaryNormal,
-    backgroundColor: AppColors.blackDark,
     scaffoldBackgroundColor: AppColors.blackDark,
-    errorColor: AppColors.blackDarker,
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryDark,
       secondary: AppColors.secondaryDark,
