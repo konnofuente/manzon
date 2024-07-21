@@ -19,7 +19,12 @@ class OnboardingController extends GetxController {
       "title": "Gestion des Prêts",
       "description": "Aidez votre tontine à gérer efficacement les prêts et les remboursements.",
       "image": ImageAssets.onboarding3
-    }
+    },
+    {
+      "title": "Gestion des Prêts",
+      "description": "Aidez votre tontine à gérer efficacement les prêts et les remboursements.",
+      "image": ImageAssets.onboarding3
+    },
   ];
 
   void nextPage() {

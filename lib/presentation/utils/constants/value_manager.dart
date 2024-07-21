@@ -31,10 +31,18 @@ class AppSize {
   static const double s60 = 60.0;
   static const double s65 = 65.0;
   static const double s100 = 100.0;
+
+  static const double buttonHeight = 50.0;
+  static const double inputHeight = 50.0;
+  static const double loaderSize = 20.0;
 }
 
-class DurationConstant{
+class AppRadius {
+  static const double r50 = 50.0;
+
+}
+
+class DurationConstant {
   static const int d300 = 300;
   static const int s3 = 3;
-
 }
