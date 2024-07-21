@@ -6,9 +6,7 @@ class onBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Simulate a delay for splash screen
-    Future.delayed(Duration(seconds: 2), () {
-      Get.offNamed(AppRouteNames.home);
-    });
+
 
     return Scaffold(
       body: Center(

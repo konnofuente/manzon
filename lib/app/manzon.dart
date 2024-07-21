@@ -15,6 +15,7 @@ class ManzonApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtils.init(context);
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false, 
       title: 'Manzon',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
