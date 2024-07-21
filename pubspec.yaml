@@ -65,6 +65,10 @@ flutter:
     - lib/presentation/utils/lang/en.json
     - lib/presentation/utils/lang/fr.json
     - assets/logos/logo.svg
+    - assets/images/onboarding1.svg
+    - assets/images/onboarding2.svg
+    - assets/images/onboarding3.svg
+    - assets/images/onboarding4.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

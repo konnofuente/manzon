@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:manzon/presentation/utils/constants/assets_manager.dart';
 
 class OnboardingController extends GetxController {
   var currentPage = 0.obs;
@@ -7,17 +8,17 @@ class OnboardingController extends GetxController {
     {
       "title": "Notifications Automatiques",
       "description": "Recevez des notifications instantanées pour les contributions, les prêts et les événements importants.",
-      "image": "https://via.placeholder.com/390x616"
+      "image": ImageAssets.onboarding1
     },
     {
       "title": "Suivi et Transparence",
       "description": "Suivez les contributions et les prêts en temps réel avec une transparence totale.",
-      "image": "https://via.placeholder.com/390x616"
+      "image": ImageAssets.onboarding2
     },
     {
       "title": "Gestion des Prêts",
       "description": "Aidez votre tontine à gérer efficacement les prêts et les remboursements.",
-      "image": "https://via.placeholder.com/390x616"
+      "image": ImageAssets.onboarding3
     }
   ];
 
@@ -31,5 +32,12 @@ class OnboardingController extends GetxController {
     if (currentPage > 0) {
       currentPage--;
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Print the image path to debug
+    // ever(currentPage, (_) => print(onboardingPages[currentPage.value]["image"]));
   }
 }
