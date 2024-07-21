@@ -1,34 +1,27 @@
+import 'font_manager.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'font_manager.dart';
-
 TextStyle _getTextStyle(
-    double fontSize, String fontFamily, FontWeight fontWeight,Color color) {
+    double fontSize, String fontFamily, FontWeight fontWeight, Color color) {
   return TextStyle(
-      fontFamily: fontFamily,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      color: color,
-      );
+    fontFamily: fontFamily,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    color: color,
+  );
 }
-
-//regular style
 
 TextStyle getRegularStyle(
     {double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyle(
-      fontSize, FontConstants.fontFamily,  FontWeightManager.regular , color);
+      fontSize, FontConstants.fontFamily, FontWeightManager.regular, color);
 }
-
-
-// light text style
 
 TextStyle getLightStyle(
     {double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.light, color);
 }
-// bold text style
 
 TextStyle getBoldStyle(
     {double fontSize = FontSize.s12, required Color color}) {
@@ -36,19 +29,45 @@ TextStyle getBoldStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.bold, color);
 }
 
-// semi bold text style
-
 TextStyle getSemiBoldStyle(
     {double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.semiBold, color);
 }
 
-
-// medium text style
-
 TextStyle getMediumStyle(
     {double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.medium, color);
+}
+
+TextStyle getExtraBoldStyle(
+    {double fontSize = FontSize.s12, required Color color}) {
+  return _getTextStyle(
+      fontSize, FontConstants.fontFamily, FontWeightManager.extraBold, color);
+}
+
+TextStyle getBlackStyle(
+    {double fontSize = FontSize.s12, required Color color}) {
+  return _getTextStyle(
+      fontSize, FontConstants.fontFamily, FontWeightManager.black, color);
+}
+
+// Custom text style with line height, letter spacing etc.
+TextStyle getCustomStyle(
+    {double fontSize = FontSize.s12,
+    required Color color,
+    FontWeight fontWeight = FontWeightManager.regular,
+    double? height,
+    double? letterSpacing,
+    TextDecoration? decoration}) {
+  return TextStyle(
+    fontFamily: FontConstants.fontFamily,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    color: color,
+    height: height,
+    letterSpacing: letterSpacing,
+    decoration: decoration,
+  );
 }
