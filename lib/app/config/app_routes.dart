@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:manzon/presentation/pages/auth/otp/otp_view.dart';
 import 'package:manzon/presentation/pages/splash/splash_view.dart';
 import 'package:manzon/presentation/pages/auth/login/login_view.dart';
 import 'package:manzon/presentation/utils/constants/app_route_names.dart';
@@ -13,5 +14,6 @@ class AppRoutes {
     GetPage(name: AppRouteNames.register, page: () => RegisterView()),
     GetPage(name: AppRouteNames.login, page: () => LoginView()),
     GetPage(name: AppRouteNames.userRole, page: () => UserRoleView()),
+    GetPage(name: AppRouteNames.otp, page: () => OTPView()),
   ];
 }

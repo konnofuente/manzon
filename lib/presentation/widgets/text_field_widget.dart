@@ -29,7 +29,7 @@ class TextFieldWidget extends StatefulWidget {
     this.readOnly = false,
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
-    this.height = 80.0,
+    this.height = 100.0,
     this.validator,
     this.suffixIcon,
     this.borderRadius = 8.0,
@@ -99,7 +99,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 borderSide: BorderSide(color: Colors.red),
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
               suffixIcon: widget.isPassword
                   ? IconButton(
                       icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: AppColors.fontLightDisabled),

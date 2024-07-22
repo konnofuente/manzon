@@ -1,6 +1,7 @@
 import 'register_state.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 
 class RegisterController extends GetxController {
   final RegisterState state = RegisterState();
@@ -26,6 +27,7 @@ class RegisterController extends GetxController {
     // Add your register logic here
     print('Full Name: ${state.fullName.value}');
     print('Phone Number: ${state.phoneNumber.value}');
+    Get.toNamed(AppRouteNames.otp);
   }
 
   @override

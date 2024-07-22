@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/utils/screen_util.dart';
 import 'package:manzon/presentation/utils/theme/app_colors.dart';
@@ -28,43 +27,34 @@ class _RegisterViewState extends State<RegisterView> {
         padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: verticalPadding),
+              SizedBox(height: verticalPadding * 2),
               Text(
-                'join_manzon_now'.tr,
+                'create_account'.tr,
                 style: getBlackStyle(
                   color: AppColors.blackNormal,
                   fontSize: FontSize.s30,
                 ),
               ),
               SizedBox(height: AppSize.s16),
-              Text(
-                "create_account_experience".tr,
-                style: getSemiBoldStyle(
-                  color: AppColors.grayNormal,
-                  fontSize: FontSize.s16,
-                ),
-              ),
               SizedBox(height: verticalPadding),
               TextFieldWidget(
-                labelText: "full_name".tr,
                 hintText: "first_name".tr,
                 prefixIcon: Icons.person,
                 controller: controller.fullNameController,
-                height: 60,
+                height: 70,
                 isPassword: false,
                 keyboardType: TextInputType.text,
                 readOnly: false,
               ),
               SizedBox(height: AppSize.s12),
               TextFieldWidget(
-                labelText: "phone".tr,
                 hintText: "enter_phone_number".tr,
                 prefixIcon: Icons.phone,
                 controller: controller.phoneNumberController,
                 validator: FormValidators.validatePhoneNumber,
-                height: 60,
+                height: 70,
                 isPassword: false,
                 keyboardType: TextInputType.phone,
                 readOnly: false,
@@ -80,38 +70,6 @@ class _RegisterViewState extends State<RegisterView> {
                 borderRadius: 50.0,
               ),
               SizedBox(height: verticalPadding),
-              Center(
-                child: Text(
-                  "or_continue_with".tr,
-                  style: getRegularStyle(
-                    color: AppColors.fontLightDisabled,
-                    fontSize: FontSize.s14,
-                  ),
-                ),
-              ),
-              SizedBox(height: AppSize.s10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: SvgPicture.asset(IconAssets.facebookIcon),
-                    onPressed: () => print('Facebook Pressed'),
-                  ),
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      IconAssets.googleIcon,
-                    ),
-                    onPressed: () => print('Google Pressed'),
-                  ),
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      IconAssets.appleIcon,
-                    ),
-                    onPressed: () => print('Apple Pressed'),
-                  ),
-                ],
-              ),
-              SizedBox(height: AppSize.s10),
               Center(
                 child: Text(
                   "already_have_an_account".tr,
