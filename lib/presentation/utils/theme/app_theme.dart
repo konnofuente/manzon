@@ -5,7 +5,7 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     primaryColor: AppColors.primaryNormal,
     primaryColorDark: AppColors.primaryDarker,
-    hintColor: AppColors.secondaryNormal,
+    hintColor: AppColors.blackLight,
     scaffoldBackgroundColor: AppColors.secondaryLight,
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryNormal,

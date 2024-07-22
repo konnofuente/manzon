@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/utils/theme/app_colors.dart';
+import 'package:manzon/presentation/utils/theme/font_manager.dart';
 import 'package:manzon/presentation/utils/theme/style_manager.dart';
 import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
 
@@ -68,7 +69,7 @@ class DefaultButton extends StatelessWidget {
             if (leftIcon != null) SizedBox(width: 8),
             Text(
               text,
-              style: textStyle ?? getSemiBoldStyle(color: AppColors.white),
+              style: textStyle ??getSemiBoldStyle(fontSize: FontSize.s16, color: AppColors.white),
             ),
             if (rightIcon != null) SizedBox(width: 8),
             if (rightIcon != null) rightIcon!,
