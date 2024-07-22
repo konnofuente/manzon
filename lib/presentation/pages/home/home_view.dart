@@ -9,22 +9,26 @@ import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/home/components/profile_info.dart';
 import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
 
-
-
 class HomeController extends GetxController {
   var associations = [
     {
       "name": "CERAD",
       "description": "Comité d'exécution des ressortissants des Ndang",
       "location": "Tsinga",
-      "imageUrl": "https://via.placeholder.com/100x100",
+      "imageUrl": ImageAssets.peigne1,
     },
     {
-      "name": "NDANG",
+      "name": "CERAD",
       "description": "Comité d'exécution des ressortissants des Ndang",
       "location": "Tsinga",
-      "imageUrl": "https://via.placeholder.com/100x100",
-    }
+      "imageUrl": ImageAssets.peigne1,
+    },
+    {
+      "name": "CERAD",
+      "description": "Comité d'exécution des ressortissants des Ndang",
+      "location": "Tsinga",
+      "imageUrl": ImageAssets.peigne1,
+    },
   ].obs;
 }
 
@@ -56,7 +60,8 @@ class HomeView extends StatelessWidget {
             SizedBox(height: verticalPadding),
             Text(
               "Mes associations",
-              style: getBoldStyle(color: AppColors.blackNormal, fontSize: FontSize.s24),
+              style: getBoldStyle(
+                  color: AppColors.blackDark, fontSize: FontSize.s24),
             ),
             SizedBox(height: verticalPadding),
             Expanded(
@@ -70,6 +75,7 @@ class HomeView extends StatelessWidget {
                       description: association['description']!,
                       location: association['location']!,
                       imageUrl: association['imageUrl']!,
+                      isActive: index % 2 == 0 ? false : true,
                     );
                   },
                 ),

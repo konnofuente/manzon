@@ -9,6 +9,8 @@ class ImageAssets {
   static const String onboarding4 = "$IMAGE_PATH/onboarding4.png";
   static const String onboarding5 = "$IMAGE_PATH/onboarding5.png";
   static const String profile = "$IMAGE_PATH/profile.png";
+  static const String peigne1 = "$IMAGE_PATH/peigne1.png";
+  static const String peigne2 = "$IMAGE_PATH/peigne2.png";
 
 }
 class LogoAssets {

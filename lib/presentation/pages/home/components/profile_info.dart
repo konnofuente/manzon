@@ -6,7 +6,7 @@ import 'package:manzon/presentation/utils/theme/font_manager.dart';
 import 'package:manzon/presentation/utils/theme/style_manager.dart';
 import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
 
-class ProfileInfo extends StatelessWidget {
+class ProfileInfo extends StatefulWidget {
   final String name;
   final String phoneNumber;
   final VoidCallback onEdit;
@@ -18,6 +18,11 @@ class ProfileInfo extends StatelessWidget {
     required this.onEdit,
   }) : super(key: key);
 
+  @override
+  State<ProfileInfo> createState() => _ProfileInfoState();
+}
+
+class _ProfileInfoState extends State<ProfileInfo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,24 +37,24 @@ class ProfileInfo extends StatelessWidget {
                 width: 70,
                 height: 70,
               ),
-              // SizedBox(width: 16),
+              SizedBox(width: AppSize.s8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name,
+                  Text(widget.name,
                       style: getRegularStyle(
                           color: AppColors.blackNormal,
-                          fontSize: FontSize.s18)),
-                  Text(phoneNumber,
+                          fontSize: FontSize.s14)),
+                  Text(widget.phoneNumber,
                       style: getBoldStyle(
-                          color: AppColors.grayNormal, fontSize: FontSize.s14)),
+                          color: AppColors.blackDark, fontSize: FontSize.s16)),
                 ],
               ),
             ],
           ),
           IconButton(
-            icon: Icon(Icons.edit, color: AppColors.grayNormal),
-            onPressed: onEdit,
+            icon: Icon(Icons.mode_edit_outlined, color: AppColors.blackDark),
+            onPressed: widget.onEdit,
           ),
         ],
       ),

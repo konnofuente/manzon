@@ -17,7 +17,6 @@ class ManzonApp extends StatefulWidget {
 }
 
 class _ManzonAppState extends State<ManzonApp> {
-   
   @override
   Widget build(BuildContext context) {
     ScreenSize.init(context);
@@ -31,7 +30,7 @@ class _ManzonAppState extends State<ManzonApp> {
         translations: widget.translations,
         locale: Get.deviceLocale,
         fallbackLocale: Locale('en', 'US'),
-        initialRoute: AppRouteNames.splash,
+        initialRoute: AppRouteNames.home,
         getPages: AppRoutes.routes,
       ),
     );
