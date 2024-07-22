@@ -44,7 +44,8 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColors.blackNormal),
-          onPressed: () => Get.back(),
+          // onPressed: () => Get.back(),
+          onPressed: () => print('r'),
         ),
       ),
       body: Padding(
@@ -59,7 +60,7 @@ class HomeView extends StatelessWidget {
             ),
             SizedBox(height: verticalPadding),
             Text(
-              "Mes associations",
+              "my_association".tr,
               style: getBoldStyle(
                   color: AppColors.blackDark, fontSize: FontSize.s24),
             ),
@@ -87,7 +88,7 @@ class HomeView extends StatelessWidget {
       floatingActionButton: DefaultButton(
         onTap: () => print('Create New Association'),
         backgroundColor: AppColors.primaryNormal,
-        text: 'Nouvelle association',
+        text: 'new_association'.tr,
         width: ScreenSize.screenWidth * 0.9,
         fontWeight: FontWeight.w600,
         borderRadius: AppRadius.r50,

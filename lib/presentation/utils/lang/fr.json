@@ -39,7 +39,11 @@
   "otp_app_bar": "Verification OTP",
   "verification_text": "Nous vous avons envoyé un code de vérification au",
   "resend_code": "On va vous renvoyer un code dans ",
-  "confirm_button_text": "Confirmer"
+  "confirm_button_text": "Confirmer",
+
+  
+  "my_association":"Mes associations",
+  "new_association":"Nouvelle associations"
 
   }
   
