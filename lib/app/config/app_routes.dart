@@ -4,6 +4,7 @@ import 'package:manzon/presentation/pages/auth/login/login_view.dart';
 import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_view.dart';
 import 'package:manzon/presentation/pages/auth/register/register_view.dart';
+import 'package:manzon/presentation/pages/auth/user_role/user_role_view.dart';
 
 class AppRoutes {
   static List<GetPage> routes = [
@@ -11,5 +12,6 @@ class AppRoutes {
     GetPage(name: AppRouteNames.onboarding, page: () => OnboardingView()),
     GetPage(name: AppRouteNames.register, page: () => RegisterView()),
     GetPage(name: AppRouteNames.login, page: () => LoginView()),
+    GetPage(name: AppRouteNames.userRole, page: () => UserRoleView()),
   ];
 }

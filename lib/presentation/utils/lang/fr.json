@@ -27,6 +27,13 @@
   "reconnect_to_manzon": "Reconnectez vous a votre compte pour continuer a profiter de toutes les offres.",
   "enter_password": "Entre votre mot de pass",
   "forgot_password": "Mot de pass oublier",
-  "no_account": "Vous n’avez pas de compte?"
+  "no_account": "Vous n’avez pas de compte?",
+
+
+  "you_are?": "Vous êtes ?",
+  "member_role": "Un membre de la réunion",
+  "admin_role": "Un administrateur de la réunion",
+  "next": "Prochain"
+
   }
   

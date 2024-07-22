@@ -26,7 +26,12 @@
   "reconnect_to_manzon": "Reconnect to your account to continue enjoying all the offers.",
   "enter_password": "Enter your password",
   "forgot_password": "Forgot password",
-  "no_account": "Don't have an account?"
+  "no_account": "Don't have an account?",
+
+  "you_are?": "Who are you?",
+  "member_role": "A meeting member",
+  "admin_role": "A meeting administrator",
+  "next": "Next"
 
 
 }

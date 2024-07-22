@@ -31,7 +31,7 @@ class _ManzonAppState extends State<ManzonApp> {
         translations: widget.translations,
         locale: Get.deviceLocale,
         fallbackLocale: Locale('en', 'US'),
-        initialRoute: AppRouteNames.login,
+        initialRoute: AppRouteNames.userRole,
         getPages: AppRoutes.routes,
       ),
     );
