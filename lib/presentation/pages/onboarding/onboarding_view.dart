@@ -5,6 +5,7 @@ import 'package:manzon/presentation/utils/screen_util.dart';
 import 'package:manzon/presentation/utils/theme/app_colors.dart';
 import 'package:manzon/presentation/utils/theme/style_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
+import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 import 'package:manzon/presentation/pages/onboarding/widgets/navigation_buttons.dart';
@@ -74,7 +75,7 @@ class OnboardingView extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     DefaultButton(
-                                      onTap: () => print('Button Pressed'),
+                                      onTap: () =>  Get.offNamed(AppRouteNames.login),
                                       backgroundColor: AppColors.primaryNormal,
                                       text: 'get_start'.tr,
                                       textStyle: getSemiBoldStyle(fontSize: FontSize.s16, color: AppColors.white),

@@ -22,7 +22,7 @@ class ManzonApp extends StatelessWidget {
       translations: translations,
       locale: Get.deviceLocale,
       fallbackLocale: Locale('en', 'US'),
-      initialRoute: AppRouteNames.splash,
+      initialRoute: AppRouteNames.login,
       getPages: AppRoutes.routes,
     );
   }
