@@ -70,6 +70,11 @@ flutter:
     - assets/images/onboarding2.svg
     - assets/images/onboarding3.svg
     - assets/images/onboarding4.svg
+    - assets/images/onboarding1.png
+    - assets/images/onboarding2.png
+    - assets/images/onboarding3.png
+    - assets/images/onboarding4.png
+    - assets/images/profile.png
     - assets/icons/facebook.svg
     - assets/icons/google.svg
     - assets/icons/apple.svg

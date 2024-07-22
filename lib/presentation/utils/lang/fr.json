@@ -34,7 +34,12 @@
   "you_are?": "Vous êtes ?",
   "member_role": "Un membre de la réunion",
   "admin_role": "Un administrateur de la réunion",
-  "next": "Prochain"
+  "next": "Prochain",
+
+  "otp_app_bar": "Verification OTP",
+  "verification_text": "Nous vous avons envoyé un code de vérification au",
+  "resend_code": "On va vous renvoyer un code dans ",
+  "confirm_button_text": "Confirmer"
 
   }
   

@@ -32,7 +32,13 @@
   "you_are?": "Who are you?",
   "member_role": "A meeting member",
   "admin_role": "A meeting administrator",
-  "next": "Next"
+  "next": "Next",
+
+ "otp_app_bar": "Verification OTP",
+  "verification_text": "We have sent you a verification code to",
+  "resend_code": "We will resend a code in ",
+  "confirm": "Confirm"
+
 
 
 }

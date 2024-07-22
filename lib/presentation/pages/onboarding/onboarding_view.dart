@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/utils/screen_util.dart';
 import 'package:manzon/presentation/utils/theme/app_colors.dart';
@@ -27,13 +26,33 @@ class OnboardingView extends StatelessWidget {
               top: 0,
               child: SizedBox(
                 width: ScreenSize.screenWidth,
-                height: ScreenSize.blockSizeVertical * 55,
-                child: SvgPicture.asset(
-                  height: ScreenSize.blockSizeVertical * 50,
-                  width: ScreenSize.screenWidth,
-                  controller.onboardingPages[controller.currentPage.value]
-                      ["image"]!,
-                  fit: BoxFit.cover,
+                height: ScreenSize.blockSizeVertical * 60,
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      controller.onboardingPages[controller.currentPage.value]
+                          ["image"]!,
+                      height: ScreenSize.blockSizeVertical * 60,
+                      width: ScreenSize.screenWidth,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned.fill(
+                      child: ShaderMask(
+                        shaderCallback: (rect) {
+                          return LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, Colors.white],
+                            stops: [0.7, 1.0], // Adjust as needed
+                          ).createShader(rect);
+                        },
+                        blendMode: BlendMode.dstIn,
+                        child: Container(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -76,7 +95,7 @@ class OnboardingView extends StatelessWidget {
                                   children: [
                                     DefaultButton(
                                       onTap: () =>
-                                          Get.offNamed(AppRouteNames.register),
+                                          Get.offNamed(AppRouteNames.userRole),
                                       backgroundColor: AppColors.primaryNormal,
                                       text: 'get_start'.tr,
                                       textStyle: getSemiBoldStyle(

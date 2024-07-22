@@ -24,7 +24,7 @@ class _OTPViewState extends State<OTPView> {
       appBar: AppBar(
         title: Container(
             alignment: Alignment.center,
-            child: Text('Verification OTP',
+            child: Text('otp_app_bar'.tr,
                 style: getSemiBoldStyle(
                     fontSize: FontSize.s18, color: AppColors.blackNormal))),
         leading: IconButton(
@@ -42,7 +42,7 @@ class _OTPViewState extends State<OTPView> {
           children: [
             SizedBox(height: verticalPadding * 2),
             Text(
-              'Nous vous avons envoyé un code de vérification au',
+              'verification_text'.tr,
               style: getRegularStyle(
                   fontSize: 16, color: AppColors.fontLightSecondary),
             ),
@@ -71,7 +71,7 @@ class _OTPViewState extends State<OTPView> {
             SizedBox(height: 16),
             Center(
               child: Obx(() => Text(
-                    'On va vous renvoyer un code dans ${controller.remainingTime.value}s',
+                    '${'resend_code'.tr} ${controller.remainingTime.value}s',
                     style: getMediumStyle(color: AppColors.fontLightDisabled),
                   )),
             ),
@@ -86,7 +86,7 @@ class _OTPViewState extends State<OTPView> {
                   status: controller.isButtonEnabled.value
                       ? ButtonState.enable
                       : ButtonState.disable,
-                  text: 'Confirmer',
+                  text: 'confirm'.tr,
                   width: double.infinity,
                   fontWeight: FontWeight.w600,
                   borderRadius: 50.0,

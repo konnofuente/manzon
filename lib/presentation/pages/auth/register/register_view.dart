@@ -19,12 +19,11 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final RegisterController controller = Get.put(RegisterController());
-    final double horizontalPadding = ScreenSize.screenWidth * 0.08;
     final double verticalPadding = AppSize.s40;
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+        padding: EdgeInsets.symmetric(horizontal: ScreenSize.horizontalPadding),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 
 class OTPController extends GetxController {
   var otp = ''.obs;
@@ -14,6 +15,7 @@ class OTPController extends GetxController {
     if (otp.value.length == 4) {
       // Add OTP verification logic here
       print('OTP Verified: ${otp.value}');
+      Get.offNamed(AppRouteNames.home);
     } else {
       print('Invalid OTP');
     }
