@@ -5,9 +5,40 @@
   "manzon_logo": "Manzon Logo",
   "power_by_manzon": "Powered by Manzon",
   "splash_description": "Digitize the management of your Njanki with ease.",
-  "login": "Login",
+  "register": "Register",
+  "get_start": "Get Started",
   "email": "Email",
   "password": "Password",
-  "login_button": "Log in",
-  "welcome_message": "Welcome, @name"
+  "register_button": "Log in",
+  "welcome_message": "Welcome, @name",
+
+
+  "join_manzon_now": "Join Manzon now!",
+  "create_account": "Create Account",
+  "create_account_experience": "Create your account and start your personalized experience now.",
+  "full_name": "Full Name",
+  "first_name": "First Name",
+  "phone": "Phone",
+  "enter_phone_number": "Enter your phone number",
+  "continue": "Continue",
+  "or_continue_with": "Or continue with",
+  "already_have_an_account": "Already have an account",
+  "happy_return": "Welcome back, member!",
+  "reconnect_to_manzon": "Reconnect to your account to continue enjoying all the offers.",
+  "enter_password": "Enter your password",
+  "forgot_password": "Forgot password",
+  "no_account": "Don't have an account?",
+
+  "you_are?": "Who are you?",
+  "member_role": "A meeting member",
+  "admin_role": "A meeting administrator",
+  "next": "Next",
+
+ "otp_app_bar": "Verification OTP",
+  "verification_text": "We have sent you a verification code to",
+  "resend_code": "We will resend a code in ",
+  "confirm": "Confirm"
+
+
+
 }

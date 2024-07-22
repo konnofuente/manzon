@@ -5,10 +5,41 @@
     "manzon_logo": "Manzon Logo",
     "power_by_manzon": "Par Manzon",
     "splash_description": "Digitalisez la gestion de votre tontine en toute simplicité.",
-    "login": "Login",
+    "get_start": "Commencer",
+    "register": "Register",
     "email": "Email",
     "password": "Password",
-    "login_button": "Login",
-    "welcome_message": "Bienvenue, @name"
+    "register_button": "Register",
+    "welcome_message": "Bienvenue, @name",
+
+
+    "join_manzon_now": "Rejoignez Manzon dès maintenant !",
+    "create_account": "Creer un compte",
+    "create_account_experience": "Creez votre compte et Commencez votre expérience personnalisée maintenant.",
+    "full_name": "Full Name",
+  "first_name": "First Name",
+  "phone": "Phone",
+  "enter_phone_number": "Enter your phone number",
+  "continue": "Continuer",
+  "or_continue_with": "Ou continuez avec",
+  "already_have_an_account": "Already Have an Account",
+
+  "happy_return": "Bon retour parmi nous membre !",
+  "reconnect_to_manzon": "Reconnectez vous a votre compte pour continuer a profiter de toutes les offres.",
+  "enter_password": "Entre votre mot de pass",
+  "forgot_password": "Mot de pass oublier",
+  "no_account": "Vous n’avez pas de compte?",
+
+
+  "you_are?": "Vous êtes ?",
+  "member_role": "Un membre de la réunion",
+  "admin_role": "Un administrateur de la réunion",
+  "next": "Prochain",
+
+  "otp_app_bar": "Verification OTP",
+  "verification_text": "Nous vous avons envoyé un code de vérification au",
+  "resend_code": "On va vous renvoyer un code dans ",
+  "confirm_button_text": "Confirmer"
+
   }
   

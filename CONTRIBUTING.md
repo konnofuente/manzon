@@ -38,7 +38,7 @@ Writing good commit messages is crucial for maintaining a readable project histo
 ```
 feat: Add user authentication
 
-- Implement login and registration functionality
+- Implement register and registration functionality
 - Integrate with Firebase for backend support
 - Add validation for user inputs
 - Closes #101
