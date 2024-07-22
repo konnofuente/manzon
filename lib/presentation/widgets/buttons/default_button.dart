@@ -11,7 +11,7 @@ class DefaultButton extends StatelessWidget {
   final TextStyle? textStyle;
   final double width;
   final double height;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final double borderRadius;
   final Icon? leftIcon;
   final Icon? rightIcon;
@@ -28,8 +28,8 @@ class DefaultButton extends StatelessWidget {
      this.textStyle ,
     required this.width,
     this.height = AppSize.buttonHeight,
-    required this.fontWeight,
-    required this.borderRadius,
+     this.fontWeight,
+     this.borderRadius = 50,
     this.leftIcon,
     this.rightIcon,
     this.shadowColor = const Color(0x0C101828),

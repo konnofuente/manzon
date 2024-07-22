@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class LoginState {
+class RegisterState {
   // Reactive state variables
   RxString fullName = ''.obs;
   RxString phoneNumber = ''.obs;

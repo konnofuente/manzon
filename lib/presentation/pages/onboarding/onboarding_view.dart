@@ -31,7 +31,8 @@ class OnboardingView extends StatelessWidget {
                 child: SvgPicture.asset(
                   height: ScreenSize.blockSizeVertical * 50,
                   width: ScreenSize.screenWidth,
-                  controller.onboardingPages[controller.currentPage.value]["image"]!,
+                  controller.onboardingPages[controller.currentPage.value]
+                      ["image"]!,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,13 +44,12 @@ class OnboardingView extends StatelessWidget {
                 child: Container(
                   height: ScreenSize.blockSizeVertical * 45,
                   padding: EdgeInsets.only(
-                    top: verticalPadding * 4, bottom: verticalPadding
-                  ),
+                      top: verticalPadding * 4, bottom: verticalPadding),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment(0.00, -1.00),
                       end: Alignment(0, 1),
-                      colors: [AppColors.white.withOpacity(0),AppColors.white],
+                      colors: [AppColors.white.withOpacity(0), AppColors.white],
                     ),
                   ),
                   child: Column(
@@ -58,10 +58,10 @@ class OnboardingView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: horizontalPadding),
                         child: buildPageContent(
-                          controller, verticalPadding, horizontalPadding
-                        ),
+                            controller, verticalPadding, horizontalPadding),
                       ),
                       SizedBox(height: verticalPadding),
                       controller.currentPage.value ==
@@ -75,10 +75,13 @@ class OnboardingView extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     DefaultButton(
-                                      onTap: () =>  Get.offNamed(AppRouteNames.login),
+                                      onTap: () =>
+                                          Get.offNamed(AppRouteNames.register),
                                       backgroundColor: AppColors.primaryNormal,
                                       text: 'get_start'.tr,
-                                      textStyle: getSemiBoldStyle(fontSize: FontSize.s16, color: AppColors.white),
+                                      textStyle: getSemiBoldStyle(
+                                          fontSize: FontSize.s16,
+                                          color: AppColors.white),
                                       width: double.infinity,
                                       fontWeight: FontWeight.w600,
                                       borderRadius: AppRadius.r50,
