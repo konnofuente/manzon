@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/app/helpers/keyboard.dart';
-import 'package:manzon/app/config/app_routes.dart';
+import 'package:manzon/app/routes/app_routes.dart';
 import 'package:manzon/app/config/translations.dart';
+import 'package:manzon/app/routes/app_route_names.dart';
 import 'package:manzon/presentation/utils/screen_util.dart';
 import 'package:manzon/presentation/utils/theme/app_theme.dart';
-import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 
 class ManzonApp extends StatefulWidget {
   final AppTranslations translations;

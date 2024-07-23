@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
+import 'package:manzon/app/routes/app_route_names.dart';
 import 'package:manzon/presentation/pages/home/home_view.dart';
 import 'package:manzon/presentation/pages/auth/otp/otp_view.dart';
 import 'package:manzon/presentation/pages/splash/splash_view.dart';
 import 'package:manzon/presentation/pages/auth/login/login_view.dart';
-import 'package:manzon/presentation/utils/constants/app_route_names.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_view.dart';
 import 'package:manzon/presentation/pages/auth/register/register_view.dart';
 import 'package:manzon/presentation/pages/auth/user_role/user_role_view.dart';

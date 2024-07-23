@@ -1,7 +1,7 @@
 import 'register_state.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/constants/app_route_names.dart';
+import 'package:manzon/app/routes/app_route_names.dart';
 
 class RegisterController extends GetxController {
   final RegisterState state = RegisterState();
