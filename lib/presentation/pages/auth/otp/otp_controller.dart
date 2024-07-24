@@ -1,21 +1,20 @@
 import 'package:get/get.dart';
-import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/presentation/controllers/auth_controller.dart';
 
 class OTPController extends GetxController {
+  final AuthentificationController _authentificationController = Get.find();
   var otp = ''.obs;
   var isButtonEnabled = false.obs;
   var remainingTime = 30.obs;
 
   void setOTP(String otp) {
     this.otp.value = otp;
-    isButtonEnabled.value = otp.length == 4;
+    isButtonEnabled.value = otp.length == 6;
   }
 
   void verifyOTP() {
-    if (otp.value.length == 4) {
-      // Add OTP verification logic here
-      print('OTP Verified: ${otp.value}');
-      Get.offNamed(AppRouteNames.home);
+    if (otp.value.length == 6) {
+      _authentificationController.signInWithOtp(otp.value);
     } else {
       print('Invalid OTP');
     }
@@ -31,8 +30,15 @@ class OTPController extends GetxController {
     remainingTime.value = 30;
     ever(remainingTime, (_) {
       if (remainingTime.value > 0) {
-        remainingTime.value--;
+        Future.delayed(Duration(seconds: 1), () {
+          remainingTime.value--;
+        });
       }
     });
+  }
+
+  void resendOTP() {
+    _authentificationController.resendVerificationCode();
+    startTimer();
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
@@ -11,11 +12,13 @@ class AuthentificationController extends GetxController {
   final SignInWithPhoneNumberUseCase _signInWithPhoneNumberUseCase;
   final ConnectivityService connectivityService = Get.find();
   var verificationId = ''.obs;
+  String? phoneNumber;
 
   AuthentificationController(
       this._verifyPhoneNumberUseCase, this._signInWithPhoneNumberUseCase);
 
   Future<void> verifyPhoneNumber(String phoneNumber) async {
+    this.phoneNumber = phoneNumber;
     bool isConnected = await connectivityService.checkConnectivity();
 
     if (!isConnected) {
@@ -26,7 +29,6 @@ class AuthentificationController extends GetxController {
       );
       return;
     }
-
 
     await _verifyPhoneNumberUseCase.call(
       phoneNumber,
@@ -57,6 +59,20 @@ class AuthentificationController extends GetxController {
 
   Future<void> signInWithPhoneAuthCredential(
       PhoneAuthCredential credential) async {
-    await _signInWithPhoneNumberUseCase.call(credential);
+    try {
+      await _signInWithPhoneNumberUseCase.call(credential);
+       Get.toNamed(AppRouteNames.home);
+    } catch (e) {
+      log('Error in signInWithPhoneAuthCredential: $e');
+       ToastUtils.showError(
+            Get.context!, 'Verification Failed', e.toString());
+      throw Exception('Failed to sign in with phone number.');
+    }
+  }
+
+  Future<void> resendVerificationCode() async {
+    if (phoneNumber != null) {
+      await verifyPhoneNumber(phoneNumber!);
+    }
   }
 }

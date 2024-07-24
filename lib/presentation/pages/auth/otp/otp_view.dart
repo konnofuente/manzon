@@ -18,6 +18,7 @@ class _OTPViewState extends State<OTPView> {
   @override
   Widget build(BuildContext context) {
     final OTPController controller = Get.put(OTPController());
+    controller.onInit();
     final double verticalPadding = ScreenSize.screenHeight * 0.02;
 
     return Scaffold(
@@ -28,7 +29,7 @@ class _OTPViewState extends State<OTPView> {
                 style: getSemiBoldStyle(
                     fontSize: FontSize.s18, color: AppColors.blackNormal))),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: AppSize.s24,
           ),
@@ -52,27 +53,44 @@ class _OTPViewState extends State<OTPView> {
               style: getBoldStyle(fontSize: 16, color: AppColors.blackNormal),
             ),
             SizedBox(height: verticalPadding * 3),
-            OtpTextField(
-              fieldHeight: AppSize.s70,
-              fieldWidth: AppSize.s70,
-              textStyle: getSemiBoldStyle(
-                  fontSize: FontSize.s18, color: AppColors.fontLightPrimary),
-              numberOfFields: 4,
-              enabledBorderColor: AppColors.fontLightDisabled,
-              borderColor: AppColors.primaryNormal,
-              focusedBorderColor: AppColors.primaryNormal,
-              borderWidth: 1,
-              showFieldAsBox: true,
-              onCodeChanged: (String code) {},
-              onSubmit: (String verificationCode) {
-                controller.setOTP(verificationCode);
-              },
+            Expanded(
+              child: OtpTextField(
+                fieldHeight: AppSize.s70,
+                // fieldWidth: AppSize.s,
+                textStyle: getSemiBoldStyle(
+                    fontSize: FontSize.s18, color: AppColors.fontLightPrimary),
+                numberOfFields: 6,
+                enabledBorderColor: AppColors.fontLightDisabled,
+                borderColor: AppColors.primaryNormal,
+                focusedBorderColor: AppColors.primaryNormal,
+                borderWidth: 1,
+                showFieldAsBox: true,
+                onCodeChanged: (String code) {},
+                onSubmit: (String verificationCode) {
+                  controller.setOTP(verificationCode);
+                },
+              ),
             ),
             SizedBox(height: 16),
             Center(
               child: Obx(() => Text(
                     '${'resend_code'.tr} ${controller.remainingTime.value}s',
                     style: getMediumStyle(color: AppColors.fontLightDisabled),
+                  )),
+            ),
+            SizedBox(height: 16),
+            Center(
+              child: Obx(() => TextButton(
+                    onPressed: controller.remainingTime.value == 0
+                        ? controller.resendOTP
+                        : null,
+                    child: Text(
+                      'Resend Code',
+                      style: getMediumStyle(
+                          color: controller.remainingTime.value == 0
+                              ? AppColors.primaryNormal
+                              : AppColors.fontLightDisabled),
+                    ),
                   )),
             ),
             Spacer(),
