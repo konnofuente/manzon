@@ -5,37 +5,29 @@ import '../../../app/config/theme/style_manager.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
+import 'package:manzon/presentation/pages/home/home_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/pages/home/components/profile_info.dart';
-import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
-class HomeController extends GetxController {
-  var associations = [
-    {
-      "name": "CERAD",
-      "description": "Comité d'exécution des ressortissants des Ndang",
-      "location": "Tsinga",
-      "imageUrl": ImageAssets.peigne1,
-    },
-    {
-      "name": "CERAD",
-      "description": "Comité d'exécution des ressortissants des Ndang",
-      "location": "Tsinga",
-      "imageUrl": ImageAssets.peigne1,
-    },
-    {
-      "name": "CERAD",
-      "description": "Comité d'exécution des ressortissants des Ndang",
-      "location": "Tsinga",
-      "imageUrl": ImageAssets.peigne1,
-    },
-  ].obs;
+class HomeView extends StatefulWidget {
+  @override
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class HomeView extends StatelessWidget {
+class _HomeViewState extends State<HomeView> {
+  final HomeController controller = Get.put(HomeController(
+    getUserByIdUseCase: Get.find(),
+  ));
+
+  @override
+  void initState() {
+    super.initState();
+    controller.onInit();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.put(HomeController());
+ 
     final double verticalPadding = 16.0;
 
     return Scaffold(
@@ -44,8 +36,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColors.blackNormal),
-          // onPressed: () => Get.back(),
-          onPressed: () => print('r'),
+          onPressed: () => Get.back(),
         ),
       ),
       body: Padding(
@@ -53,11 +44,16 @@ class HomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileInfo(
-              name: "Elisabeth Singou",
-              phoneNumber: "+237 699 442 188",
-              onEdit: () => print('Edit Profile'),
-            ),
+            Obx(() {
+              final user = controller.user.value;
+              return user != null
+                  ? ProfileInfo(
+                      name: user.name ?? "No Name",
+                      phoneNumber: user.phoneNumber,
+                      onEdit: () => print('Edit Profile'),
+                    )
+                  : CircularProgressIndicator();
+            }),
             SizedBox(height: verticalPadding),
             Text(
               "my_association".tr,
