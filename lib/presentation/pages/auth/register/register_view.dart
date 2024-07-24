@@ -9,7 +9,7 @@ import 'package:manzon/presentation/widgets/text_field_widget.dart';
 import 'package:manzon/app/core/utils/validations/form_validators.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
-import 'package:manzon/presentation/pages/auth/register/register_controller.dart';
+import 'package:manzon/presentation/controllers/authentification/auth_controller.dart';
 
 class RegisterView extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
-    final RegisterController controller = Get.put(RegisterController());
+    final AuthentificationController controller = Get.find();
     final double verticalPadding = AppSize.s40;
 
     return Scaffold(
@@ -60,10 +60,9 @@ class _RegisterViewState extends State<RegisterView> {
                 readOnly: false,
               ),
               SizedBox(height: verticalPadding),
-           
               Obx(
                 () => DefaultButton(
-                  onTap: controller.register,
+                  onTap: controller.verifyPhoneNumber,
                   status: controller.isLoadingButton.value ? ButtonState.loading : ButtonState.enable,
                   height: AppSize.s60,
                   backgroundColor: AppColors.primaryNormal,

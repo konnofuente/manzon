@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
@@ -11,17 +12,54 @@ class AuthentificationController extends GetxController {
   final VerifyPhoneNumberUseCase _verifyPhoneNumberUseCase;
   final SignInWithPhoneNumberUseCase _signInWithPhoneNumberUseCase;
   final ConnectivityService connectivityService = Get.find();
+
   var verificationId = ''.obs;
+  var otp = ''.obs;
+  var isButtonEnabled = false.obs;
+  var remainingTime = 30.obs;
+  var isLoadingButton = false.obs;
+
   String? phoneNumber;
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
 
   AuthentificationController(
       this._verifyPhoneNumberUseCase, this._signInWithPhoneNumberUseCase);
 
-  Future<void> verifyPhoneNumber(String phoneNumber) async {
-    this.phoneNumber = phoneNumber;
+  @override
+  void onInit() {
+    super.onInit();
+    phoneNumberController.addListener(() {
+      phoneNumber = phoneNumberController.text;
+    });
+    startTimer();
+  }
+
+  void startTimer() {
+    remainingTime.value = 30;
+    _decrementTime();
+  }
+
+  void _decrementTime() {
+    if (remainingTime.value > 0) {
+      Future.delayed(Duration(seconds: 1), () {
+        remainingTime.value--;
+        _decrementTime();
+      });
+    }
+  }
+
+  Future<void> verifyPhoneNumber() async {
+    if (phoneNumber == null || phoneNumber!.isEmpty) {
+      ToastUtils.showError(Get.context!, "Error", "Phone number is required");
+      return;
+    }
+
+    isLoadingButton.value = true;
     bool isConnected = await connectivityService.checkConnectivity();
 
     if (!isConnected) {
+      isLoadingButton.value = false;
       ToastUtils.showError(
         Get.context!,
         "No Internet Connection",
@@ -31,22 +69,37 @@ class AuthentificationController extends GetxController {
     }
 
     await _verifyPhoneNumberUseCase.call(
-      phoneNumber,
+      phoneNumber!,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await signInWithPhoneAuthCredential(credential);
       },
       verificationFailed: (FirebaseAuthException e) {
+        isLoadingButton.value = false;
         ToastUtils.showError(
             Get.context!, 'Verification Failed', e.message ?? 'Unknown error');
       },
       codeSent: (String verificationId, int? resendToken) {
         this.verificationId.value = verificationId;
+        isLoadingButton.value = false;
         Get.toNamed(AppRouteNames.otp);
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         this.verificationId.value = verificationId;
       },
     );
+  }
+
+  void setOTP(String otp) {
+    this.otp.value = otp;
+    isButtonEnabled.value = otp.length == 6;
+  }
+
+  void verifyOTP() {
+    if (otp.value.length == 6) {
+      signInWithOtp(otp.value);
+    } else {
+      ToastUtils.showError(Get.context!, "Error", "Invalid OTP");
+    }
   }
 
   Future<void> signInWithOtp(String otp) async {
@@ -61,18 +114,24 @@ class AuthentificationController extends GetxController {
       PhoneAuthCredential credential) async {
     try {
       await _signInWithPhoneNumberUseCase.call(credential);
-       Get.toNamed(AppRouteNames.home);
+      Get.toNamed(AppRouteNames.home);
     } catch (e) {
       log('Error in signInWithPhoneAuthCredential: $e');
-       ToastUtils.showError(
-            Get.context!, 'Verification Failed', e.toString());
-      throw Exception('Failed to sign in with phone number.');
+      ToastUtils.showError(Get.context!, 'Verification Failed', e.toString());
     }
   }
 
   Future<void> resendVerificationCode() async {
     if (phoneNumber != null) {
-      await verifyPhoneNumber(phoneNumber!);
+      await verifyPhoneNumber();
+      startTimer();
     }
+  }
+
+  @override
+  void onClose() {
+    fullNameController.dispose();
+    phoneNumberController.dispose();
+    super.onClose();
   }
 }

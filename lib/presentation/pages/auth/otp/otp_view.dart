@@ -6,8 +6,8 @@ import '../../../../app/core/utils/enums/export_enums.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:manzon/presentation/pages/auth/otp/otp_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
+import 'package:manzon/presentation/controllers/authentification/auth_controller.dart';
 
 class OTPView extends StatefulWidget {
   @override
@@ -16,10 +16,23 @@ class OTPView extends StatefulWidget {
 
 class _OTPViewState extends State<OTPView> {
   @override
+  void initState() {
+    super.initState();
+    final AuthentificationController controller = Get.find();
+    controller.startTimer();
+  }
+
+  @override
+  void dispose() {
+    final AuthentificationController controller = Get.find();
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final OTPController controller = Get.put(OTPController());
-    controller.onInit();
     final double verticalPadding = ScreenSize.screenHeight * 0.02;
+    final AuthentificationController controller = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -49,27 +62,26 @@ class _OTPViewState extends State<OTPView> {
             ),
             SizedBox(height: verticalPadding),
             Text(
-              '+237 699 442 188',
+              controller.phoneNumber != null
+                  ? '${controller.phoneNumber}'
+                  : '+XX XXX XXX XXX',
               style: getBoldStyle(fontSize: 16, color: AppColors.blackNormal),
             ),
             SizedBox(height: verticalPadding * 3),
-            Expanded(
-              child: OtpTextField(
-                fieldHeight: AppSize.s70,
-                // fieldWidth: AppSize.s,
-                textStyle: getSemiBoldStyle(
-                    fontSize: FontSize.s18, color: AppColors.fontLightPrimary),
-                numberOfFields: 6,
-                enabledBorderColor: AppColors.fontLightDisabled,
-                borderColor: AppColors.primaryNormal,
-                focusedBorderColor: AppColors.primaryNormal,
-                borderWidth: 1,
-                showFieldAsBox: true,
-                onCodeChanged: (String code) {},
-                onSubmit: (String verificationCode) {
-                  controller.setOTP(verificationCode);
-                },
-              ),
+            OtpTextField(
+              fieldHeight: AppSize.s70,
+              textStyle: getSemiBoldStyle(
+                  fontSize: FontSize.s18, color: AppColors.fontLightPrimary),
+              numberOfFields: 6,
+              enabledBorderColor: AppColors.fontLightDisabled,
+              borderColor: AppColors.primaryNormal,
+              focusedBorderColor: AppColors.primaryNormal,
+              borderWidth: 1,
+              showFieldAsBox: true,
+              onCodeChanged: (String code) {},
+              onSubmit: (String verificationCode) {
+                controller.setOTP(verificationCode);
+              },
             ),
             SizedBox(height: 16),
             Center(
@@ -82,7 +94,7 @@ class _OTPViewState extends State<OTPView> {
             Center(
               child: Obx(() => TextButton(
                     onPressed: controller.remainingTime.value == 0
-                        ? controller.resendOTP
+                        ? controller.resendVerificationCode
                         : null,
                     child: Text(
                       'Resend Code',
