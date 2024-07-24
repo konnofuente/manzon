@@ -43,7 +43,12 @@
 
   
   "my_association":"Mes associations",
-  "new_association":"Nouvelle associations"
+  "new_association":"Nouvelle associations",
+
+  "check_connection": "Vérifiez votre connexion",
+  "no_connection": "Pas de connexion Internet",
+  "connected": "Connexion Internet",
+  "back_online": "De retour en ligne"
 
   }
   

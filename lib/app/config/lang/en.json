@@ -40,7 +40,12 @@
   "confirm": "Confirm",
 
   "my_association":"My associations",
-  "new_association":"New associations"
+  "new_association":"New associations",
+
+  "check_connection":"Check your connection",
+  "no_connection":"No Internet Connection",
+  "connected":"No Internet Connection",
+  "back_online":"Back online"
 
 
 
