@@ -1,6 +1,6 @@
 import 'package:manzon/domain/entities/user_entity.dart';
 import 'package:manzon/domain/entities/enums/role_enum.dart';
-import 'package:manzon/infrastructure/models/media_modal.dart';
+import 'package:manzon/infrastructure/models/media_model.dart';
 
 
 
