@@ -2,9 +2,11 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:manzon/domain/entities/user_entity.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/presentation/controllers/user_controller.dart';
 import 'package:manzon/domain/usecases/auth/verify_phone_number_use_case.dart';
 import 'package:manzon/domain/usecases/auth/sign_in_with_phone_number_use_case.dart';
 
@@ -12,6 +14,8 @@ class AuthentificationController extends GetxController {
   final VerifyPhoneNumberUseCase _verifyPhoneNumberUseCase;
   final SignInWithPhoneNumberUseCase _signInWithPhoneNumberUseCase;
   final ConnectivityService connectivityService = Get.find();
+  final UserController userController = Get.find();
+  User? _user;
 
   var verificationId = ''.obs;
   var otp = ''.obs;
@@ -113,8 +117,18 @@ class AuthentificationController extends GetxController {
   Future<void> signInWithPhoneAuthCredential(
       PhoneAuthCredential credential) async {
     try {
-      await _signInWithPhoneNumberUseCase.call(credential);
-      Get.toNamed(AppRouteNames.home);
+      UserCredential userCredential =
+          await _signInWithPhoneNumberUseCase.call(credential);
+
+      _user = userCredential.user;
+
+      if (_user != null) {
+        UserEntity userModel =
+            UserEntity(name:fullNameController.text , id: _user!.uid, phoneNumber: _user!.phoneNumber!);
+
+        userController.addUser(userModel);
+        Get.toNamed(AppRouteNames.home);
+      }
     } catch (e) {
       log('Error in signInWithPhoneAuthCredential: $e');
       ToastUtils.showError(Get.context!, 'Verification Failed', e.toString());
