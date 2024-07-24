@@ -6,8 +6,8 @@ class AppTranslations extends Translations {
   Map<String, Map<String, String>> _translations = {};
 
   Future<void> loadTranslations() async {
-    final enJson = await rootBundle.loadString('lib/presentation/utils/lang/en.json');
-    final frJson = await rootBundle.loadString('lib/presentation/utils/lang/fr.json');
+    final enJson = await rootBundle.loadString('lib/app/config/lang/en.json');
+    final frJson = await rootBundle.loadString('lib/app/config/lang/en.json');
 
     _translations = {
       'en_US': Map<String, String>.from(json.decode(enJson)),
