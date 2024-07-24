@@ -6,30 +6,31 @@ class RegisterController extends GetxController {
   final AuthentificationController _authentificationController = Get.find();
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-  RxString phoneNumber = ''.obs;
+  String? phoneNumber;
   RxString password = ''.obs;
   RxString fullNameError = ''.obs;
   RxString fullName = ''.obs;
   RxString phoneNumberError = ''.obs;
+  RxBool isLoadingButton = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Initialize controllers
-    fullNameController.addListener(() {
-      fullName.value = fullNameController.text;
-    });
-    phoneNumberController.addListener(() {
-      phoneNumber.value = phoneNumberController.text;
+        phoneNumberController.addListener(() {
+      phoneNumber = phoneNumberController.text;
     });
   }
 
   void register() {
-    _authentificationController.verifyPhoneNumber(phoneNumberController.text);
-    // Add your register logic here
-    print('Full Name: ${fullName.value}');
-    print('Phone Number: ${phoneNumber.value}');
-    // Get.toNamed(AppRouteNames.otp);
+    isLoadingButton(true);
+    if (phoneNumber == null) {
+      isLoadingButton(false);
+      return;
+    }
+    _authentificationController.verifyPhoneNumber(phoneNumber!);
+    isLoadingButton(false);
+    print('Full Name: ${fullNameController.text}');
+    print('Phone Number: ${phoneNumberController.text}');
   }
 
   @override

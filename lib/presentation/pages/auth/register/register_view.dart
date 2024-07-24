@@ -4,6 +4,7 @@ import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/font_manager.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/enums/export_enums.dart';
 import 'package:manzon/presentation/widgets/text_field_widget.dart';
 import 'package:manzon/app/core/utils/validations/form_validators.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
@@ -59,14 +60,18 @@ class _RegisterViewState extends State<RegisterView> {
                 readOnly: false,
               ),
               SizedBox(height: verticalPadding),
-              DefaultButton(
-                onTap: controller.register,
-                height: AppSize.s60,
-                backgroundColor: AppColors.primaryNormal,
-                text: 'continue'.tr,
-                width: double.infinity,
-                fontWeight: FontWeight.w600,
-                borderRadius: 50.0,
+           
+              Obx(
+                () => DefaultButton(
+                  onTap: controller.register,
+                  status: controller.isLoadingButton.value ? ButtonState.loading : ButtonState.enable,
+                  height: AppSize.s60,
+                  backgroundColor: AppColors.primaryNormal,
+                  text: 'continue'.tr,
+                  width: double.infinity,
+                  fontWeight: FontWeight.w600,
+                  borderRadius: 50.0,
+                ),
               ),
               SizedBox(height: verticalPadding),
               Center(
