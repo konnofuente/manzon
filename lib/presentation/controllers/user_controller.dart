@@ -21,45 +21,49 @@ class UserController extends GetxController {
 
   Future<void> addUser(UserEntity user) async {
     bool isConnected = await connectivityService.checkConnectivity();
-    if (isConnected) {
-      try {
-        await addUserUseCase.call(user);
-        await localStorageService.saveUser(user);
-      } catch (e) {
-        ToastUtils.showError(
-          Get.context!,
-          "Error",
-          "Failed to add user. Please try again later.",
-        );
-      }
-    } else {
+
+    if (!isConnected) {
       ToastUtils.showError(
         Get.context!,
         "No Internet Connection",
         "Please check your connection and try again.",
+      );
+      return;
+    }
+
+    try {
+      await addUserUseCase.call(user);
+      await localStorageService.saveUser(user);
+    } catch (e) {
+      ToastUtils.showError(
+        Get.context!,
+        "Error",
+        "Failed to add user. Please try again later.",
       );
     }
   }
 
   Future<void> getUserById(String id) async {
     bool isConnected = await connectivityService.checkConnectivity();
-    if (isConnected) {
-      try {
-        user.value = await getUserByIdUseCase(id);
-         await localStorageService.saveUser(user.value!);
-      } catch (e) {
-        print('Error in getUserByID: $e');
-        ToastUtils.showError(
-          Get.context!,
-          "Error",
-          "Failed to fetch user. Please try again later.",
-        );
-      }
-    } else {
+
+    if (!isConnected) {
       ToastUtils.showError(
         Get.context!,
         "No Internet Connection",
         "Please check your connection and try again.",
+      );
+      return;
+    }
+
+    try {
+      user.value = await getUserByIdUseCase(id);
+      await localStorageService.saveUser(user.value!);
+    } catch (e) {
+      print('Error in getUserByID: $e');
+      ToastUtils.showError(
+        Get.context!,
+        "Error",
+        "Failed to fetch user. Please try again later.",
       );
     }
   }

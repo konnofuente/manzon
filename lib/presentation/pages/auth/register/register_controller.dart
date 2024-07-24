@@ -1,33 +1,35 @@
-import 'register_state.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/presentation/controllers/auth_controller.dart';
 
 class RegisterController extends GetxController {
-  final RegisterState state = RegisterState();
-
-  // Text editing controllers
+  final AuthentificationController _authentificationController = Get.find();
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  RxString phoneNumber = ''.obs;
+  RxString password = ''.obs;
+  RxString fullNameError = ''.obs;
+  RxString fullName = ''.obs;
+  RxString phoneNumberError = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
     // Initialize controllers
     fullNameController.addListener(() {
-      state.fullName.value = fullNameController.text;
+      fullName.value = fullNameController.text;
     });
     phoneNumberController.addListener(() {
-      state.phoneNumber.value = phoneNumberController.text;
+      phoneNumber.value = phoneNumberController.text;
     });
   }
 
-  // Function to handle register action
   void register() {
+    _authentificationController.verifyPhoneNumber(phoneNumberController.text);
     // Add your register logic here
-    print('Full Name: ${state.fullName.value}');
-    print('Phone Number: ${state.phoneNumber.value}');
-    Get.toNamed(AppRouteNames.otp);
+    print('Full Name: ${fullName.value}');
+    print('Phone Number: ${phoneNumber.value}');
+    // Get.toNamed(AppRouteNames.otp);
   }
 
   @override
