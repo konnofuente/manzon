@@ -23,9 +23,8 @@ class _ManzonAppState extends State<ManzonApp> {
     ScreenSize.init(context);
     return ConnectionNotifier(
       connectionNotificationOptions: ConnectionNotificationOptions(
-       connectedText:'back_online'.tr,
-       disconnectedText:'check_connection'.tr
-      ),
+          connectedText: 'back_online'.tr,
+          disconnectedText: 'check_connection'.tr),
       child: GestureDetector(
         onTap: () => hideKeyboard(context),
         child: GetMaterialApp(
@@ -37,7 +36,7 @@ class _ManzonAppState extends State<ManzonApp> {
           locale: Get.deviceLocale,
           fallbackLocale: Locale('en', 'US'),
           initialRoute: AppRouteNames.splash,
-          getPages: AppRoutes.routes,
+          getPages: AppRoutes.routes
         ),
       ),
     );

@@ -29,7 +29,6 @@ class SplashController extends GetxController {
 
   void startTimer() {
     Timer(const Duration(seconds: DurationConstant.s3), () {
-      // Get.offNamed(AppRouteNames.onboarding);
       _checkAuthStatus();
     });
   }
