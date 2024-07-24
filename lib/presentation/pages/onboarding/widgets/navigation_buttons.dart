@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/enums/button_status.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/core/utils/enums/button_status.dart';
 import 'package:manzon/presentation/widgets/buttons/rounded_button.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 
@@ -11,11 +11,11 @@ class NavigationButtons extends StatelessWidget {
   final double horizontalPadding;
 
   const NavigationButtons({
-    Key? key,
+    super.key,
     required this.controller,
     required this.buttonHeight,
     required this.horizontalPadding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,10 @@ class NavigationButtons extends StatelessWidget {
                   contentColor: AppColors.primaryNormal,
                   hasElevation: false,
                   borderSize: 1.5,
-                  icon: Icon(Icons.arrow_back, color: AppColors.primaryNormal),
+                  icon: const Icon(Icons.arrow_back, color: AppColors.primaryNormal),
                 )
               : Container(),
-          Spacer(),
+          const Spacer(),
           if (controller.currentPage.value < controller.onboardingPages.length - 1)
             RoundedButton(
               onTap: () => controller.nextPage(),
@@ -44,7 +44,7 @@ class NavigationButtons extends StatelessWidget {
               status: ButtonState.enable,
               contentColor: AppColors.white,
               hasElevation: false,
-              icon: Icon(Icons.arrow_forward, color: AppColors.white),
+              icon: const Icon(Icons.arrow_forward, color: AppColors.white),
             ),
         ],
       );

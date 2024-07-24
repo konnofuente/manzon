@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/font_manager.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
-import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/font_manager.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
 class AssociationCard extends StatelessWidget {
   final String name;

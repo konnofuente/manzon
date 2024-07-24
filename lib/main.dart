@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:manzon/app/manzon.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:manzon/app/config/translations.dart';
-import 'package:manzon/app/config/firebase_options.dart';
+import 'package:manzon/app/config/lang/translations.dart';
+import 'package:manzon/infrastructure/firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

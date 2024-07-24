@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/font_manager.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/font_manager.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/widgets/text_field_widget.dart';
+import 'package:manzon/app/core/utils/validations/form_validators.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/pages/auth/login/login_controller.dart';
-import 'package:manzon/presentation/utils/validations/form_validators.dart';
-import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
+import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
 class LoginView extends StatefulWidget {
   @override

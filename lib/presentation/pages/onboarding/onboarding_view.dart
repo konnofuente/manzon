@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/app/routes/app_route_names.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 import 'package:manzon/presentation/pages/onboarding/widgets/navigation_buttons.dart';
 import 'package:manzon/presentation/pages/onboarding/components/onboarding_view.dart';

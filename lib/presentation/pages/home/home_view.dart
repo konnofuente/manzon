@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../utils/theme/style_manager.dart';
 import '../../widgets/cards/association_card.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
+import '../../../app/config/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/home/components/profile_info.dart';
-import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
+import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
 class HomeController extends GetxController {
   var associations = [

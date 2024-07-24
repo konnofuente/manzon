@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
-import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String hintText;
@@ -20,7 +20,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextStyle? errorStyle;
 
   const TextFieldWidget({
-    Key? key,
+    super.key,
     required this.hintText,
     this.labelText,
     this.labelStyle,
@@ -35,7 +35,7 @@ class TextFieldWidget extends StatefulWidget {
     this.borderRadius = 8.0,
     this.onTap,
     this.errorStyle,
-  }) : super(key: key);
+  });
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();

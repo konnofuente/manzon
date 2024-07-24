@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:manzon/presentation/utils/constants/assets_manager.dart';
+import 'package:manzon/app/core/utils/constants/assets_manager.dart';
 
 class OnboardingController extends GetxController {
   var currentPage = 0.obs;

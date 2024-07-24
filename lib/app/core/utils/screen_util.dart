@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 
 class ScreenSize {
   static double screenWidth = 0;

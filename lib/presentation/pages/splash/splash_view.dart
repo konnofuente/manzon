@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/splash/splash_controller.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 
 class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final SplashController controller = Get.put(SplashController());
+    Get.put(SplashController());
     return Scaffold(
       body: Stack(
         children: [

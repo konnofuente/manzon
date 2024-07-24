@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/enums/export_enums.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import '../../../../app/core/utils/enums/export_enums.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:manzon/presentation/pages/auth/otp/otp_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
 
 class OTPView extends StatefulWidget {
   @override

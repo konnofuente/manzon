@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 
 class NavigationIndicatorWidget extends StatelessWidget {
   final OnboardingController controller;
 
-  const NavigationIndicatorWidget({Key? key, required this.controller}) : super(key: key);
+  const NavigationIndicatorWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class NavigationIndicatorWidget extends StatelessWidget {
         (index) => Container(
           width: 28,
           height: 4,
-          margin: EdgeInsets.symmetric(horizontal: 2),
+          margin: const EdgeInsets.symmetric(horizontal: 2),
           decoration: ShapeDecoration(
             color: controller.currentPage.value == index
                 ? AppColors.primaryNormal

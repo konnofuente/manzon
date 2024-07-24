@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../utils/theme/app_colors.dart';
 import '../widgets/navigation_indicator.dart';
-import '../../../utils/theme/font_manager.dart';
-import '../../../utils/theme/style_manager.dart';
+import '../../../../app/config/theme/app_colors.dart';
+import '../../../../app/config/theme/font_manager.dart';
+import '../../../../app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 
 

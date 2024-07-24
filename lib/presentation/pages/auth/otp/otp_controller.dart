@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:manzon/app/routes/app_route_names.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
 
 class OTPController extends GetxController {
   var otp = ''.obs;

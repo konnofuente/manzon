@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:manzon/app/routes/app_route_names.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/presentation/pages/home/home_view.dart';
 import 'package:manzon/presentation/pages/auth/otp/otp_view.dart';
 import 'package:manzon/presentation/pages/splash/splash_view.dart';

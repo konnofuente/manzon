@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+// ignore_for_file: deprecated_member_use
+
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -7,7 +9,7 @@ class AppTheme {
     primaryColorDark: AppColors.primaryDarker,
     hintColor: AppColors.blackLight,
     scaffoldBackgroundColor: AppColors.secondaryLight,
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: AppColors.primaryNormal,
       secondary: AppColors.secondaryNormal,
       background: AppColors.secondaryLight,
@@ -27,7 +29,7 @@ class AppTheme {
     primaryColorDark: AppColors.primaryDarker,
     hintColor: AppColors.secondaryNormal,
     scaffoldBackgroundColor: AppColors.blackDark,
-    colorScheme: ColorScheme.dark(
+    colorScheme: const ColorScheme.dark(
       primary: AppColors.primaryDark,
       secondary: AppColors.secondaryDark,
       background: AppColors.blackDark,

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:manzon/app/routes/app_route_names.dart';
-import 'package:manzon/presentation/utils/constants/value_manager.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/app/core/utils/constants/value_manager.dart';
 
 class SplashController extends GetxController {
   @override
