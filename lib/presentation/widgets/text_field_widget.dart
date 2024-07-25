@@ -66,7 +66,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
               widget.labelText!,
-              style: widget.labelStyle ?? getMediumStyle(fontSize: AppSize.s16, color: AppColors.blackNormal),
+              style: widget.labelStyle ??
+                  getMediumStyle(
+                      fontSize: AppSize.s16, color: AppColors.blackNormal),
             ),
           ),
         Container(
@@ -81,8 +83,10 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: getRegularStyle(fontSize: AppSize.s16, color: AppColors.fontLightDisabled),
-              prefixIcon: Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
+              hintStyle: getRegularStyle(
+                  fontSize: AppSize.s16, color: AppColors.fontLightDisabled),
+              prefixIcon:
+                  Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 borderSide: BorderSide(color: AppColors.fontLightDisabled),
@@ -99,10 +103,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 borderSide: BorderSide(color: Colors.red),
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 24, horizontal: 12),
               suffixIcon: widget.isPassword
                   ? IconButton(
-                      icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: AppColors.fontLightDisabled),
+                      icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: AppColors.fontLightDisabled),
                       onPressed: () {
                         setState(() {
                           _obscureText = !_obscureText;
@@ -112,7 +121,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                   : widget.suffixIcon,
               errorText: null, // We handle error text display manually
             ),
-            style: getMediumStyle(fontSize: AppSize.s16, color: AppColors.blackNormal),
+            style: getMediumStyle(
+                fontSize: AppSize.s16, color: AppColors.blackNormal),
           ),
         ),
         if (_errorText != null)
@@ -120,7 +130,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             padding: const EdgeInsets.only(top: 4.0),
             child: Text(
               _errorText!,
-              style: widget.errorStyle ?? TextStyle(color: Colors.red, fontSize: 12),
+              style: widget.errorStyle ??
+                  TextStyle(color: Colors.red, fontSize: 12),
             ),
           ),
       ],

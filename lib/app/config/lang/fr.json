@@ -48,7 +48,9 @@
   "check_connection": "Vérifiez votre connexion",
   "no_connection": "Pas de connexion Internet",
   "connected": "Connexion Internet",
-  "back_online": "De retour en ligne"
+  "back_online": "De retour en ligne",
+
+    "invalid_number_format":"Format de numéro invalide"
 
   }
   

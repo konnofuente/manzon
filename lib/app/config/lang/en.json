@@ -45,7 +45,10 @@
   "check_connection":"Check your connection",
   "no_connection":"No Internet Connection",
   "connected":"No Internet Connection",
-  "back_online":"Back online"
+  "back_online":"Back online",
+
+
+  "invalid_number_format":"Invalid number format"
 
 
 

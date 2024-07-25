@@ -123,8 +123,10 @@ class AuthentificationController extends GetxController {
       _user = userCredential.user;
 
       if (_user != null) {
-        UserEntity userModel =
-            UserEntity(name:fullNameController.text , id: _user!.uid, phoneNumber: _user!.phoneNumber!);
+        UserEntity userModel = UserEntity(
+            name: fullNameController.text,
+            id: _user!.uid,
+            phoneNumber: _user!.phoneNumber!);
 
         userController.addUser(userModel);
         Get.toNamed(AppRouteNames.home);

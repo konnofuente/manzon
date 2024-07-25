@@ -59,6 +59,11 @@ class AppColors {
   
   static const Color white = Color.fromARGB(255, 255, 255, 255);
  static const Color grayNormal = Color(0xFFA3A3A3);
+
+
+  static const Color error = Color(0xFFDD0303);
+  static const Color success = Color(0xFF45BB4B);
+  static const Color warning = Color(0xFFEBBC46);
  
  
 }
