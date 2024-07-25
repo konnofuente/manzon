@@ -56,14 +56,15 @@ class AppColors {
   static const Color fontLightSecondary = Color(0xFF5a5d6c);
   static const Color fontLightDisabled = Color(0xFFb1aca5);
 
+  // Font Colors for Dark Theme
+  static const Color fontDarkPrimary = Color(0xFFFFFFFF);
+  static const Color fontDarkSecondary = Color(0xFFA1A1A1);
+  static const Color fontDarkDisabled = Color(0xFF515151);
   
   static const Color white = Color.fromARGB(255, 255, 255, 255);
- static const Color grayNormal = Color(0xFFA3A3A3);
-
+  static const Color grayNormal = Color(0xFFA3A3A3);
 
   static const Color error = Color(0xFFDD0303);
   static const Color success = Color(0xFF45BB4B);
   static const Color warning = Color(0xFFEBBC46);
- 
- 
 }
