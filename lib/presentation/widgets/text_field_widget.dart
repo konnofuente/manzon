@@ -7,7 +7,7 @@ class TextFieldWidget extends StatefulWidget {
   final String hintText;
   final String? labelText;
   final TextStyle? labelStyle;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final TextEditingController controller;
   final bool isPassword;
   final bool readOnly;
@@ -24,7 +24,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.hintText,
     this.labelText,
     this.labelStyle,
-    required this.prefixIcon,
+     this.prefixIcon,
     required this.controller,
     this.readOnly = false,
     this.isPassword = false,
@@ -86,7 +86,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               hintStyle: getRegularStyle(
                   fontSize: AppSize.s16, color: AppColors.fontLightDisabled),
               prefixIcon:
-                  Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
+                    Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 borderSide: BorderSide(color: AppColors.fontLightDisabled),

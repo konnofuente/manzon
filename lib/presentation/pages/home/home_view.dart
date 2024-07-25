@@ -4,6 +4,7 @@ import '../../widgets/cards/association_card.dart';
 import '../../../app/config/theme/style_manager.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/pages/home/home_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
@@ -82,7 +83,9 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       floatingActionButton: DefaultButton(
-        onTap: () => print('Create New Association'),
+        onTap: () => {
+          Get.toNamed(AppRouteNames.createAssociation),
+          print('Create New Association')},
         backgroundColor: AppColors.primaryNormal,
         text: 'new_association'.tr,
         width: ScreenSize.screenWidth * 0.9,

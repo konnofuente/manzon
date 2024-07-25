@@ -6,4 +6,5 @@ class AppRouteNames {
   static const String login = '/login';
   static const String userRole = '/userRole';
   static const String otp = '/otp';
+  static const String createAssociation = '/create_association';
 }
