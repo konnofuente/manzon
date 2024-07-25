@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../utils/enums/export_enums.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
+import '../../../app/core/utils/enums/export_enums.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
 
 
 class RoundedButton extends StatelessWidget {
@@ -20,7 +20,7 @@ class RoundedButton extends StatelessWidget {
   final String? svgAsset;
 
   const RoundedButton({
-    Key? key,
+    super.key,
     this.onTap,
     required this.backgroundColor,
     required this.status,
@@ -34,7 +34,7 @@ class RoundedButton extends StatelessWidget {
     required this.hasElevation,
     this.icon,
     this.svgAsset,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class RoundedButton extends StatelessWidget {
         child: Container(
           width: width,
           height: height,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: status == ButtonState.disable ? Colors.grey : backgroundColor,
             border: Border.all(
@@ -53,7 +53,7 @@ class RoundedButton extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(100),
             boxShadow: hasElevation
-                ? [BoxShadow(color: Colors.black26, blurRadius: 4, spreadRadius: 1)]
+                ? [const BoxShadow(color: Colors.black26, blurRadius: 4, spreadRadius: 1)]
                 : [],
           ),
           child: status == ButtonState.loading

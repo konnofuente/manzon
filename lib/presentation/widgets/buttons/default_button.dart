@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../utils/enums/export_enums.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/font_manager.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
-import 'package:manzon/presentation/utils/constants/export_constant_manager.dart';
+import '../../../app/core/utils/enums/export_enums.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import 'package:manzon/app/config/theme/font_manager.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 
 class DefaultButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -25,7 +24,7 @@ class DefaultButton extends StatelessWidget {
   final double loaderSize;
 
   const DefaultButton({
-    Key? key,
+    super.key,
     this.onTap,
     required this.backgroundColor,
      this.status = ButtonState.enable,
@@ -42,7 +41,7 @@ class DefaultButton extends StatelessWidget {
     this.shadowSpreadRadius = 0.0,
     this.shadowOffset = const Offset(0, 1),
     this.loaderSize = 24.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class DefaultButton extends StatelessWidget {
                 child: SizedBox(
                   width: loaderSize,
                   height: loaderSize,
-                  child: CircularProgressIndicator(
+                  child: const CircularProgressIndicator(
                     color: AppColors.white,
                   ),
                 ),
@@ -82,12 +81,12 @@ class DefaultButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (leftIcon != null) leftIcon!,
-                  if (leftIcon != null) SizedBox(width: 8),
+                  if (leftIcon != null) const SizedBox(width: 8),
                   Text(
                     text,
                     style: textStyle ?? getSemiBoldStyle(fontSize: FontSize.s16, color: AppColors.white),
                   ),
-                  if (rightIcon != null) SizedBox(width: 8),
+                  if (rightIcon != null) const SizedBox(width: 8),
                   if (rightIcon != null) rightIcon!,
                 ],
               ),

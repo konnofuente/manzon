@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/enums/export_enums.dart';
-import 'package:manzon/presentation/utils/screen_util.dart';
-import 'package:manzon/presentation/utils/theme/app_colors.dart';
-import 'package:manzon/presentation/utils/theme/style_manager.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
+import 'package:manzon/app/config/theme/app_colors.dart';
+import '../../../../app/core/utils/enums/export_enums.dart';
+import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:manzon/presentation/pages/auth/otp/otp_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
-import 'package:manzon/presentation/utils/theme/export_theme_manager.dart';
+import 'package:manzon/presentation/controllers/authentification/auth_controller.dart';
 
 class OTPView extends StatefulWidget {
   @override
@@ -16,9 +16,23 @@ class OTPView extends StatefulWidget {
 
 class _OTPViewState extends State<OTPView> {
   @override
+  void initState() {
+    super.initState();
+    final AuthentificationController controller = Get.find();
+    controller.startTimer();
+  }
+
+  @override
+  void dispose() {
+    final AuthentificationController controller = Get.find();
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final OTPController controller = Get.put(OTPController());
     final double verticalPadding = ScreenSize.screenHeight * 0.02;
+    final AuthentificationController controller = Get.find();
 
     return Scaffold(
       appBar: AppBar(
@@ -28,7 +42,7 @@ class _OTPViewState extends State<OTPView> {
                 style: getSemiBoldStyle(
                     fontSize: FontSize.s18, color: AppColors.blackNormal))),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             size: AppSize.s24,
           ),
@@ -48,16 +62,17 @@ class _OTPViewState extends State<OTPView> {
             ),
             SizedBox(height: verticalPadding),
             Text(
-              '+237 699 442 188',
+              controller.phoneNumber != null
+                  ? '${controller.phoneNumber}'
+                  : '+XX XXX XXX XXX',
               style: getBoldStyle(fontSize: 16, color: AppColors.blackNormal),
             ),
             SizedBox(height: verticalPadding * 3),
             OtpTextField(
               fieldHeight: AppSize.s70,
-              fieldWidth: AppSize.s70,
               textStyle: getSemiBoldStyle(
                   fontSize: FontSize.s18, color: AppColors.fontLightPrimary),
-              numberOfFields: 4,
+              numberOfFields: 6,
               enabledBorderColor: AppColors.fontLightDisabled,
               borderColor: AppColors.primaryNormal,
               focusedBorderColor: AppColors.primaryNormal,
@@ -73,6 +88,21 @@ class _OTPViewState extends State<OTPView> {
               child: Obx(() => Text(
                     '${'resend_code'.tr} ${controller.remainingTime.value}s',
                     style: getMediumStyle(color: AppColors.fontLightDisabled),
+                  )),
+            ),
+            SizedBox(height: 16),
+            Center(
+              child: Obx(() => TextButton(
+                    onPressed: controller.remainingTime.value == 0
+                        ? controller.resendVerificationCode
+                        : null,
+                    child: Text(
+                      'Resend Code',
+                      style: getMediumStyle(
+                          color: controller.remainingTime.value == 0
+                              ? AppColors.primaryNormal
+                              : AppColors.fontLightDisabled),
+                    ),
                   )),
             ),
             Spacer(),

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../../utils/theme/app_colors.dart';
 import '../widgets/navigation_indicator.dart';
-import '../../../utils/theme/font_manager.dart';
-import '../../../utils/theme/style_manager.dart';
+import '../../../../app/config/theme/app_colors.dart';
+import '../../../../app/config/theme/font_manager.dart';
+import '../../../../app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_controller.dart';
 
-
-
-
-Widget buildPageContent(OnboardingController controller, double verticalPadding, double horizontalPadding) {
+Widget buildPageContent(OnboardingController controller, double verticalPadding,
+    double horizontalPadding) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      NavigationIndicatorWidget(controller: controller,),
+      NavigationIndicatorWidget(
+        controller: controller,
+      ),
       SizedBox(height: verticalPadding),
       SizedBox(
         width: double.infinity,
@@ -27,9 +27,10 @@ Widget buildPageContent(OnboardingController controller, double verticalPadding,
       SizedBox(
         width: double.infinity,
         child: Text(
-          controller.onboardingPages[controller.currentPage.value]["description"]!,
+          controller.onboardingPages[controller.currentPage.value]
+              ["description"]!,
           style: getSemiBoldStyle(
-            fontSize: FontSize.s16,
+            fontSize: FontSize.s18,
             color: AppColors.fontLightSecondary,
           ),
         ),
