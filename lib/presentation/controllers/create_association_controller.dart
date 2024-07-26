@@ -11,6 +11,7 @@ class CreateAssociationController extends GetxController {
   var district = ''.obs;
   var meetingFrequency = 3.obs;
   var meetingDays = <String>[].obs;
+   var imagePath = ''.obs;
 
   void nextStep() {
     if (currentStep.value < 4) {
