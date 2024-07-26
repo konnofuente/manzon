@@ -20,7 +20,7 @@ class CreateAssociation extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: ScreenSize.horizontalPadding),
+        padding: EdgeInsets.all( ScreenSize.horizontalPadding),
         child: Container(
           decoration: BoxDecoration(color: Color(0xFFFBFBFD)),
           child: Column(

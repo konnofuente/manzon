@@ -16,8 +16,7 @@ class BasicInformation extends StatelessWidget {
     final CreateAssociationController controller = Get.find();
     final double verticalPadding = AppSize.s24;
 
-    return Padding(
-      padding: EdgeInsets.all(ScreenSize.horizontalPadding),
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,11 +53,12 @@ class BasicInformation extends StatelessWidget {
                                   color: AppColors.grayNormal,
                                   size: AppSize.s32),
                             ),
-                            const SizedBox(width: AppSize.s100),
+                            const SizedBox(width: AppSize.s10),
                             Text(
                               'Ajouter une image de votre pagne',
                               style: getRegularStyle(
-                                  color: AppColors.grayNormal, fontSize: 16),
+                                  color: AppColors.grayNormal,
+                                  fontSize: FontSize.s16),
                             ),
                           ],
                         ),
@@ -75,7 +75,7 @@ class BasicInformation extends StatelessWidget {
             'Quel est le nom de votre reunion ?',
             style: getMediumStyle(color: AppColors.blackNormal, fontSize: 16),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSize.s8),
           TextFieldWidget(
             hintText: "Nom de la reunion",
             controller: TextEditingController(),
