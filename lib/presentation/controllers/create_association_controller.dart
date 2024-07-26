@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
-import 'package:manzon/domain/entities/association_entity.dart';
 import 'package:manzon/domain/usecases/associations/add_association_usecase.dart';
 
 class CreateAssociationController extends GetxController {
@@ -17,13 +16,15 @@ class CreateAssociationController extends GetxController {
   );
 
   // Form data
-  var associationName = ''.obs;
-  var location = ''.obs;
-  var district = ''.obs;
-  var meetingFrequency = 3.obs;
-  var meetingDays = <String>[].obs;
-  var imagePath = ''.obs;
-  // var associationData = Rxn<AssociationEntity>();
+final RxString associationName = ''.obs;
+final RxString location = ''.obs;
+final RxString district = ''.obs;
+final RxInt meetingFrequency = 3.obs;
+final RxList<String> meetingDays = <String>[].obs;
+final RxString imagePath = ''.obs;
+var  totalStep = 5;
+
+
 
   final TextEditingController associationNameController =
       TextEditingController();

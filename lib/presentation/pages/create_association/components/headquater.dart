@@ -20,14 +20,14 @@ class Headquarters extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Quel est le siege de votre association?',
+            'what_is_the_headquarters_of_your_association'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16),
           ),
           const SizedBox(height: AppSize.s8),
           TextFieldWidget(
             prefixIcon: Icons.location_city,
-            hintText: "Yaounde",
+            hintText: "yaounde".tr,
             controller: controller.headquaterTownController,
             isPassword: false,
             keyboardType: TextInputType.text,
@@ -42,7 +42,7 @@ class Headquarters extends StatelessWidget {
           const SizedBox(height: AppSize.s8),
           TextFieldWidget(
             prefixIcon: Icons.location_on,
-            hintText: "Nkomo II",
+            hintText: "nkomo_ii".tr,
             controller: controller.headquaterLocationController,
             isPassword: false,
             keyboardType: TextInputType.text,
@@ -55,7 +55,7 @@ class Headquarters extends StatelessWidget {
                 hideKeyboard(context);
             },
             backgroundColor: AppColors.primaryNormal,
-            text: 'Continuer',
+            text: 'continue'.tr,
             width: double.infinity,
             fontWeight: FontWeight.w600,
             borderRadius: 50.0,

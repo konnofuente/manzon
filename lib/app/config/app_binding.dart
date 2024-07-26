@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
-import 'package:manzon/domain/repositories/user_repository.dart';
 import 'package:manzon/domain/usecases/user/add_user_usecase.dart';
 import 'package:manzon/presentation/controllers/user_controller.dart';
-import 'package:manzon/domain/repositories/association_repository.dart';
 import 'package:manzon/domain/usecases/user/get_user_by_id_usecase.dart';
 import 'package:manzon/infrastructure/services/local_storage_service.dart';
 import 'package:manzon/infrastructure/repositories/user_repository_impl.dart';
@@ -22,15 +20,21 @@ import 'package:manzon/infrastructure/repositories/association_repository_implem
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-
     Get.lazyPut(() => AssociationDataSource());
-      final  associationDataSource = AssociationDataSource();
+    final associationDataSource = AssociationDataSource();
 
     Get.lazyPut(() => AssociationRepositoryImpl(Get.find()));
 
-    Get.lazyPut(() => AddAssociationUseCase(Get.put(AssociationRepositoryImpl(associationDataSource))));
-    Get.lazyPut(() => GetAssociationByIdUseCase(Get.put(AssociationRepositoryImpl(associationDataSource))));
-    Get.lazyPut(() => CreateAssociationController(Get.find()));
+    final associationRepositoryImp =
+        AssociationRepositoryImpl(associationDataSource);
+
+    Get.lazyPut(() => AddAssociationUseCase(associationRepositoryImp));
+    final addAssociationUseCase =
+        AddAssociationUseCase(associationRepositoryImp);
+    Get.lazyPut(() => GetAssociationByIdUseCase(associationRepositoryImp));
+    Get.lazyPut(() => CreateAssociationController(addAssociationUseCase));
+
+   
 
     Get.lazyPut(() => ConnectivityService());
     Get.lazyPut(() => LocalStorageService());

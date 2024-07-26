@@ -26,7 +26,7 @@ class BasicInformation extends StatelessWidget {
               final pickedFile =
                   await ImagePicker().pickImage(source: ImageSource.gallery);
               if (pickedFile != null) {
-                controller.imagePath.value = pickedFile.path;
+                controller.imagePath?.value = pickedFile.path;
               }
             },
             child: Obx(() {
@@ -56,7 +56,7 @@ class BasicInformation extends StatelessWidget {
                             ),
                             const SizedBox(width: AppSize.s10),
                             Text(
-                              'Ajouter une image de votre pagne',
+                              'add_an_image_of_your_cloth'.tr,
                               style: getRegularStyle(
                                   color: AppColors.grayNormal,
                                   fontSize: FontSize.s16),
@@ -65,7 +65,7 @@ class BasicInformation extends StatelessWidget {
                         ),
                       )
                     : Image.file(
-                        File(controller.imagePath.value),
+                        File(controller.imagePath!.value),
                         fit: BoxFit.cover,
                       ),
               );
@@ -73,12 +73,12 @@ class BasicInformation extends StatelessWidget {
           ),
           SizedBox(height: verticalPadding),
           Text(
-            'Quel est le nom de votre reunion ?',
+            'what_is_the_name_of_your_meeting'.tr,
             style: getMediumStyle(color: AppColors.blackNormal, fontSize: 16),
           ),
           const SizedBox(height: AppSize.s8),
           TextFieldWidget(
-            hintText: "Nom de la reunion",
+            hintText: "name_of_the_meeting".tr,
             controller: controller.associationNameController,
             // height: 70,
             isPassword: false,
@@ -93,7 +93,7 @@ class BasicInformation extends StatelessWidget {
               hideKeyboard(context);
             },
             backgroundColor: AppColors.primaryNormal,
-            text: 'Continuer',
+            text: 'continue'.tr,
             width: double.infinity,
             fontWeight: FontWeight.w600,
             borderRadius: 50.0,

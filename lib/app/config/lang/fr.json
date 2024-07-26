@@ -1,22 +1,21 @@
 {
-    "hello": "Bonjour",
-    "user": "Utilisateur",
-    "splash_title": "Bienvenue à Manzon",
-    "manzon_logo": "Manzon Logo",
-    "power_by_manzon": "Par Manzon",
-    "splash_description": "Digitalisez la gestion de votre tontine en toute simplicité.",
-    "get_start": "Commencer",
-    "register": "Register",
-    "email": "Email",
-    "password": "Password",
-    "register_button": "Register",
-    "welcome_message": "Bienvenue, @name",
+  "hello": "Bonjour",
+  "user": "Utilisateur",
+  "splash_title": "Bienvenue à Manzon",
+  "manzon_logo": "Manzon Logo",
+  "power_by_manzon": "Par Manzon",
+  "splash_description": "Digitalisez la gestion de votre tontine en toute simplicité.",
+  "get_start": "Commencer",
+  "register": "Register",
+  "email": "Email",
+  "password": "Password",
+  "register_button": "Register",
+  "welcome_message": "Bienvenue, @name",
 
-
-    "join_manzon_now": "Rejoignez Manzon dès maintenant !",
-    "create_account": "Creer un compte",
-    "create_account_experience": "Creez votre compte et Commencez votre expérience personnalisée maintenant.",
-    "full_name": "Full Name",
+  "join_manzon_now": "Rejoignez Manzon dès maintenant !",
+  "create_account": "Creer un compte",
+  "create_account_experience": "Creez votre compte et Commencez votre expérience personnalisée maintenant.",
+  "full_name": "Full Name",
   "first_name": "First Name",
   "phone": "Phone",
   "enter_phone_number": "Enter your phone number",
@@ -30,7 +29,6 @@
   "forgot_password": "Mot de pass oublier",
   "no_account": "Vous n’avez pas de compte?",
 
-
   "you_are?": "Vous êtes ?",
   "member_role": "Un membre de la réunion",
   "admin_role": "Un administrateur de la réunion",
@@ -41,16 +39,41 @@
   "resend_code": "On va vous renvoyer un code dans ",
   "confirm_button_text": "Confirmer",
 
-  
-  "my_association":"Mes associations",
-  "new_association":"Nouvelle associations",
+  "my_association": "Mes associations",
+  "new_association": "Nouvelle associations",
 
   "check_connection": "Vérifiez votre connexion",
   "no_connection": "Pas de connexion Internet",
   "connected": "Connexion Internet",
   "back_online": "De retour en ligne",
 
-    "invalid_number_format":"Format de numéro invalide"
+  "invalid_number_format": "Format de numéro invalide",
 
-  }
+
+
+
+  "add_an_image_of_your_cloth": "Ajouter une image de votre pagne",
+  "what_is_the_name_of_your_meeting": "Quel est le nom de votre reunion ?",
+  "name_of_the_meeting": "Nom de la reunion",
+  "what_is_the_headquarters_of_your_association": "Quel est le siege de votre association?",
+  "yaounde": "Yaounde",
+  "nkomo_ii": "Nkomo II",
+  "select_meeting_days": "Selectionner les 3 jours des sieges",
+  "monday": "Lundi",
+  "tuesday": "Mardi",
+  "wednesday": "Mercredi",
+  "thursday": "Jeudi",
+  "friday": "Vendredi",
+  "saturday": "Samedi",
+  "sunday": "Dimanche",
+  "select_meeting_frequency": "Selectionner le nombre de rencontres que vous tenez par mois",
+
   
+  "verify_information": "Vérifiez vos informations",
+  "name": "Nom",
+  "location": "Lieu",
+  "meeting_frequency": "Fréquence de réunion",
+  "meeting_days": "Jours de réunion",
+  "create_association": "Creer l'association",
+  "creating_association": "Creer une association"
+}

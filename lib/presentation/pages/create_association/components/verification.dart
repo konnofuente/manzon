@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/presentation/widgets/list_title.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/app/core/utils/constants/value_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/controllers/create_association_controller.dart';
@@ -16,9 +18,15 @@ class Verification extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Vérifiez vos informations et créez l\'association',
-            style: getBoldStyle(color: AppColors.blackNormal, fontSize: 16),
+          Center(
+            child: Text(
+              'verify_information'.tr,
+              style: getBoldStyle(
+                  color: AppColors.blackNormal, fontSize: FontSize.s20),
+            ),
+          ),
+          SizedBox(
+            height: AppSize.s24,
           ),
           // Display the summary of entered data
           Container(
@@ -28,17 +36,32 @@ class Verification extends StatelessWidget {
               color: AppColors.white,
               borderRadius: BorderRadius.circular(AppSize.s8),
             ),
-            child: Image.file(
-              File(controller.imagePath.value),
-              fit: BoxFit.cover,
-            ),
+            child: controller.imagePath.value.isEmpty
+                ? SizedBox.shrink()
+                : Image.file(
+                    File(controller.imagePath!.value),
+                    fit: BoxFit.cover,
+                  ),
           ),
-          Text('Nom: ${controller.associationNameController.text}'),
-          Text(
-              'Lieu: ${controller.headquaterTownController.text}, ${controller.headquaterLocationController.text}'),
-          Text(
-              'Fréquence de réunion: ${controller.meetingFrequency.value} fois par mois'),
-          Text('Jours de réunion: ${controller.meetingDays.join(', ')}'),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTitle(
+                  title: 'name'.tr,
+                  value: controller.associationNameController.text),
+              ListTitle(
+                  title: 'location'.tr,
+                  value:
+                      '${controller.headquaterTownController.text}, ${controller.headquaterLocationController.text}'),
+              ListTitle(
+                  title: 'meeting_frequency'.tr,
+                  value: '${controller.meetingFrequency.value} fois par mois'),
+              ListTitle(
+                  title: 'meeting_days'.tr,
+                  value: controller.meetingDays.join(', ')),
+            ],
+          ),
+
           Spacer(),
           DefaultButton(
             onTap: () {
@@ -46,7 +69,7 @@ class Verification extends StatelessWidget {
               controller.addAssociation();
             },
             backgroundColor: AppColors.primaryNormal,
-            text: 'Creer l\'association',
+            text: 'create_association'.tr,
             width: double.infinity,
             fontWeight: FontWeight.w600,
             borderRadius: 50.0,

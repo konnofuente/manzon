@@ -26,7 +26,7 @@ class MeetingDays extends StatelessWidget {
                   width: AppSize.s8,
                 ),
                 Text(
-                  'Selectionner les 3 jours des sieges',
+                  'select_meeting_days'.tr,
                   style: getCustomStyle(
                     color: AppColors.blackNormal,
                     fontSize: FontSize.s16,
@@ -44,13 +44,13 @@ class MeetingDays extends StatelessWidget {
                   runSpacing: 8.0,
                   alignment: WrapAlignment.center,
                   children: [
-                    'Lundi',
-                    'Mardi',
-                    'Mercredi',
-                    'Jeudi',
-                    'Vendredi',
-                    'Samedi',
-                    'Dimanche'
+                    'monday'.tr,
+                    'tuesday'.tr,
+                    'wednesday'.tr,
+                    'thursday'.tr,
+                    'friday'.tr,
+                    'saturday'.tr,
+                    'sunday'.tr
                   ].map((day) {
                     return FilterChip(
                       padding:
@@ -80,7 +80,7 @@ class MeetingDays extends StatelessWidget {
               controller.nextStep();
             },
             backgroundColor: AppColors.primaryNormal,
-            text: 'Continuer',
+            text: 'continue'.tr,
             width: double.infinity,
             fontWeight: FontWeight.w600,
             borderRadius: 50.0,

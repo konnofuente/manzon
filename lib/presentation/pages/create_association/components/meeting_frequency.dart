@@ -16,7 +16,7 @@ class MeetingFrequency extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Selectionner le nombre de rencontres que vous tenez par mois',
+            'select_meeting_frequency'.tr,
             // style: TextStyle(fontSize: FontSize.s16,color: AppColors.blackNormal,),
             style: getCustomStyle(
               color: AppColors.blackNormal,
