@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/core/helpers/keyboard.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
 import '../../../../app/core/utils/constants/value_manager.dart';
@@ -51,6 +52,7 @@ class Headquarters extends StatelessWidget {
           DefaultButton(
             onTap: () {
               controller.nextStep();
+                hideKeyboard(context);
             },
             backgroundColor: AppColors.primaryNormal,
             text: 'Continuer',

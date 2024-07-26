@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:manzon/infrastructure/models/user_model.dart';
+import 'package:manzon/app/core/utils/constants/app_api_key.dart';
 
 class UserDataSource {
-  final userRef = FirebaseFirestore.instance.collection('users').withConverter<UserModel>(
+  final userRef = FirebaseFirestore.instance.collection(ApiKey.USER_KEY).withConverter<UserModel>(
     fromFirestore: (snapshots, _) => UserModel.fromJson(snapshots.data()!),
     toFirestore: (user, _) => user.toJson(),
   );

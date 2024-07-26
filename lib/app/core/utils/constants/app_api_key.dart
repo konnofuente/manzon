@@ -1,4 +1,4 @@
 class ApiKey {
-  static const USER = "user";
-
+  static const USER_KEY = "user";
+  static const ASSOCIATION_KEY = "association";
 }

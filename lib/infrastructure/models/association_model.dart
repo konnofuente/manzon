@@ -2,17 +2,19 @@ import 'package:manzon/domain/entities/association_entity.dart';
 
 class AssociationModel extends AssociationEntity {
   AssociationModel({
-    required String uniqueId,
-    required String name,
-    required String headquaterCity,
-    required List<String> tontines,
-    required List<String> meetingDays,
-    required String paymentFrequency,
-    required double balance,
-    required String loanConditions,
-    required List<String> transactions,
-    required List<String> membersId,
-    required String headquaterLocation,
+     String? uniqueId,
+     required String name,
+     String? headquaterCity,
+     List<String>? tontines,
+     List<String>? meetingDays,
+     String? paymentFrequency,
+     int? monthlyMeetingFrequency,
+     double? balance,
+     String? loanConditions,
+     List<String>? transactions,
+     List<String>? membersId,
+     String? headquaterLocation,
+     String? avatar, // Added this line
   }) : super(
           uniqueId: uniqueId,
           name: name,
@@ -20,11 +22,13 @@ class AssociationModel extends AssociationEntity {
           tontines: tontines,
           meetingDays: meetingDays,
           paymentFrequency: paymentFrequency,
+          monthlyMeetingFrequency: monthlyMeetingFrequency,
           balance: balance,
           loanConditions: loanConditions,
           transactions: transactions,
           membersId: membersId,
           headquaterLocation: headquaterLocation,
+          avatar: avatar, // Added this line
         );
 
   factory AssociationModel.fromJson(Map<String, dynamic> json) {
@@ -35,11 +39,13 @@ class AssociationModel extends AssociationEntity {
       tontines: List<String>.from(json['tontines']),
       meetingDays: List<String>.from(json['meetingDays']),
       paymentFrequency: json['paymentFrequency'],
+      monthlyMeetingFrequency: json['monthlyMeetingFrequency'],
       balance: json['balance'].toDouble(),
       loanConditions: json['loanConditions'],
       transactions: List<String>.from(json['transactions']),
       membersId: List<String>.from(json['membersId']),
       headquaterLocation: json['headquaterLocation'],
+      avatar: json['avatar'], // Added this line
     );
   }
 
@@ -51,11 +57,13 @@ class AssociationModel extends AssociationEntity {
       'tontines': tontines,
       'meetingDays': meetingDays,
       'paymentFrequency': paymentFrequency,
+      'monthlyMeetingFrequency': monthlyMeetingFrequency,
       'balance': balance,
       'loanConditions': loanConditions,
       'transactions': transactions,
       'membersId': membersId,
       'headquaterLocation': headquaterLocation,
+      'avatar': avatar, // Added this line
     };
   }
 }

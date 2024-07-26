@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:manzon/app/core/utils/constants/app_api_key.dart';
 import 'package:manzon/infrastructure/models/association_model.dart';
 
 class AssociationDataSource {
   final associationRef = FirebaseFirestore.instance
-      .collection('association')
+      .collection(ApiKey.ASSOCIATION_KEY)
       .withConverter<AssociationModel>(
         fromFirestore: (snapshots, _) =>
             AssociationModel.fromJson(snapshots.data()!),

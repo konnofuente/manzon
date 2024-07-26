@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:manzon/app/core/helpers/keyboard.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
@@ -89,6 +90,7 @@ class BasicInformation extends StatelessWidget {
           DefaultButton(
             onTap: () {
               controller.nextStep();
+              hideKeyboard(context);
             },
             backgroundColor: AppColors.primaryNormal,
             text: 'Continuer',

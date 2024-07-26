@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/config/app_binding.dart';
 import 'package:manzon/app/core/helpers/keyboard.dart';
 import 'package:manzon/app/config/theme/app_theme.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
@@ -28,6 +29,7 @@ class _ManzonAppState extends State<ManzonApp> {
       child: GestureDetector(
         onTap: () => hideKeyboard(context),
         child: GetMaterialApp(
+            initialBinding: AppBindings(),
           debugShowCheckedModeBanner: false,
           title: 'Manzon',
           theme: AppTheme.lightTheme,

@@ -16,7 +16,7 @@ class CreateAssociation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CreateAssociationController controller =
-        Get.put(CreateAssociationController());
+        Get.put(CreateAssociationController(Get.find()));
 
     return Scaffold(
       body: Padding(

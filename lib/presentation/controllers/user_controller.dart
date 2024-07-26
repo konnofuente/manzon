@@ -68,21 +68,5 @@ class UserController extends GetxController {
     }
   }
 
-  // Future<void> updateUser(UserEntity updatedUser, BuildContext context) async {
-  //   try {
-  //     await updateUserUseCase(updatedUser);
-  //     ToastUtils.showSuccess(context, 'Success', 'User updated successfully');
-  //   } catch (e) {
-  //     ToastUtils.showError(context, 'Error', e.toString());
-  //   }
-  // }
 
-  // Future<void> deleteUser(String id, BuildContext context) async {
-  //   try {
-  //     await deleteUserUseCase(id);
-  //     ToastUtils.showSuccess(context, 'Success', 'User deleted successfully');
-  //   } catch (e) {
-  //     ToastUtils.showError(context, 'Error', e.toString());
-  //   }
-  // }
 }
