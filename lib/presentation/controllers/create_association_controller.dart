@@ -13,6 +13,10 @@ class CreateAssociationController extends GetxController {
   var meetingDays = <String>[].obs;
    var imagePath = ''.obs;
 
+     final TextEditingController associationNameController = TextEditingController();
+  final TextEditingController headquaterTownController = TextEditingController();
+  final TextEditingController headquaterLocationController = TextEditingController();
+
   void nextStep() {
     if (currentStep.value < 4) {
       currentStep.value++;

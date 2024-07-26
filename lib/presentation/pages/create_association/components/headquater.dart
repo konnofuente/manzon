@@ -27,7 +27,7 @@ class Headquarters extends StatelessWidget {
           TextFieldWidget(
             prefixIcon: Icons.location_city,
             hintText: "Yaounde",
-            controller: TextEditingController(),
+            controller: controller.headquaterTownController,
             isPassword: false,
             keyboardType: TextInputType.text,
             readOnly: false,
@@ -42,7 +42,7 @@ class Headquarters extends StatelessWidget {
           TextFieldWidget(
             prefixIcon: Icons.location_on,
             hintText: "Nkomo II",
-            controller: TextEditingController(),
+            controller: controller.headquaterLocationController,
             isPassword: false,
             keyboardType: TextInputType.text,
             readOnly: false,

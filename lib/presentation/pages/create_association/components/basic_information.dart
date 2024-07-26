@@ -78,7 +78,7 @@ class BasicInformation extends StatelessWidget {
           const SizedBox(height: AppSize.s8),
           TextFieldWidget(
             hintText: "Nom de la reunion",
-            controller: TextEditingController(),
+            controller: controller.associationNameController,
             // height: 70,
             isPassword: false,
             keyboardType: TextInputType.text,
