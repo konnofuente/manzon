@@ -19,15 +19,13 @@ class MediaDataSource {
       TaskSnapshot taskSnapshot = await uploadTask;
       String downloadUrl = await taskSnapshot.ref.getDownloadURL();
 
-      // Extract the file extension and determine file type using FileType enum
       String fileExtension = path.extension(file.path).toLowerCase();
       FileType fileType = FileType.fromExtension(fileExtension);
 
-      // Save the file metadata to Firestore
       Map<String, dynamic> metadata = {
         'id': fileId,
         'url': downloadUrl,
-        'type': fileType.toString().split('.').last, // Store as string
+        'type': fileType.toString().split('.').last, 
         'uploaded_at': FieldValue.serverTimestamp(),
       };
 

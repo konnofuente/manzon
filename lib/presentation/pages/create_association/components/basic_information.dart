@@ -26,7 +26,8 @@ class BasicInformation extends StatelessWidget {
               final pickedFile =
                   await ImagePicker().pickImage(source: ImageSource.gallery);
               if (pickedFile != null) {
-                controller.imagePath?.value = pickedFile.path;
+                controller.imagePath.value = pickedFile.path;
+                controller.avatar = pickedFile;
               }
             },
             child: Obx(() {

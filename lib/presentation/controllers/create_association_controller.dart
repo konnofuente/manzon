@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
@@ -16,15 +17,14 @@ class CreateAssociationController extends GetxController {
   );
 
   // Form data
-final RxString associationName = ''.obs;
-final RxString location = ''.obs;
-final RxString district = ''.obs;
-final RxInt meetingFrequency = 3.obs;
-final RxList<String> meetingDays = <String>[].obs;
-final RxString imagePath = ''.obs;
-var  totalStep = 5;
-
-
+  final RxString associationName = ''.obs;
+  final RxString location = ''.obs;
+  final RxString district = ''.obs;
+  final RxInt meetingFrequency = 3.obs;
+  final RxList<String> meetingDays = <String>[].obs;
+  final RxString imagePath = ''.obs;
+  late final XFile avatar;
+  var totalStep = 5;
 
   final TextEditingController associationNameController =
       TextEditingController();
@@ -51,6 +51,7 @@ var  totalStep = 5;
 
   Future<void> addAssociation() async {
     bool isConnected = await connectivityService.checkConnectivity();
+
     AssociationEntity association = AssociationEntity(
         headquaterCity: headquaterTownController.text,
         meetingDays: meetingDays.value,
