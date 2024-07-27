@@ -4,9 +4,4 @@ enum Role {
 }
 
 
-enum FileType {
-  video,
-  image,
-  video_link,
-  image_link,
-}
+

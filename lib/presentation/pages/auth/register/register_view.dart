@@ -6,9 +6,7 @@ import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/font_manager.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/app/core/utils/enums/export_enums.dart';
-import 'package:manzon/presentation/widgets/text_field_widget.dart';
-import 'package:manzon/app/core/utils/validations/form_validators.dart';
-import 'package:manzon/presentation/widgets/buttons/default_button.dart';
+import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 import 'package:manzon/presentation/controllers/authentification/auth_controller.dart';
 

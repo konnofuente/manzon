@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'media_entity.dart'; // Ensure the correct path is used
 
 class AssociationEntity extends Equatable {
   final String? uniqueId;
@@ -13,22 +14,22 @@ class AssociationEntity extends Equatable {
   final List<String>? transactions;
   final List<String>? membersId;
   final String? headquaterLocation;
-  final String? avatar;
+  final MediaEntity? avatar; // Updated this line
 
   AssociationEntity({
-     this.uniqueId,
+    this.uniqueId,
     required this.name,
-     this.headquaterCity,
-     this.tontines,
-     this.meetingDays,
-     this.paymentFrequency,
-     this.monthlyMeetingFrequency,
-     this.balance,
-     this.loanConditions,
-     this.transactions,
-     this.membersId,
-     this.headquaterLocation,
-     this.avatar, // Added this line
+    this.headquaterCity,
+    this.tontines,
+    this.meetingDays,
+    this.paymentFrequency,
+    this.monthlyMeetingFrequency,
+    this.balance,
+    this.loanConditions,
+    this.transactions,
+    this.membersId,
+    this.headquaterLocation,
+    this.avatar, // Updated this line
   });
 
   @override
@@ -45,6 +46,6 @@ class AssociationEntity extends Equatable {
         transactions,
         membersId,
         headquaterLocation,
-        avatar, // Added this line
+        avatar, // Updated this line
       ];
 }
