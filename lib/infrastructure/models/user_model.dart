@@ -1,7 +1,5 @@
-import 'package:manzon/domain/entities/user_entity.dart';
-import 'package:manzon/domain/entities/enums/role_enum.dart';
 import 'package:manzon/infrastructure/models/media_model.dart';
-
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 
 class UserModel extends UserEntity {
@@ -9,8 +7,8 @@ class UserModel extends UserEntity {
     required String id,
     required String phoneNumber,
     String? name,
-    List<String>? associations,
-    List<Role>? roles,
+    List<AssociationMembership>? associations,
+    bool isAdministrator = false,
     MediaModel? avatar,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -22,7 +20,7 @@ class UserModel extends UserEntity {
           phoneNumber: phoneNumber,
           name: name,
           associations: associations,
-          roles: roles,
+          isAdministrator: isAdministrator,
           avatar: avatar,
           createdAt: createdAt,
           updatedAt: updatedAt,
@@ -37,26 +35,14 @@ class UserModel extends UserEntity {
       phoneNumber: json['phoneNumber'],
       name: json['name'],
       associations: (json['associations'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => AssociationMembership.fromJson(e))
           .toList(),
-      roles: (json['roles'] as List<dynamic>?)
-          ?.map((e) => Role.values[e as int])
-          .toList(),
-      avatar: json['avatar'] != null
-          ? MediaModel.fromJson(json['avatar'])
-          : null,
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : null,
-      updatedAt: json['updatedAt'] != null
-          ? DateTime.parse(json['updatedAt'])
-          : null,
-      birthDate: json['birthDate'] != null
-          ? DateTime.parse(json['birthDate'])
-          : null,
-      lastSeen: json['lastSeen'] != null
-          ? DateTime.parse(json['lastSeen'])
-          : null,
+      isAdministrator: json['isAdministrator'],
+      avatar: json['avatar'] != null ? MediaModel.fromJson(json['avatar']) : null,
+      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+      birthDate: json['birthDate'] != null ? DateTime.parse(json['birthDate']) : null,
+      lastSeen: json['lastSeen'] != null ? DateTime.parse(json['lastSeen']) : null,
       deviceToken: json['deviceToken'],
     );
   }
@@ -66,9 +52,9 @@ class UserModel extends UserEntity {
       'id': id,
       'phoneNumber': phoneNumber,
       'name': name,
-      'associations': associations,
-      'roles': roles?.map((role) => role.index).toList(),
-      'avatar': (avatar as MediaModel?)?.toJson(),
+      'associations': associations?.map((e) => e.toJson()).toList(),
+      'isAdministrator': isAdministrator,
+      'avatar': avatar?.toJson(),
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
       'birthDate': birthDate?.toIso8601String(),

@@ -9,7 +9,7 @@ class UserMapper {
       phoneNumber: userEntity.phoneNumber,
       name: userEntity.name,
       associations: userEntity.associations,
-      roles: userEntity.roles,
+      isAdministrator: userEntity.isAdministrator,
       avatar: userEntity.avatar != null ? MediaMapper.toModel(userEntity.avatar!) : null,
       createdAt: userEntity.createdAt,
       updatedAt: userEntity.updatedAt,
@@ -24,14 +24,14 @@ class UserMapper {
       id: userModel.id,
       phoneNumber: userModel.phoneNumber,
       name: userModel.name,
-      associations: userModel.associations,
-      roles: userModel.roles,
-      // avatar: userModel.avatar != null ? MediaMapper.toEntity(userModel.avatar!) : null,
+      associations: userModel.associations, 
+      isAdministrator: userModel.isAdministrator,
+      avatar: userModel.avatar,
       createdAt: userModel.createdAt,
       updatedAt: userModel.updatedAt,
       birthDate: userModel.birthDate,
       lastSeen: userModel.lastSeen,
       deviceToken: userModel.deviceToken,
-    );
+    ); 
   }
 }

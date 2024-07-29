@@ -14,9 +14,10 @@ class AssociationMapper {
       balance: entity.balance,
       loanConditions: entity.loanConditions,
       transactions: entity.transactions,
-      membersId: entity.membersId,
+      members: entity.members,
+      adminIds: entity.adminIds,
       headquaterLocation: entity.headquaterLocation,
-      avatar: entity.avatar, 
+      avatar: entity.avatar,
     );
   }
 
@@ -32,9 +33,10 @@ class AssociationMapper {
       balance: model.balance,
       loanConditions: model.loanConditions,
       transactions: model.transactions,
-      membersId: model.membersId,
+      members: model.members,
+      adminIds: model.adminIds,
       headquaterLocation: model.headquaterLocation,
-      avatar: model.avatar, 
+      avatar: model.avatar,
     );
   }
 }

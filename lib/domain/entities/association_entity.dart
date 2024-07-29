@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'media_entity.dart'; // Ensure the correct path is used
+import 'package:manzon/domain/entities/export_domain_entities.dart';
+
 
 class AssociationEntity extends Equatable {
   final String? uniqueId;
@@ -14,7 +15,9 @@ class AssociationEntity extends Equatable {
   final List<String>? transactions;
   final List<String>? membersId;
   final String? headquaterLocation;
-  final MediaEntity? avatar; 
+  final MediaEntity? avatar;
+  final List<MemberEntity> members; // Updated field for detailed member list
+  final List<String> adminIds; // New field for admin IDs
 
   AssociationEntity({
     this.uniqueId,
@@ -30,6 +33,8 @@ class AssociationEntity extends Equatable {
     this.membersId,
     this.headquaterLocation,
     this.avatar,
+    required this.members, // Initialize in the constructor
+    required this.adminIds, // Initialize in the constructor
   });
 
   @override
@@ -46,6 +51,8 @@ class AssociationEntity extends Equatable {
         transactions,
         membersId,
         headquaterLocation,
-        avatar, // Updated this line
+        avatar,
+        members, // Add this line
+        adminIds, // Add this line
       ];
 }

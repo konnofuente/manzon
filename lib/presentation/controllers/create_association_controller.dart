@@ -106,7 +106,8 @@ class CreateAssociationController extends GetxController {
             headquaterLocation: headquaterLocationController.text,
             name: associationNameController.text,
             avatar: avatarMedia!,
-            membersId: [userId!]);
+            members: [], 
+            adminIds: [userId!]);
 
         await _addAssociationUseCase.call(association);
         creationProgress.value = 100;

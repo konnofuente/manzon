@@ -1,6 +1,7 @@
 import '../../domain/entities/export_domain_entities.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
 
+
 class AssociationModel extends AssociationEntity {
   AssociationModel({
     String? uniqueId,
@@ -13,9 +14,10 @@ class AssociationModel extends AssociationEntity {
     double? balance,
     String? loanConditions,
     List<String>? transactions,
-    List<String>? membersId,
+    List<MemberEntity>? members, // Already present
+    List<String>? adminIds, // Updated field for admin IDs as List<String>
     String? headquaterLocation,
-    MediaEntity? avatar, // Updated this line
+    MediaEntity? avatar,
   }) : super(
           uniqueId: uniqueId,
           name: name,
@@ -27,9 +29,10 @@ class AssociationModel extends AssociationEntity {
           balance: balance,
           loanConditions: loanConditions,
           transactions: transactions,
-          membersId: membersId,
+          members: members ?? [], // Handle potential null value
+          adminIds: adminIds ?? [], // Initialize to empty list if null
           headquaterLocation: headquaterLocation,
-          avatar: avatar, // Updated this line
+          avatar: avatar,
         );
 
   factory AssociationModel.fromJson(Map<String, dynamic> json) {
@@ -37,16 +40,19 @@ class AssociationModel extends AssociationEntity {
       uniqueId: json['uniqueId'],
       name: json['name'],
       headquaterCity: json['headquaterCity'],
-      tontines: List<String>.from(json['tontines']),
-      meetingDays: List<String>.from(json['meetingDays']),
+      tontines: (json['tontines'] != null) ? List<String>.from(json['tontines']) : [],
+      meetingDays: (json['meetingDays'] != null) ? List<String>.from(json['meetingDays']) : [],
       paymentFrequency: json['paymentFrequency'],
       monthlyMeetingFrequency: json['monthlyMeetingFrequency'],
-      balance: (json['balance'] as num).toDouble(),
+      balance: (json['balance'] != null) ? (json['balance'] as num).toDouble() : null,
       loanConditions: json['loanConditions'],
-      transactions: List<String>.from(json['transactions']),
-      membersId: List<String>.from(json['membersId']),
+      transactions: (json['transactions'] != null) ? List<String>.from(json['transactions']) : [],
+      members: (json['members'] != null)
+          ? (json['members'] as List).map((member) => MemberEntity.fromJson(member)).toList()
+          : [],
+      adminIds: (json['adminIds'] != null) ? List<String>.from(json['adminIds']) : [], // Updated field for admin IDs
       headquaterLocation: json['headquaterLocation'],
-      avatar: MediaEntity.fromJson(json['avatar']), // Updated this line
+      avatar: json['avatar'] != null ? MediaEntity.fromJson(json['avatar']) : null,
     );
   }
 
@@ -62,9 +68,10 @@ class AssociationModel extends AssociationEntity {
       'balance': balance,
       'loanConditions': loanConditions,
       'transactions': transactions,
-      'membersId': membersId,
+      'members': members.map((member) => member.toJson()).toList(), // Already present
+      'adminIds': adminIds, // Updated to List<String>
       'headquaterLocation': headquaterLocation,
-      'avatar': avatar?.toJson(), // Updated this line
+      'avatar': avatar?.toJson(),
     };
   }
 }
