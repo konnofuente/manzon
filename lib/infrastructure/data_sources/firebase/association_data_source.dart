@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:manzon/infrastructure/models/member_model.dart';
 import 'package:manzon/app/core/utils/constants/app_api_key.dart';
 import 'package:manzon/infrastructure/models/association_model.dart';
 
@@ -15,6 +16,17 @@ class AssociationDataSource {
     await associationRef
         .doc(associationModel.uniqueId)
         .set(associationModel);
+  }
+
+    Future<void> addMember(String associationId, MemberModel member) async {
+    final doc = await associationRef.doc(associationId).get();
+    if (doc.exists) {
+      final association = doc.data();
+      if (association != null) {
+        association.members.add(member);
+        await associationRef.doc(associationId).update({'members': association.members.map((e) => e.toJson()).toList()});
+      }
+    }
   }
 
   Future<AssociationModel?> getAssociationById(String id) async {

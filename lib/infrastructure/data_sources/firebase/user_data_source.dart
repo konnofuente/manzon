@@ -20,5 +20,8 @@ class UserDataSource {
     return null;
   }
 
-  // Add more methods as needed
+    Future<void> updateUser(UserModel userModel) async {
+    await userRef.doc(userModel.id).set(userModel);
+  }
+
 }

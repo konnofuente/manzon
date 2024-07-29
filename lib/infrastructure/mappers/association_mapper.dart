@@ -1,3 +1,4 @@
+import 'member_mapper.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
 import 'package:manzon/infrastructure/models/association_model.dart';
 
@@ -14,7 +15,7 @@ class AssociationMapper {
       balance: entity.balance,
       loanConditions: entity.loanConditions,
       transactions: entity.transactions,
-      members: entity.members,
+      members: entity.members.map((member) => MemberMapper.toModel(member)).toList(),
       adminIds: entity.adminIds,
       headquaterLocation: entity.headquaterLocation,
       avatar: entity.avatar,
@@ -33,7 +34,7 @@ class AssociationMapper {
       balance: model.balance,
       loanConditions: model.loanConditions,
       transactions: model.transactions,
-      members: model.members,
+      members: model.members.map((member) => MemberMapper.toModel(member)).toList(),
       adminIds: model.adminIds,
       headquaterLocation: model.headquaterLocation,
       avatar: model.avatar,

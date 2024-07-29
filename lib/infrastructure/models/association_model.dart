@@ -1,5 +1,7 @@
 import '../../domain/entities/export_domain_entities.dart';
+import 'package:manzon/infrastructure/models/member_model.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
+
 
 
 class AssociationModel extends AssociationEntity {
@@ -14,7 +16,7 @@ class AssociationModel extends AssociationEntity {
     double? balance,
     String? loanConditions,
     List<String>? transactions,
-    List<MemberEntity>? members, // Already present
+    List<MemberModel>? members, // Already present
     List<String>? adminIds, // Updated field for admin IDs as List<String>
     String? headquaterLocation,
     MediaEntity? avatar,
@@ -48,7 +50,7 @@ class AssociationModel extends AssociationEntity {
       loanConditions: json['loanConditions'],
       transactions: (json['transactions'] != null) ? List<String>.from(json['transactions']) : [],
       members: (json['members'] != null)
-          ? (json['members'] as List).map((member) => MemberEntity.fromJson(member)).toList()
+          ? (json['members'] as List).map((member) => MemberModel.fromJson(member)).toList()
           : [],
       adminIds: (json['adminIds'] != null) ? List<String>.from(json['adminIds']) : [], // Updated field for admin IDs
       headquaterLocation: json['headquaterLocation'],

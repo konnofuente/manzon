@@ -97,7 +97,7 @@ class CreateAssociationController extends GetxController {
       }
 
       if (avatarMedia != null) {
-        String? userId = await _localStorageService.getUserId();
+        UserEntity? userId = await _localStorageService.getUser();
         final association = AssociationEntity(
             uniqueId: Uuid().v4(),
             headquaterCity: headquaterTownController.text,
@@ -107,7 +107,7 @@ class CreateAssociationController extends GetxController {
             name: associationNameController.text,
             avatar: avatarMedia!,
             members: [], 
-            adminIds: [userId!]);
+            adminIds: [userId!.id]);
 
         await _addAssociationUseCase.call(association);
         creationProgress.value = 100;
