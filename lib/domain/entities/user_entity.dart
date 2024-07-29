@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:manzon/domain/entities/media_entity.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class UserEntity extends Equatable {

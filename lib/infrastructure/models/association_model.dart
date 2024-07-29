@@ -2,8 +2,6 @@ import '../../domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/models/member_model.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
 
-
-
 class AssociationModel extends AssociationEntity {
   AssociationModel({
     String? uniqueId,
@@ -16,8 +14,8 @@ class AssociationModel extends AssociationEntity {
     double? balance,
     String? loanConditions,
     List<String>? transactions,
-    List<MemberModel>? members, // Already present
-    List<String>? adminIds, // Updated field for admin IDs as List<String>
+    List<MemberModel>? members,
+    List<String>? adminIds,
     String? headquaterLocation,
     MediaEntity? avatar,
   }) : super(
@@ -31,30 +29,46 @@ class AssociationModel extends AssociationEntity {
           balance: balance,
           loanConditions: loanConditions,
           transactions: transactions,
-          members: members ?? [], // Handle potential null value
-          adminIds: adminIds ?? [], // Initialize to empty list if null
+          members: members ?? [],
+          adminIds: adminIds ?? [],
           headquaterLocation: headquaterLocation,
           avatar: avatar,
         );
 
   factory AssociationModel.fromJson(Map<String, dynamic> json) {
     return AssociationModel(
-      uniqueId: json['uniqueId'],
-      name: json['name'],
-      headquaterCity: json['headquaterCity'],
-      tontines: (json['tontines'] != null) ? List<String>.from(json['tontines']) : [],
-      meetingDays: (json['meetingDays'] != null) ? List<String>.from(json['meetingDays']) : [],
-      paymentFrequency: json['paymentFrequency'],
-      monthlyMeetingFrequency: json['monthlyMeetingFrequency'],
-      balance: (json['balance'] != null) ? (json['balance'] as num).toDouble() : null,
-      loanConditions: json['loanConditions'],
-      transactions: (json['transactions'] != null) ? List<String>.from(json['transactions']) : [],
-      members: (json['members'] != null)
-          ? (json['members'] as List).map((member) => MemberModel.fromJson(member)).toList()
+      uniqueId: json['uniqueId'] ?? '',
+      name: json['name'] ?? '',
+
+      tontines: (json['tontines'] != null && json['tontines'] is List)
+          ? List<String>.from(json['tontines'])
           : [],
-      adminIds: (json['adminIds'] != null) ? List<String>.from(json['adminIds']) : [], // Updated field for admin IDs
-      headquaterLocation: json['headquaterLocation'],
-      avatar: json['avatar'] != null ? MediaEntity.fromJson(json['avatar']) : null,
+      meetingDays: (json['meetingDays'] != null && json['meetingDays'] is List)
+          ? List<String>.from(json['meetingDays'])
+          : [],
+      paymentFrequency: json['paymentFrequency'] ??
+          '', 
+      monthlyMeetingFrequency:
+          json['monthlyMeetingFrequency'] ?? 0, 
+      balance: (json['balance'] != null)
+          ? (json['balance'] as num).toDouble()
+          : 0.0,
+      loanConditions: json['loanConditions'] ?? '',
+      transactions:
+          (json['transactions'] != null && json['transactions'] is List)
+              ? List<String>.from(json['transactions'])
+              : [],
+      members: (json['members'] != null && json['members'] is List)
+          ? (json['members'] as List)
+              .map((member) => MemberModel.fromJson(member))
+              .toList()
+          : [],
+      adminIds: (json['adminIds'] != null && json['adminIds'] is List)
+          ? List<String>.from(json['adminIds'])
+          : [],
+      headquaterLocation: json['headquaterLocation'] ?? '',
+      avatar:
+          json['avatar'] != null ? MediaEntity.fromJson(json['avatar']) : null,
     );
   }
 
@@ -70,8 +84,8 @@ class AssociationModel extends AssociationEntity {
       'balance': balance,
       'loanConditions': loanConditions,
       'transactions': transactions,
-      'members': members.map((member) => member.toJson()).toList(), // Already present
-      'adminIds': adminIds, // Updated to List<String>
+      'members': members.map((member) => member.toJson()).toList(),
+      'adminIds': adminIds,
       'headquaterLocation': headquaterLocation,
       'avatar': avatar?.toJson(),
     };

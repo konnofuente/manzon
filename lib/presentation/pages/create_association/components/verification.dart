@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/widgets/list_title.dart';
@@ -29,19 +30,21 @@ class Verification extends StatelessWidget {
             height: AppSize.s24,
           ),
           // Display the summary of entered data
-          Container(
-            // height: ScreenSize.blockSizeVertical * 10,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(AppSize.s8),
+          Expanded(
+            child: Container(
+              height: ScreenSize.blockSizeVertical * 20,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(AppSize.s8),
+              ),
+              child: controller.imagePath.value.isEmpty
+                  ? SizedBox.shrink()
+                  : Image.file(
+                      File(controller.imagePath!.value),
+                      fit: BoxFit.cover,
+                    ),
             ),
-            child: controller.imagePath.value.isEmpty
-                ? SizedBox.shrink()
-                : Image.file(
-                    File(controller.imagePath!.value),
-                    fit: BoxFit.cover,
-                  ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

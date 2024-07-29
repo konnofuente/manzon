@@ -6,7 +6,7 @@ class AddAssociationUseCase {
 
   AddAssociationUseCase(this.associationRepository);
 
-  Future<void> call(AssociationEntity association) async {
+  Future<AssociationEntity> call(AssociationEntity association) async {
     return await associationRepository.addAssociation(association);
   }
 }

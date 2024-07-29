@@ -12,40 +12,51 @@ import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => ConnectivityService());
+    Get.lazyPut(() => LocalStorageService());
+
+    //data stores
     Get.lazyPut(() => AssociationDataSource());
     final associationDataSource = AssociationDataSource();
     final mediaDataSource = MediaDataSource();
+    final userDataSource = UserDataSource();
+
+    //repository
+    final associationRepositoryImp =
+        AssociationRepositoryImpl(associationDataSource);
+    final mediaRepository = MediaRepositoryImpl(mediaDataSource);
+    final userRepository = UserRepositoryImpl(userDataSource);
+
+    //use cases
+    final addUserUseCase = AddUserUseCase(userRepository);
+    final updateUserUseCase = UpdateUserUseCase(userRepository);
+    final getUserByIdUseCase = GetUserByIdUseCase(userRepository);
+    final addAssociationUseCase =
+        AddAssociationUseCase(associationRepositoryImp);
+    final addMemberToAssociationUseCase =
+        AddMemberToAssociationUseCase(associationRepositoryImp);
+
+    final uploadAssociationAvatarUseCase =
+        UploadAssociationAvatarUseCase(mediaRepository);
 
     Get.lazyPut(() => AssociationRepositoryImpl(Get.find()));
 
-    final associationRepositoryImp =
-        AssociationRepositoryImpl(associationDataSource);
-
-    final mediaRepository = MediaRepositoryImpl(mediaDataSource);
-    Get.lazyPut(()=>UploadAssociationAvatarUseCase(mediaRepository));
+    Get.lazyPut(() => UploadAssociationAvatarUseCase(mediaRepository));
 
     Get.lazyPut(() => AddAssociationUseCase(associationRepositoryImp));
-    final addAssociationUseCase =
-        AddAssociationUseCase(associationRepositoryImp);
-
-    final uploadAssociationAvatarUseCase = UploadAssociationAvatarUseCase(mediaRepository);
+    Get.lazyPut(() => AddMemberToAssociationUseCase(associationRepositoryImp));
+    Get.lazyPut(() => UpdateUserUseCase(userRepository));
 
     Get.lazyPut(() => GetAssociationByIdUseCase(associationRepositoryImp));
     Get.lazyPut(() => CreateAssociationController(
-        addAssociationUseCase, uploadAssociationAvatarUseCase));
-
-    Get.lazyPut(() => ConnectivityService());
-    Get.lazyPut(() => LocalStorageService());
+        addAssociationUseCase,
+        uploadAssociationAvatarUseCase,
+        addMemberToAssociationUseCase,
+        updateUserUseCase));
 
     final authenticationDataSource = AuthenticationDataSource();
     final authRepositoryImp =
         AuthenticationRepositoryImpl(authenticationDataSource);
-
-    final userDataSource = UserDataSource();
-    final userRepository = UserRepositoryImpl(userDataSource);
-
-    final addUserUseCase = AddUserUseCase(userRepository);
-    final getUserByIdUseCase = GetUserByIdUseCase(userRepository);
 
     Get.lazyPut(() => GetUserByIdUseCase(userRepository));
     Get.lazyPut(() => UserController(

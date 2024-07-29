@@ -13,6 +13,22 @@ class CreateAssociationLoading extends StatelessWidget {
     final CreateAssociationController controller = Get.find();
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        title: Container(
+            alignment: Alignment.center,
+            child: Text('otp_app_bar'.tr,
+                style: getSemiBoldStyle(
+                    fontSize: FontSize.s18, color: AppColors.blackNormal))),
+        leading: IconButton(
+          icon: const Icon(
+            color: AppColors.blackNormal,
+            Icons.arrow_back,
+            size: AppSize.s24,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ) ,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

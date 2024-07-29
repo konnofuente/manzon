@@ -1,5 +1,5 @@
 class ApiKey {
-  static const USER_KEY = "user";
-  static const ASSOCIATION_KEY = "association";
-  static const MEDIA_KEY = "media";
+  static const USER_KEY = "users";
+  static const ASSOCIATION_KEY = "associations";
+  static const MEDIA_KEY = "medias";
 }

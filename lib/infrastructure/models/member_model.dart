@@ -1,5 +1,5 @@
-import 'package:manzon/domain/entities/export_domain_entities.dart';
-
+import 'package:equatable/equatable.dart';
+import 'package:manzon/domain/entities/member_entity.dart';
 
 class MemberModel extends MemberEntity {
   MemberModel({
@@ -14,7 +14,6 @@ class MemberModel extends MemberEntity {
           userId: userId,
         );
 
-  // Override the fromJson method to use the constructor of MemberModel
   factory MemberModel.fromJson(Map<String, dynamic> json) {
     return MemberModel(
       id: json['id'],
@@ -24,8 +23,6 @@ class MemberModel extends MemberEntity {
     );
   }
 
-  // Override the toJson method to maintain compatibility
-  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,

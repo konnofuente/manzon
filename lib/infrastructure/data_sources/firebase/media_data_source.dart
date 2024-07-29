@@ -35,8 +35,10 @@ class MediaDataSource {
       // Create MediaModel from the metadata
       MediaModel mediaModel = MediaModel(
         mediaId: fileId,
+        file: file,
         link: downloadUrl,
         createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
         type: fileType,
       );
 

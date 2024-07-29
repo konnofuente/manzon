@@ -24,5 +24,11 @@ class UserRepositoryImpl implements UserRepository {
     }
     return null;
   }
+  
+  @override
+  Future<void> updateUser(UserEntity user) async {
+     await _userDataSource.updateUser(UserMapper.toModel(user));
+    throw UnimplementedError();
+  }
 
 }

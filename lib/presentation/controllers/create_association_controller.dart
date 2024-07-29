@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,20 @@ class CreateAssociationController extends GetxController {
   final pageController = PageController();
   final AddAssociationUseCase _addAssociationUseCase;
   final UploadAssociationAvatarUseCase _uploadAssociationAvatarUseCase;
+  final AddMemberToAssociationUseCase _addMemberToAssociationUseCase;
+  final UpdateUserUseCase _updateUserUseCase;
   final ConnectivityService connectivityService = Get.find();
-  final LocalStorageService _localStorageService = Get.find();
+  final LocalStorageService _localStorageService =
+      Get.put(LocalStorageService());
 
   CreateAssociationController(
-      this._addAssociationUseCase, this._uploadAssociationAvatarUseCase);
+    this._addAssociationUseCase,
+    this._uploadAssociationAvatarUseCase,
+    this._addMemberToAssociationUseCase,
+    this._updateUserUseCase,
+  );
 
-  // Form data
+  // Form Data
   final RxString associationName = ''.obs;
   final RxString location = ''.obs;
   final RxString district = ''.obs;
@@ -44,16 +52,10 @@ class CreateAssociationController extends GetxController {
 
   void nextStep() {
     if (currentStep.value < totalStep - 1) {
-
-      if (currentStep.value == 0) {
-        if (associationName.isEmpty) {
-          ToastUtils.showError(
-            Get.context!,
-            "Required information",
-            "Please you must insert the assoiation name",
-          );
-          return;
-        }
+      if (currentStep.value == 0 && associationNameController.text.isEmpty) {
+        ToastUtils.showError(Get.context!, "Required information",
+            "Please enter the association name");
+        return;
       }
 
       currentStep.value++;
@@ -72,60 +74,114 @@ class CreateAssociationController extends GetxController {
 
   Future<void> addAssociation() async {
     if (!await connectivityService.checkConnectivity()) {
-      ToastUtils.showError(
-        Get.context!,
-        "No Internet Connection",
-        "Please check your connection and try again.",
-      );
+      showError("No Internet Connection",
+          "Please check your connection and try again.");
       return;
     }
 
     try {
       creationProgress.value = 0;
+      creationProgress.value = 10;
 
       if (avatar != null) {
         avatarMedia = await _uploadAssociationAvatarUseCase
             .call(FileHelper.xFileToFile(avatar!));
-        creationProgress.value = 50;
-      } else {
-        ToastUtils.showError(
-          Get.context!,
-          "No Avatar",
-          "Please upload an avatar image.",
-        );
+        creationProgress.value = 30;
+      }
+
+      // if (avatarMedia == null) return;
+
+      UserEntity? user = await _localStorageService.getUser();
+      creationProgress.value = 40;
+
+      if (user == null) {
+        showError("Error", "Failed to get user information. Please try again.");
         return;
       }
 
-      if (avatarMedia != null) {
-        UserEntity? userId = await _localStorageService.getUser();
-        final association = AssociationEntity(
-            uniqueId: Uuid().v4(),
-            headquaterCity: headquaterTownController.text,
-            monthlyMeetingFrequency: meetingFrequency.value,
-            meetingDays: meetingDays.value,
-            headquaterLocation: headquaterLocationController.text,
-            name: associationNameController.text,
-            avatar: avatarMedia!,
-            members: [], 
-            adminIds: [userId!.id]);
+      final association = createAssociationEntity(user);
+      final createdAssociation = await _addAssociationUseCase.call(association);
+      log('this is the association created $createdAssociation');
+      creationProgress.value = 60;
 
-        await _addAssociationUseCase.call(association);
-        creationProgress.value = 100;
-        ToastUtils.showSuccess(
-          Get.context!,
-          "Success",
-          "Association added successfully.",
-        );
-
-        Get.toNamed(AppRouteNames.home);
+      if (createdAssociation == null) {
+        showError(
+            "Error", "Failed to add association. Please try again later.");
+        return;
       }
+
+      await addMemberToAssociation(createdAssociation, user);
+      creationProgress.value = 80;
+
+      await updateUserWithMembership(user, createdAssociation);
+      creationProgress.value = 100;
+
+      ToastUtils.showSuccess(
+          Get.context!, "Success", "Association added successfully.");
+      Get.toNamed(AppRouteNames.home);
     } catch (e) {
-      ToastUtils.showError(
-        Get.context!,
-        "Error",
-        "Failed to add association. Please try again later.",
-      );
+      showError("Error", "Failed to add association. Please try again later.");
     }
+  }
+
+  void showError(String title, String message) {
+    ToastUtils.showError(Get.context!, title, message);
+  }
+
+  AssociationEntity createAssociationEntity(UserEntity user) {
+    return AssociationEntity(
+      uniqueId: Uuid().v4(),
+      headquaterCity: headquaterTownController.text,
+      monthlyMeetingFrequency: meetingFrequency.value,
+      meetingDays: meetingDays.value,
+      headquaterLocation: headquaterLocationController.text,
+      name: associationNameController.text,
+      avatar: avatarMedia ?? null,
+      members: [
+        MemberEntity(
+          id: Uuid().v4(),
+          name: user.name ?? "",
+          role: Role.admin.toString(),
+          userId: user.id,
+        ),
+      ],
+      adminIds: [user.id],
+    );
+  }
+
+  Future<void> addMemberToAssociation(
+      AssociationEntity createdAssociation, UserEntity user) async {
+    await _addMemberToAssociationUseCase.call(
+      createdAssociation.uniqueId!,
+      MemberEntity(
+        id: Uuid().v4(),
+        name: user.name ?? "",
+        role: Role.admin.toString(),
+        userId: user.id,
+      ),
+    );
+  }
+
+  Future<void> updateUserWithMembership(
+      UserEntity user, AssociationEntity createdAssociation) async {
+    UserEntity updatedUser = UserEntity(
+      id: user.id,
+      phoneNumber: user.phoneNumber,
+      name: user.name,
+      associations: [
+        AssociationMembership(
+            associationId: createdAssociation.uniqueId!, role: Role.admin),
+      ],
+      isAdministrator: true,
+      avatar: user.avatar,
+      createdAt: user.createdAt,
+      updatedAt: DateTime.now(),
+      birthDate: user.birthDate,
+      lastSeen: user.lastSeen,
+      deviceToken: user.deviceToken,
+    );
+
+    await _updateUserUseCase.call(updatedUser);
   }
 
   void createAssociation() async {
