@@ -5,11 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/export_infrastruture_models.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../domain/entities/export_domain_entities.dart';
-
+import 'package:manzon/app/core/utils/constants/app_api_key.dart';
 
 class MediaDataSource {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String _mediaCollection = ApiKey.MEDIA_KEY;
 
   Future<MediaModel?> uploadMediaFile(File file, String collection) async {
     try {
@@ -25,17 +26,17 @@ class MediaDataSource {
       Map<String, dynamic> metadata = {
         'id': fileId,
         'url': downloadUrl,
-        'type': fileType.toString().split('.').last, 
+        'type': fileType.toString().split('.').last,
         'uploaded_at': FieldValue.serverTimestamp(),
       };
 
-      await _firestore.collection(collection).doc(fileId).set(metadata);
+      await _firestore.collection(_mediaCollection).doc(fileId).set(metadata);
 
       // Create MediaModel from the metadata
       MediaModel mediaModel = MediaModel(
         mediaId: fileId,
         link: downloadUrl,
-        createdAt: DateTime.now(), 
+        createdAt: DateTime.now(),
         type: fileType,
       );
 
@@ -53,15 +54,17 @@ class MediaDataSource {
       await storageRef.delete();
 
       // Delete the file metadata from Firestore
-      await _firestore.collection(collection).doc(fileId).delete();
+      await _firestore.collection(_mediaCollection).doc(fileId).delete();
     } catch (e) {
       print('Error deleting file: $e');
     }
   }
 
-  Future<Map<String, dynamic>?> getMediaFileMetadata(String fileId, String collection) async {
+  Future<Map<String, dynamic>?> getMediaFileMetadata(
+      String fileId, String collection) async {
     try {
-      DocumentSnapshot doc = await _firestore.collection(collection).doc(fileId).get();
+      DocumentSnapshot doc =
+          await _firestore.collection(_mediaCollection).doc(fileId).get();
       if (doc.exists) {
         return doc.data() as Map<String, dynamic>?;
       }

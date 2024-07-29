@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'export_create_association.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/font_manager.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
-import 'components/export_create_association_component.dart';
 import 'package:manzon/app/core/utils/constants/export_constant_manager.dart';
 import 'package:manzon/presentation/controllers/create_association_controller.dart';
 
@@ -12,7 +12,7 @@ class CreateAssociation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CreateAssociationController controller =
-        Get.put(CreateAssociationController(Get.find()));
+        Get.put(CreateAssociationController(Get.find(), Get.find()));
 
     return Scaffold(
       body: Padding(
@@ -49,4 +49,3 @@ class CreateAssociation extends StatelessWidget {
     );
   }
 }
-

@@ -66,7 +66,7 @@ class Verification extends StatelessWidget {
           DefaultButton(
             onTap: () {
               print('Creating association');
-              controller.addAssociation();
+              controller.createAssociation();
             },
             backgroundColor: AppColors.primaryNormal,
             text: 'create_association'.tr,
