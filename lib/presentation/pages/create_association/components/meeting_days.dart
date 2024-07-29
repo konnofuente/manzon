@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/font_manager.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/core/utils/constants/value_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/controllers/create_association_controller.dart';
@@ -52,24 +53,27 @@ class MeetingDays extends StatelessWidget {
                     'saturday'.tr,
                     'sunday'.tr
                   ].map((day) {
-                    return FilterChip(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                      labelStyle: getSemiBoldStyle(
-                          color: AppColors.blackNormal, fontSize: FontSize.s18),
-                      showCheckmark: false,
-                      side: BorderSide(color: AppColors.fontLightDisabled),
-                      selectedColor: AppColors.primaryNormal,
-                      checkmarkColor: AppColors.primaryNormal,
-                      label: Text(day),
-                      selected: controller.meetingDays.contains(day),
-                      onSelected: (selected) {
-                        if (selected) {
-                          controller.meetingDays.add(day);
-                        } else {
-                          controller.meetingDays.remove(day);
-                        }
-                      },
+                    return ScaleOnTap(
+                      onTap: () {  },
+                      child: FilterChip(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                        labelStyle: getSemiBoldStyle(
+                            color: AppColors.blackNormal, fontSize: FontSize.s18),
+                        showCheckmark: false,
+                        side: BorderSide(color: AppColors.fontLightDisabled),
+                        selectedColor: AppColors.primaryNormal,
+                        checkmarkColor: AppColors.primaryNormal,
+                        label: Text(day),
+                        selected: controller.meetingDays.contains(day),
+                        onSelected: (selected) {
+                          if (selected) {
+                            controller.meetingDays.add(day);
+                          } else {
+                            controller.meetingDays.remove(day);
+                          }
+                        },
+                      ),
                     );
                   }).toList(),
                 ),

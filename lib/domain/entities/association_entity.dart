@@ -14,7 +14,7 @@ class AssociationEntity extends Equatable {
   final List<String>? transactions;
   final List<String>? membersId;
   final String? headquaterLocation;
-  final MediaEntity? avatar; // Updated this line
+  final MediaEntity? avatar; 
 
   AssociationEntity({
     this.uniqueId,
@@ -29,7 +29,7 @@ class AssociationEntity extends Equatable {
     this.transactions,
     this.membersId,
     this.headquaterLocation,
-    this.avatar, // Updated this line
+    this.avatar,
   });
 
   @override

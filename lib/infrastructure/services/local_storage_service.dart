@@ -31,6 +31,16 @@ class LocalStorageService {
     return null;
   }
 
+   Future<String?> getUserId() async {
+    try {
+      final user = await getUser();
+      return user?.id;
+    } catch (e) {
+      log('Error retrieving userId: $e');
+    }
+    return null;
+  }
+
   Future<void> clearUser() async {
     try {
       final prefs = await SharedPreferences.getInstance();

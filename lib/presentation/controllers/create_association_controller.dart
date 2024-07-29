@@ -9,6 +9,7 @@ import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import '../../domain/usecases/export_domain_repositories.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
+import 'package:manzon/infrastructure/services/local_storage_service.dart';
 import 'package:manzon/domain/usecases/associations/add_association_usecase.dart';
 
 class CreateAssociationController extends GetxController {
@@ -17,6 +18,7 @@ class CreateAssociationController extends GetxController {
   final AddAssociationUseCase _addAssociationUseCase;
   final UploadAssociationAvatarUseCase _uploadAssociationAvatarUseCase;
   final ConnectivityService connectivityService = Get.find();
+  final LocalStorageService _localStorageService = Get.find();
 
   CreateAssociationController(
       this._addAssociationUseCase, this._uploadAssociationAvatarUseCase);
@@ -42,6 +44,18 @@ class CreateAssociationController extends GetxController {
 
   void nextStep() {
     if (currentStep.value < totalStep - 1) {
+
+      if (currentStep.value == 0) {
+        if (associationName.isEmpty) {
+          ToastUtils.showError(
+            Get.context!,
+            "Required information",
+            "Please you must insert the assoiation name",
+          );
+          return;
+        }
+      }
+
       currentStep.value++;
       pageController.nextPage(
           duration: Duration(milliseconds: 300), curve: Curves.ease);
@@ -70,7 +84,8 @@ class CreateAssociationController extends GetxController {
       creationProgress.value = 0;
 
       if (avatar != null) {
-        avatarMedia = await _uploadAssociationAvatarUseCase.call(FileHelper.xFileToFile(avatar!));
+        avatarMedia = await _uploadAssociationAvatarUseCase
+            .call(FileHelper.xFileToFile(avatar!));
         creationProgress.value = 50;
       } else {
         ToastUtils.showError(
@@ -82,14 +97,16 @@ class CreateAssociationController extends GetxController {
       }
 
       if (avatarMedia != null) {
+        String? userId = await _localStorageService.getUserId();
         final association = AssociationEntity(
-          uniqueId: Uuid().v4(),
-          headquaterCity: headquaterTownController.text,
-          meetingDays: meetingDays.value,
-          headquaterLocation: headquaterLocationController.text,
-          name: associationNameController.text,
-          avatar: avatarMedia!,
-        );
+            uniqueId: Uuid().v4(),
+            headquaterCity: headquaterTownController.text,
+            monthlyMeetingFrequency: meetingFrequency.value,
+            meetingDays: meetingDays.value,
+            headquaterLocation: headquaterLocationController.text,
+            name: associationNameController.text,
+            avatar: avatarMedia!,
+            membersId: [userId!]);
 
         await _addAssociationUseCase.call(association);
         creationProgress.value = 100;
@@ -98,6 +115,8 @@ class CreateAssociationController extends GetxController {
           "Success",
           "Association added successfully.",
         );
+
+        Get.toNamed(AppRouteNames.home);
       }
     } catch (e) {
       ToastUtils.showError(
@@ -108,10 +127,8 @@ class CreateAssociationController extends GetxController {
     }
   }
 
-
-void createAssociation() async {
-  Get.toNamed(AppRouteNames.createAssociationLoader);
-  await addAssociation();
-}
-
+  void createAssociation() async {
+    Get.toNamed(AppRouteNames.createAssociationLoader);
+    await addAssociation();
+  }
 }
