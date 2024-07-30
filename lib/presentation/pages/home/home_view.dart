@@ -17,7 +17,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final HomeController controller = Get.put(HomeController(
-    getUserByIdUseCase: Get.find(),
+    getUserByIdUseCase: Get.find(), getUserAssociationUseCase: Get.find(),
   ));
 
   @override
@@ -31,16 +31,17 @@ class _HomeViewState extends State<HomeView> {
     final double verticalPadding = 16.0;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.blackNormal),
-          onPressed: () => Get.back(),
-        ),
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back, color: AppColors.blackNormal),
+      //     onPressed: () => Get.back(),
+      //   ),
+      // ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: ScreenSize.horizontalPadding, vertical: AppSize.s28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

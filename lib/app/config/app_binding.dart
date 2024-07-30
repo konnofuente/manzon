@@ -46,6 +46,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => UploadAssociationAvatarUseCase(mediaRepository));
 
     Get.lazyPut(() => AddAssociationUseCase(associationRepositoryImp));
+    Get.lazyPut(() => GetUserAssociationUseCase(associationRepositoryImp));
     Get.lazyPut(() => AddMemberToAssociationUseCase(associationRepositoryImp));
     Get.lazyPut(() => UpdateUserUseCase(userRepository));
     Get.lazyPut(() => UpdateUserWithMembership(userRepository));

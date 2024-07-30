@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/theme/font_manager.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
+import 'package:manzon/app/config/theme/export_theme_manager.dart';
 
 class AssociationCard extends StatelessWidget {
   final String name;
@@ -22,9 +23,17 @@ class AssociationCard extends StatelessWidget {
     this.isActive = false,
   }) : super(key: key);
 
+  Color getRandomColor(String input) {
+    final hashCode = input.hashCode;
+    final r = (hashCode & 0xFF0000) >> 16;
+    final g = (hashCode & 0x00FF00) >> 8;
+    final b = hashCode & 0x0000FF;
+    return Color.fromARGB(255, r, g, b);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+    final randomColor = getRandomColor(name);
     
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -77,8 +86,12 @@ class AssociationCard extends StatelessWidget {
                   ? ClipRRect(
                       borderRadius:
                           BorderRadius.horizontal(right: Radius.circular(12)),
-                      child: Image.network(imageUrl!,
-                          height: height, fit: BoxFit.cover),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: GifAssets.loadingGif, // Set your placeholder asset here
+                        image: imageUrl!,
+                        height: height,
+                        fit: BoxFit.cover,
+                      )
                     )
                   : Container(
                       decoration: BoxDecoration(

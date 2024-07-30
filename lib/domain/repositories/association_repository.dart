@@ -8,4 +8,5 @@ abstract class AssociationRepository {
   Future<void> updateAssociation(AssociationEntity association);
   Future<void> deleteAssociation(String id);
    Future<void> addMember(String associationId, MemberEntity member);
+   Future<List<AssociationEntity>> getUserAssociations();
 }

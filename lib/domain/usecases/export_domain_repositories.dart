@@ -2,6 +2,7 @@
 export './associations/add_association_usecase.dart';
 export './associations/get_association_by_id_usecase.dart';
 export './associations/add_member_to_association.dart';
+export './associations/get_user_associations.dart';
 
 //auth
 export './auth/sign_in_with_phone_number_use_case.dart';

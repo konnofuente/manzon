@@ -1,26 +1,25 @@
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:manzon/domain/entities/user_entity.dart';
-import 'package:manzon/infrastructure/models/user_model.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
-import 'package:manzon/infrastructure/models/association_model.dart';
-import 'package:manzon/domain/usecases/user/get_user_by_id_usecase.dart';
+import 'package:manzon/domain/entities/export_domain_entities.dart';
+import 'package:manzon/domain/usecases/export_domain_repositories.dart';
 import 'package:manzon/infrastructure/services/local_storage_service.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data_source.dart';
 
 class HomeController extends GetxController {
   final GetUserByIdUseCase getUserByIdUseCase;
+  final GetUserAssociationUseCase getUserAssociationUseCase;
   final ConnectivityService connectivityService = Get.find();
   final LocalStorageService localStorageService =
       Get.put(LocalStorageService());
   final AssociationDataSource associationDataSource = Get.find();
 
-  var associations = <AssociationModel>[].obs;
+  var associations = <AssociationEntity>[].obs;
   var user = Rxn<UserEntity>();
   final User? currentUser = FirebaseAuth.instance.currentUser;
 
-  HomeController({required this.getUserByIdUseCase});
+  HomeController({required this.getUserAssociationUseCase, required this.getUserByIdUseCase});
 
   @override
   void onInit() {
@@ -55,10 +54,12 @@ class HomeController extends GetxController {
 
   void fetchAssociations() async {
     try {
-      var fetchedAssociations = await associationDataSource.getUserAssociations();
+      var fetchedAssociations =
+          await getUserAssociationUseCase.call();
       associations.value = fetchedAssociations;
     } catch (e) {
-      ToastUtils.showError(Get.context!, 'Error', 'Failed to fetch associations');
+      ToastUtils.showError(
+          Get.context!, 'Error', 'Failed to fetch associations');
     }
   }
 }
