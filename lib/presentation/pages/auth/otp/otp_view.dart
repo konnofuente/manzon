@@ -36,6 +36,7 @@ class _OTPViewState extends State<OTPView> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.white,
         title: Container(
             alignment: Alignment.center,
             child: Text('otp_app_bar'.tr,
@@ -43,6 +44,7 @@ class _OTPViewState extends State<OTPView> {
                     fontSize: FontSize.s18, color: AppColors.blackNormal))),
         leading: IconButton(
           icon: const Icon(
+            color: AppColors.blackNormal,
             Icons.arrow_back,
             size: AppSize.s24,
           ),

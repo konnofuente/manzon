@@ -79,7 +79,6 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // _onForgotPasswordTap();
                       },
                       child: Text('forgot_password'.tr,
                           style: getRegularStyle(

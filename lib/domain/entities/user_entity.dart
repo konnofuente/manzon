@@ -1,13 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:manzon/domain/entities/media_entity.dart';
-import 'package:manzon/domain/entities/enums/role_enum.dart';
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class UserEntity extends Equatable {
   final String id;
   final String phoneNumber;
   final String? name;
-  final List<String>? associations;
-  final List<Role>? roles;
+  final List<AssociationMembership>? associations; // Updated to use AssociationMembership
+  final bool isAdministrator; // New field
   final MediaEntity? avatar;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -20,7 +19,7 @@ class UserEntity extends Equatable {
     required this.phoneNumber,
     this.name,
     this.associations,
-    this.roles,
+    this.isAdministrator = false, // Initialize to false by default
     this.avatar,
     this.createdAt,
     this.updatedAt,
@@ -35,7 +34,7 @@ class UserEntity extends Equatable {
     phoneNumber,
     name,
     associations,
-    roles,
+    isAdministrator, // Include in props for equality check
     avatar,
     createdAt,
     updatedAt,
@@ -50,10 +49,9 @@ class UserEntity extends Equatable {
       id: json['id'],
       phoneNumber: json['phoneNumber'],
       name: json['name'],
-      associations: (json['associations'] as List<dynamic>?)?.cast<String>(),
-      roles: (json['roles'] as List<dynamic>?)
-          ?.map((e) => Role.values.firstWhere((r) => r.toString() == 'Role.$e'))
-          .toList(),
+      associations: (json['associations'] as List<dynamic>?)
+          ?.map((e) => AssociationMembership.fromJson(e)).toList(),
+      isAdministrator: json['isAdministrator'] ?? false,
       avatar: json['avatar'] != null ? MediaEntity.fromJson(json['avatar']) : null,
       createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
@@ -68,8 +66,8 @@ class UserEntity extends Equatable {
       'id': id,
       'phoneNumber': phoneNumber,
       'name': name,
-      'associations': associations,
-      'roles': roles?.map((e) => e.toString().split('.').last).toList(),
+      'associations': associations?.map((e) => e.toJson()).toList(), // Serialize associations
+      'isAdministrator': isAdministrator, // Serialize isAdministrator
       'avatar': avatar?.toJson(),
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),

@@ -2,11 +2,11 @@ import 'package:manzon/domain/entities/user_entity.dart';
 import 'package:manzon/domain/repositories/user_repository.dart';
 
 class UpdateUserUseCase {
-  final UserRepository repository;
+  final UserRepository userRepository;
 
-  UpdateUserUseCase(this.repository);
+  UpdateUserUseCase(this.userRepository);
 
   Future<void> call(UserEntity user) async {
-    // return await repository.updateUser(user);
+    await userRepository.updateUser(user);
   }
 }

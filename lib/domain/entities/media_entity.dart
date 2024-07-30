@@ -1,6 +1,6 @@
+import 'dart:io';
 import 'package:equatable/equatable.dart';
-import 'package:manzon/domain/entities/enums/role_enum.dart';
-
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class MediaEntity extends Equatable {
   final String? link;
@@ -8,6 +8,7 @@ class MediaEntity extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final String mediaId;
+  final File? file;
 
   MediaEntity({
     this.link,
@@ -15,10 +16,11 @@ class MediaEntity extends Equatable {
     this.createdAt,
     this.updatedAt,
     required this.mediaId,
+    this.file,
   });
 
   @override
-  List<Object?> get props => [link, type, createdAt, updatedAt, mediaId];
+  List<Object?> get props => [link, type, createdAt, updatedAt, mediaId, file];
 
   // JSON serialization
   factory MediaEntity.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class MediaEntity extends Equatable {
       createdAt: json.containsKey('createdAt') ? DateTime.parse(json['createdAt']) : null,
       updatedAt: json.containsKey('updatedAt') ? DateTime.parse(json['updatedAt']) : null,
       mediaId: json['mediaId'],
+      file: json.containsKey('file') ? File(json['file']) : null,
     );
   }
 
@@ -38,6 +41,7 @@ class MediaEntity extends Equatable {
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
       'mediaId': mediaId,
+      'file': file?.path,
     };
   }
 }

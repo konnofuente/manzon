@@ -48,7 +48,31 @@
   "back_online":"Back online",
 
 
-  "invalid_number_format":"Invalid number format"
+  "invalid_number_format":"Invalid number format",
+
+
+  "add_an_image_of_your_cloth": "Add an image of your cloth",
+  "what_is_the_name_of_your_meeting": "What is the name of your meeting?",
+  "name_of_the_meeting": "Name of the meeting",
+  "what_is_the_headquarters_of_your_association": "What is the headquarters of your association?",
+  "yaounde": "Yaounde",
+  "nkomo_ii": "Nkomo II",
+  "select_meeting_days": "Select the 3 meeting days",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "select_meeting_frequency": "Select the number of meetings you hold per month",
+  "verify_information": "Verify your information",
+  "name": "Name",
+  "location": "Location",
+  "meeting_frequency": "Meeting frequency",
+  "meeting_days": "Meeting days",
+  "create_association": "Create the association",
+   "creating_association": "Association Creation"
 
 
 

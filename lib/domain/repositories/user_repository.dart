@@ -4,4 +4,6 @@ abstract class UserRepository {
   Future<void> addUser(UserEntity user);
   
   Future<UserEntity?> getUserById(String id);
+
+   Future<void> updateUser(UserEntity user);
 }

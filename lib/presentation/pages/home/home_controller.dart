@@ -10,7 +10,7 @@ import 'package:manzon/infrastructure/services/local_storage_service.dart';
 class HomeController extends GetxController {
   final GetUserByIdUseCase getUserByIdUseCase;
   final ConnectivityService connectivityService = Get.find();
-  final LocalStorageService localStorageService = Get.find();
+  final LocalStorageService localStorageService = Get.put(LocalStorageService());
 
   var associations = <Map<String, String>>[].obs;
   var user = Rxn<UserEntity>();
