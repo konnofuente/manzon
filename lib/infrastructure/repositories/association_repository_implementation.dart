@@ -49,6 +49,6 @@ class AssociationRepositoryImpl implements AssociationRepository {
   Future<void> addMember(String associationId, MemberEntity member) async {
     await associationDataSource.addMember(
         associationId, MemberMapper.toModel(member));
-    throw UnimplementedError();
+    // throw UnimplementedError();
   }
 }

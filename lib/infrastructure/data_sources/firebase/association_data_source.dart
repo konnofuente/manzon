@@ -20,19 +20,14 @@ class AssociationDataSource {
       DocumentReference<AssociationModel> docRef =
           associationRef.doc(associationModel.uniqueId);
       await docRef.set(associationModel);
-      log('Added association successful');
 
       // Retrieve the document to get the AssociationModel
-      log('Trying to retrieve');
       final doc = await docRef.get();
-      log('Retrieve successful');
 
       // Convert the DocumentSnapshot to AssociationModel
       AssociationModel? model = doc.data();
-      print(model);
 
       if (model != null) {
-        print('Added association: ${model.toJson()}');
         return model;
       } else {
         throw Exception('Failed to retrieve association data.');
@@ -43,17 +38,23 @@ class AssociationDataSource {
     }
   }
 
-  Future<void> addMember(String associationId, MemberModel member) async {
+Future<void> addMember(String associationId, MemberModel member) async {
+  try {
     final doc = await associationRef.doc(associationId).get();
     if (doc.exists) {
       final association = doc.data();
       if (association != null) {
         association.members.add(member);
         await associationRef.doc(associationId).update(
-            {'members': association.members.map((e) => e.toJson()).toList()});
+          {'members': association.members.map((e) => e.toJson()).toList()}
+        );
       }
     }
+  } catch (e) {
+    log('Failed to add member: $e'); // You can replace this with your preferred error logging method
+    throw Exception('Failed to add member');
   }
+}
 
   Future<AssociationModel?> getAssociationById(String id) async {
     final doc = await associationRef.doc(id).get();

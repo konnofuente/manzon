@@ -11,6 +11,7 @@ export './auth/verify_phone_number_use_case.dart';
 export './user/add_user_usecase.dart';
 export './user/get_user_by_id_usecase.dart';
 export './user/update_user_usecase.dart';
+export './user/update_user_with_membership.dart';
 
 //media
 export './media/uplaod_asociation_avatar_usecase.dart';

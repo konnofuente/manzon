@@ -30,6 +30,7 @@ class AppBindings extends Bindings {
     //use cases
     final addUserUseCase = AddUserUseCase(userRepository);
     final updateUserUseCase = UpdateUserUseCase(userRepository);
+    final updateUserWithMembership = UpdateUserWithMembership(userRepository);
     final getUserByIdUseCase = GetUserByIdUseCase(userRepository);
     final addAssociationUseCase =
         AddAssociationUseCase(associationRepositoryImp);
@@ -46,13 +47,14 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => AddAssociationUseCase(associationRepositoryImp));
     Get.lazyPut(() => AddMemberToAssociationUseCase(associationRepositoryImp));
     Get.lazyPut(() => UpdateUserUseCase(userRepository));
+    Get.lazyPut(() => UpdateUserWithMembership(userRepository));
 
     Get.lazyPut(() => GetAssociationByIdUseCase(associationRepositoryImp));
     Get.lazyPut(() => CreateAssociationController(
         addAssociationUseCase,
         uploadAssociationAvatarUseCase,
         addMemberToAssociationUseCase,
-        updateUserUseCase));
+        updateUserWithMembership));
 
     final authenticationDataSource = AuthenticationDataSource();
     final authRepositoryImp =

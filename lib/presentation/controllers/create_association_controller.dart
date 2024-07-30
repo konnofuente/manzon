@@ -11,7 +11,6 @@ import 'package:manzon/app/services/connectivity_service.dart';
 import '../../domain/usecases/export_domain_repositories.dart';
 import 'package:manzon/domain/entities/association_entity.dart';
 import 'package:manzon/infrastructure/services/local_storage_service.dart';
-import 'package:manzon/domain/usecases/associations/add_association_usecase.dart';
 
 class CreateAssociationController extends GetxController {
   var currentStep = 0.obs;
@@ -19,7 +18,8 @@ class CreateAssociationController extends GetxController {
   final AddAssociationUseCase _addAssociationUseCase;
   final UploadAssociationAvatarUseCase _uploadAssociationAvatarUseCase;
   final AddMemberToAssociationUseCase _addMemberToAssociationUseCase;
-  final UpdateUserUseCase _updateUserUseCase;
+  // final UpdateUserUseCase _updateUserUseCase;
+  final UpdateUserWithMembership _updateUserWithMembership;
   final ConnectivityService connectivityService = Get.find();
   final LocalStorageService _localStorageService =
       Get.put(LocalStorageService());
@@ -28,7 +28,7 @@ class CreateAssociationController extends GetxController {
     this._addAssociationUseCase,
     this._uploadAssociationAvatarUseCase,
     this._addMemberToAssociationUseCase,
-    this._updateUserUseCase,
+    this._updateUserWithMembership,
   );
 
   // Form Data
@@ -49,6 +49,28 @@ class CreateAssociationController extends GetxController {
       TextEditingController();
   final TextEditingController headquaterLocationController =
       TextEditingController();
+
+  @override
+  void onClose() {
+    super.onClose();
+    resetState();
+  }
+
+  void resetState() {
+    currentStep.value = 0;
+    associationName.value = '';
+    location.value = '';
+    district.value = '';
+    meetingFrequency.value = 3;
+    meetingDays.clear();
+    imagePath.value = '';
+    avatar = null;
+    avatarMedia = null;
+    creationProgress.value = 0;
+    associationNameController.clear();
+    headquaterTownController.clear();
+    headquaterLocationController.clear();
+  }
 
   void nextStep() {
     if (currentStep.value < totalStep - 1) {
@@ -86,13 +108,13 @@ class CreateAssociationController extends GetxController {
       if (avatar != null) {
         avatarMedia = await _uploadAssociationAvatarUseCase
             .call(FileHelper.xFileToFile(avatar!));
-        creationProgress.value = 30;
+        creationProgress.value = 40;
       }
 
       // if (avatarMedia == null) return;
 
       UserEntity? user = await _localStorageService.getUser();
-      creationProgress.value = 40;
+      creationProgress.value = 60;
 
       if (user == null) {
         showError("Error", "Failed to get user information. Please try again.");
@@ -102,23 +124,25 @@ class CreateAssociationController extends GetxController {
       final association = createAssociationEntity(user);
       final createdAssociation = await _addAssociationUseCase.call(association);
       log('this is the association created $createdAssociation');
-      creationProgress.value = 60;
+      creationProgress.value = 80;
 
       if (createdAssociation == null) {
+        print('association is null');
         showError(
             "Error", "Failed to add association. Please try again later.");
         return;
       }
 
-      await addMemberToAssociation(createdAssociation, user);
-      creationProgress.value = 80;
+      // await addMemberToAssociation(createdAssociation, user);
+      // creationProgress.value = 80;
 
-      await updateUserWithMembership(user, createdAssociation);
+      await updateUserWithMembership(user, createdAssociation.uniqueId!);
       creationProgress.value = 100;
 
       ToastUtils.showSuccess(
           Get.context!, "Success", "Association added successfully.");
       Get.toNamed(AppRouteNames.home);
+      resetState();
     } catch (e) {
       showError("Error", "Failed to add association. Please try again later.");
     }
@@ -151,37 +175,32 @@ class CreateAssociationController extends GetxController {
 
   Future<void> addMemberToAssociation(
       AssociationEntity createdAssociation, UserEntity user) async {
-    await _addMemberToAssociationUseCase.call(
-      createdAssociation.uniqueId!,
-      MemberEntity(
-        id: Uuid().v4(),
-        name: user.name ?? "",
-        role: Role.admin.toString(),
-        userId: user.id,
-      ),
-    );
+    try {
+      await _addMemberToAssociationUseCase.call(
+        createdAssociation.uniqueId!,
+        MemberEntity(
+          id: Uuid().v4(),
+          name: user.name ?? "",
+          role: Role.admin.toString(),
+          userId: user.id,
+        ),
+      );
+    } catch (e) {
+      log('Failed to add member to association: $e'); // You can replace this with your preferred error logging method
+      throw Exception('Failed to add member to association');
+    }
   }
 
   Future<void> updateUserWithMembership(
-      UserEntity user, AssociationEntity createdAssociation) async {
-    UserEntity updatedUser = UserEntity(
-      id: user.id,
-      phoneNumber: user.phoneNumber,
-      name: user.name,
-      associations: [
-        AssociationMembership(
-            associationId: createdAssociation.uniqueId!, role: Role.admin),
-      ],
-      isAdministrator: true,
-      avatar: user.avatar,
-      createdAt: user.createdAt,
-      updatedAt: DateTime.now(),
-      birthDate: user.birthDate,
-      lastSeen: user.lastSeen,
-      deviceToken: user.deviceToken,
-    );
-
-    await _updateUserUseCase.call(updatedUser);
+      UserEntity user, String associationId) async {
+    AssociationMembership associationMembership =
+        AssociationMembership(associationId: associationId, role: Role.admin);
+    try {
+      await _updateUserWithMembership.call(user.id, associationMembership);
+    } catch (e) {
+      log('Failed to update user with membership: $e'); // You can replace this with your preferred error logging method
+      throw Exception('Failed to update user with membership');
+    }
   }
 
   void createAssociation() async {

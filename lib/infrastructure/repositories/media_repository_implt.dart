@@ -15,7 +15,7 @@ class MediaRepositoryImpl implements MediaRepository {
   Future<MediaEntity> uploadAssociationAvatar(File file) async {
     final mediaModel = await mediaDataSource.uploadMediaFile(file, MediaCollection.ASSOCIATION_AVATAR);
     if (mediaModel != null) {
-      return   MediaMapper.toEntity(mediaModel);
+      return   MediaMapper.toEntity(mediaModel)!;
     } else {
       throw Exception('Failed to upload association avatar.');
     }

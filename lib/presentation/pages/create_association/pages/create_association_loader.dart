@@ -7,17 +7,30 @@ import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:manzon/presentation/controllers/create_association_controller.dart';
 
-class CreateAssociationLoading extends StatelessWidget {
+class CreateAssociationLoading extends StatefulWidget {
+  @override
+  State<CreateAssociationLoading> createState() =>
+      _CreateAssociationLoadingState();
+}
+
+class _CreateAssociationLoadingState extends State<CreateAssociationLoading> {
+  final CreateAssociationController controller = Get.find();
+
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   controller.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final CreateAssociationController controller = Get.find();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
         title: Container(
             alignment: Alignment.center,
-            child: Text('otp_app_bar'.tr,
+            child: Text('creating_association'.tr,
                 style: getSemiBoldStyle(
                     fontSize: FontSize.s18, color: AppColors.blackNormal))),
         leading: IconButton(
@@ -28,7 +41,7 @@ class CreateAssociationLoading extends StatelessWidget {
           ),
           onPressed: () => Get.back(),
         ),
-      ) ,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
