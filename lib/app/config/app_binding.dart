@@ -14,6 +14,7 @@ class AppBindings extends Bindings {
   void dependencies() {
     Get.lazyPut(() => ConnectivityService());
     Get.lazyPut(() => LocalStorageService());
+    Get.put(UserDataSource());
 
     //data stores
     Get.lazyPut(() => AssociationDataSource());

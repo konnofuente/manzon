@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
-
 class AssociationEntity extends Equatable {
   final String? uniqueId;
   final String name;
@@ -13,11 +12,10 @@ class AssociationEntity extends Equatable {
   final double? balance;
   final String? loanConditions;
   final List<String>? transactions;
-  final List<String>? membersId;
+  final List<String>? membersId; // Updated field for member IDs
   final String? headquaterLocation;
   final MediaEntity? avatar;
   final List<MemberEntity> members; // Updated field for detailed member list
-  final List<String> adminIds; // New field for admin IDs
 
   AssociationEntity({
     this.uniqueId,
@@ -30,11 +28,10 @@ class AssociationEntity extends Equatable {
     this.balance,
     this.loanConditions,
     this.transactions,
-    this.membersId,
+    this.membersId, // Initialize in the constructor
     this.headquaterLocation,
     this.avatar,
     required this.members, // Initialize in the constructor
-    required this.adminIds, // Initialize in the constructor
   });
 
   @override
@@ -49,10 +46,9 @@ class AssociationEntity extends Equatable {
         balance,
         loanConditions,
         transactions,
-        membersId,
+        membersId, // Add this line
         headquaterLocation,
         avatar,
         members, // Add this line
-        adminIds, // Add this line
       ];
 }

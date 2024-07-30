@@ -14,7 +14,7 @@ import 'package:manzon/infrastructure/services/local_storage_service.dart';
 
 class CreateAssociationController extends GetxController {
   var currentStep = 0.obs;
-  final pageController = PageController();
+  final PageController pageController = PageController();
   final AddAssociationUseCase _addAssociationUseCase;
   final UploadAssociationAvatarUseCase _uploadAssociationAvatarUseCase;
   final AddMemberToAssociationUseCase _addMemberToAssociationUseCase;
@@ -70,6 +70,7 @@ class CreateAssociationController extends GetxController {
     associationNameController.clear();
     headquaterTownController.clear();
     headquaterLocationController.clear();
+    pageController.dispose();
   }
 
   void nextStep() {
@@ -169,7 +170,7 @@ class CreateAssociationController extends GetxController {
           userId: user.id,
         ),
       ],
-      adminIds: [user.id],
+      membersId: [user.id],
     );
   }
 

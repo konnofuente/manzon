@@ -6,7 +6,7 @@ import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
-import 'package:manzon/presentation/pages/home/home_controller.dart';
+import 'package:manzon/presentation/controllers/home_controller.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/pages/home/components/profile_info.dart';
 
@@ -28,7 +28,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
- 
     final double verticalPadding = 16.0;
 
     return Scaffold(
@@ -69,10 +68,11 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (context, index) {
                     final association = controller.associations[index];
                     return AssociationCard(
-                      name: association['name']!,
-                      description: association['description']!,
-                      location: association['location']!,
-                      imageUrl: association['imageUrl']!,
+                      name: association.name,
+                      description:
+                          'Description de l\'association ', // Add description if available in your model
+                      location: association.headquaterLocation,
+                      imageUrl: association.avatar?.link,
                       isActive: index % 2 == 0 ? false : true,
                     );
                   },
@@ -85,7 +85,8 @@ class _HomeViewState extends State<HomeView> {
       floatingActionButton: DefaultButton(
         onTap: () => {
           Get.toNamed(AppRouteNames.createAssociation),
-          print('Create New Association')},
+          print('Create New Association')
+        },
         backgroundColor: AppColors.primaryNormal,
         text: 'new_association'.tr,
         width: ScreenSize.screenWidth * 0.9,
