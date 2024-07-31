@@ -17,9 +17,13 @@ class HomeController extends GetxController {
 
   var associations = <AssociationEntity>[].obs;
   var user = Rxn<UserEntity>();
+  var isFetchingAssociations = false.obs; // Reactive boolean for fetching status
   final User? currentUser = FirebaseAuth.instance.currentUser;
 
-  HomeController({required this.getUserAssociationUseCase, required this.getUserByIdUseCase});
+  HomeController({
+    required this.getUserAssociationUseCase,
+    required this.getUserByIdUseCase,
+  });
 
   @override
   void onInit() {
@@ -32,8 +36,7 @@ class HomeController extends GetxController {
     bool isConnected = await connectivityService.checkConnectivity();
     if (isConnected) {
       try {
-        UserEntity? fetchedUser =
-            await getUserByIdUseCase.call(currentUser!.uid);
+        UserEntity? fetchedUser = await getUserByIdUseCase.call(currentUser!.uid);
         if (fetchedUser != null) {
           user.value = fetchedUser;
           await localStorageService.saveUser(user.value!);
@@ -53,13 +56,15 @@ class HomeController extends GetxController {
   }
 
   void fetchAssociations() async {
+    isFetchingAssociations.value = true; 
     try {
-      var fetchedAssociations =
-          await getUserAssociationUseCase.call();
+      var fetchedAssociations = await getUserAssociationUseCase.call();
       associations.value = fetchedAssociations;
     } catch (e) {
       ToastUtils.showError(
           Get.context!, 'Error', 'Failed to fetch associations');
+    } finally {
+      isFetchingAssociations.value = false; 
     }
   }
 }
