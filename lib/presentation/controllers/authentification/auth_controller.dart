@@ -129,7 +129,7 @@ class AuthentificationController extends GetxController {
             phoneNumber: _user!.phoneNumber!);
 
         userController.addUser(userModel);
-        Get.toNamed(AppRouteNames.home);
+        Get.offAllNamed(AppRouteNames.home);
       }
     } catch (e) {
       log('Error in signInWithPhoneAuthCredential: $e');
