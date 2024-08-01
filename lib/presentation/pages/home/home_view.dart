@@ -84,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
                 } else if (controller.associations.isEmpty) {
                   return Center(
                     child: Text(
-                      'No associations created',
+                      'no_associations_created'.tr,
                       style: getRegularStyle(
                           color: AppColors.blackLight, fontSize: FontSize.s18),
                     ),
@@ -96,8 +96,7 @@ class _HomeViewState extends State<HomeView> {
                       final association = controller.associations[index];
                       return AssociationCard(
                         name: association.name,
-                        description:
-                            'Description de l\'association',
+                        description: 'fake_descrition'.tr,
                         location: association.headquaterLocation,
                         imageUrl: association.avatar?.link,
                         isActive: index % 2 == 0 ? false : true,

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/domain/entities/tontine_entity.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
@@ -18,7 +19,7 @@ class TontinesView extends StatelessWidget {
                 const Icon(Icons.money, size: 100, color: AppColors.grayNormal),
                 const SizedBox(height: 16),
                 Text(
-                  'Aucune tontine',
+                  'empty_tontine'.tr,
                   style: getRegularStyle(
                       color: AppColors.grayNormal, fontSize: FontSize.s16),
                 ),
@@ -68,7 +69,7 @@ class TontinesView extends StatelessWidget {
               DefaultButton(
                 onTap: () {},
                 backgroundColor: AppColors.primaryNormal,
-                text: 'Creer une tontine',
+                text: 'create_tontine'.tr,
                 width: double.infinity,
                 fontWeight: FontWeight.w600,
                 borderRadius: 50.0,

@@ -61,7 +61,7 @@ class AssociationHeader extends StatelessWidget {
                     ),
                     // SizedBox(height: 4),
                     Text(
-                      'Creé Le $createdDate', // Dynamic createdDate passed as a prop
+                      '${'created_on.tr'} $createdDate', // Dynamic createdDate passed as a prop
                       style: getMediumStyle(
                         color: AppColors.grayNormal,
                         fontSize: FontSize.s12,
@@ -78,9 +78,9 @@ class AssociationHeader extends StatelessWidget {
                   print(result);
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
+                   PopupMenuItem<String>(
                     value: 'Details de l’’association',
-                    child: Text('Details de l’’association'),
+                    child: Text('association_details'.tr),
                   ),
                 ],
               )

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/domain/entities/contribution_entity.dart';
@@ -18,7 +19,7 @@ class ContributionView extends StatelessWidget {
                 const Icon(Icons.money, size: 100, color: AppColors.grayNormal),
                 const SizedBox(height: 16),
                 Text(
-                  'Aucune contribution',
+                  'no_contributions'.tr,
                   style: getRegularStyle(
                       color: AppColors.grayNormal, fontSize: FontSize.s16),
                 ),
@@ -37,7 +38,7 @@ class ContributionView extends StatelessWidget {
                       color: AppColors.fontLightSecondary,
                     ),
                     label: Text(
-                      '27 Avril - 30 Mai',
+                      'fake_date_range'.tr,
                       style:
                           getMediumStyle(color: AppColors.fontLightSecondary),
                     ),
@@ -52,7 +53,7 @@ class ContributionView extends StatelessWidget {
                       color: AppColors.fontLightSecondary,
                     ),
                     label: Text(
-                      'Recents',
+                      'recent'.tr,
                       style:
                           getMediumStyle(color: AppColors.fontLightSecondary),
                     ),
@@ -110,7 +111,7 @@ class ContributionView extends StatelessWidget {
               DefaultButton(
                 onTap: () {},
                 backgroundColor: AppColors.primaryNormal,
-                text: 'Creer une contribution',
+                text: 'create_contribution'.tr,
                 width: double.infinity,
                 fontWeight: FontWeight.w600,
                 borderRadius: 50.0,

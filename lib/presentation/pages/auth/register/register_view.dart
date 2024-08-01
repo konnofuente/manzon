@@ -97,15 +97,15 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
               SizedBox(height: verticalPadding),
-              Center(
-                child: Text(
-                  "already_have_an_account".tr,
-                  style: getBoldStyle(
-                    color: AppColors.primaryNormal,
-                    fontSize: FontSize.s16,
-                  ),
-                ),
-              ),
+              // Center(
+              //   child: Text(
+              //     "already_have_an_account".tr,
+              //     style: getBoldStyle(
+              //       color: AppColors.primaryNormal,
+              //       fontSize: FontSize.s16,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

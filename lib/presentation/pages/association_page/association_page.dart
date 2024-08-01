@@ -1,11 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/app/config/theme/app_colors.dart';
-import 'package:manzon/app/config/theme/font_manager.dart';
-import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
-import 'package:manzon/presentation/widgets/buttons/default_button.dart';
 import 'package:manzon/presentation/pages/association_page/components/member_view.dart';
 import 'package:manzon/presentation/pages/association_page/components/tontine_view.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
@@ -21,15 +17,15 @@ class AssociationPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const AssociationHeader(
-              name: 'Manzon',
+             AssociationHeader(
+              name: 'name'.tr,
               imageUrl: '',
-              createdDate: '01/10/24',
+              createdDate: 'fake_date'.tr,
             ),
 
             const SizedBox(height: 16),
             // Action Buttons
-            ActionButton(),
+            const ActionButton(),
             const SizedBox(height: 16),
             // Tab Navigation
             TabBar(
@@ -45,24 +41,24 @@ class AssociationPage extends StatelessWidget {
                 insets: EdgeInsets
                     .zero, // No padding, makes the underline fill the tab width
               ),
-              tabs: const [
+              tabs:  [
                 Tab(
-                  child: Text('Tontines',
-                      style: TextStyle(
+                  child: Text('tontines'.tr,
+                      style: const TextStyle(
                         fontSize: FontSize.s14,
                         fontWeight: FontWeight.w400,
                       )),
                 ),
                 Tab(
-                  child: Text('Membres',
-                      style: TextStyle(
+                  child: Text('members'.tr,
+                      style: const TextStyle(
                         fontSize: FontSize.s14,
                         fontWeight: FontWeight.w400,
                       )),
                 ),
                 Tab(
-                  child: Text('Contribution',
-                      style: TextStyle(
+                  child: Text('contribution'.tr,
+                      style: const TextStyle(
                         fontSize: FontSize.s14,
                         fontWeight: FontWeight.w400,
                       )),
@@ -114,7 +110,7 @@ class ActionButton extends StatelessWidget {
             icon: const Icon(Icons.person_add_alt,
                 size: 24, color: AppColors.blackNormal),
             label: Text(
-              'Ajouter des membres',
+              'add_members'.tr,
               style: getRegularStyle(
                 color: AppColors.blackNormal,
                 fontSize: FontSize.s16,
@@ -126,7 +122,7 @@ class ActionButton extends StatelessWidget {
             icon: const Icon(Icons.link,
                 size: 24, color: AppColors.primaryNormal),
             label: Text(
-              'Inviter avec un lien',
+              'invite_with_link'.tr,
               style: getRegularStyle(
                 color: AppColors.blackNormal,
                 fontSize: FontSize.s16,

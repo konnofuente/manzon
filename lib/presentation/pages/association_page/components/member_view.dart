@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/domain/entities/member_entity.dart';
 import 'package:manzon/app/config/theme/style_manager.dart';
@@ -20,7 +21,7 @@ class MembresView extends StatelessWidget {
                     size: 100, color: AppColors.grayNormal),
                 const SizedBox(height: 16),
                 Text(
-                  'Aucun membre',
+                  'empty_member'.tr,
                   style: getRegularStyle(
                       color: AppColors.grayNormal, fontSize: FontSize.s16),
                 ),
@@ -28,7 +29,7 @@ class MembresView extends StatelessWidget {
                 DefaultButton(
                   onTap: () {},
                   backgroundColor: AppColors.primaryNormal,
-                  text: 'Ajouter un membre',
+                  text: 'add_member',
                   width: double.infinity,
                   fontWeight: FontWeight.w600,
                   borderRadius: 50.0,
@@ -75,7 +76,7 @@ class MembresView extends StatelessWidget {
                                         color: AppColors.blackNormal),
                                     SizedBox(width: 8),
                                     Text(
-                                      'Modifier',
+                                      'edit'.tr,
                                       style: getMediumStyle(
                                           color: AppColors.fontLightPrimary),
                                     ),
@@ -89,7 +90,7 @@ class MembresView extends StatelessWidget {
                                     Icon(Icons.exit_to_app,
                                         color: AppColors.error),
                                     SizedBox(width: 8),
-                                    Text('Retirer le membre',
+                                    Text('remove_member'.tr,
                                         style: getMediumStyle(
                                             color: AppColors.error)),
                                   ],
@@ -114,7 +115,7 @@ class MembresView extends StatelessWidget {
               DefaultButton(
                 onTap: () {},
                 backgroundColor: AppColors.primaryNormal,
-                text: 'Ajouter un membre',
+                text: 'add_member'.tr,
                 width: double.infinity,
                 fontWeight: FontWeight.w600,
                 borderRadius: 50.0,
