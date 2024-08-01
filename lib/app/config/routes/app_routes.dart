@@ -7,6 +7,7 @@ import 'package:manzon/presentation/pages/auth/login/login_view.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_view.dart';
 import 'package:manzon/presentation/pages/auth/register/register_view.dart';
 import 'package:manzon/presentation/pages/auth/user_role/user_role_view.dart';
+import 'package:manzon/presentation/pages/association_page/association_page.dart';
 import 'package:manzon/presentation/pages/create_association/export_create_association.dart';
 
 
@@ -21,5 +22,6 @@ class AppRoutes {
     GetPage(name: AppRouteNames.home, page: () => HomeView()),
     GetPage(name: AppRouteNames.createAssociation, page: () => CreateAssociation()),
     GetPage(name: AppRouteNames.createAssociationLoader, page: () => CreateAssociationLoading()),
+    GetPage(name: AppRouteNames.associationPage, page: () => AssociationPage()),
   ];
 }

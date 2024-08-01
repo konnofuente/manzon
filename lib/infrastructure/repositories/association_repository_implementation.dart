@@ -10,8 +10,9 @@ class AssociationRepositoryImpl implements AssociationRepository {
 
   AssociationRepositoryImpl(this.associationDataSource);
 
- @override
-  Future<AssociationEntity> addAssociation(AssociationEntity association) async {
+  @override
+  Future<AssociationEntity> addAssociation(
+      AssociationEntity association) async {
     final model = AssociationMapper.toModel(association);
     final createdModel = await associationDataSource.addAssociation(model);
     return AssociationMapper.toEntity(createdModel);
@@ -49,6 +50,15 @@ class AssociationRepositoryImpl implements AssociationRepository {
   Future<void> addMember(String associationId, MemberEntity member) async {
     await associationDataSource.addMember(
         associationId, MemberMapper.toModel(member));
-    throw UnimplementedError();
+    // throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AssociationEntity>> getUserAssociations() async {
+    final associationModels = await associationDataSource.getUserAssociations();
+
+    return associationModels
+        .map((model) => AssociationMapper.toEntity(model))
+        .toList();
   }
 }

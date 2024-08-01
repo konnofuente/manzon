@@ -16,7 +16,7 @@ class AssociationMapper {
       loanConditions: entity.loanConditions,
       transactions: entity.transactions,
       members: entity.members.map((member) => MemberMapper.toModel(member)).toList(),
-      adminIds: entity.adminIds,
+      membersId: entity.membersId,
       headquaterLocation: entity.headquaterLocation,
       avatar: entity.avatar,
     );
@@ -35,7 +35,7 @@ class AssociationMapper {
       loanConditions: model.loanConditions,
       transactions: model.transactions,
       members: model.members.map((member) => MemberMapper.toModel(member)).toList(),
-      adminIds: model.adminIds,
+      membersId: model.membersId,
       headquaterLocation: model.headquaterLocation,
       avatar: model.avatar,
     );

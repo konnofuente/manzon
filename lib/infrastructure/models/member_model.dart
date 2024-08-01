@@ -7,11 +7,13 @@ class MemberModel extends MemberEntity {
     required String name,
     required String role,
     required String userId,
+    required String phoneNumber,
   }) : super(
           id: id,
           name: name,
           role: role,
           userId: userId,
+          phoneNumber: phoneNumber,
         );
 
   factory MemberModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class MemberModel extends MemberEntity {
       name: json['name'],
       role: json['role'],
       userId: json['userId'],
+      phoneNumber: json['phoneNumber'], // Deserialize from JSON
     );
   }
 
@@ -29,6 +32,7 @@ class MemberModel extends MemberEntity {
       'name': name,
       'role': role,
       'userId': userId,
+      'phoneNumber': phoneNumber, // Serialize to JSON
     };
   }
 }

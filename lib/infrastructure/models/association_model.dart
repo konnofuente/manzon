@@ -15,7 +15,7 @@ class AssociationModel extends AssociationEntity {
     String? loanConditions,
     List<String>? transactions,
     List<MemberModel>? members,
-    List<String>? adminIds,
+    List<String>? membersId,
     String? headquaterLocation,
     MediaEntity? avatar,
   }) : super(
@@ -30,7 +30,7 @@ class AssociationModel extends AssociationEntity {
           loanConditions: loanConditions,
           transactions: transactions,
           members: members ?? [],
-          adminIds: adminIds ?? [],
+          membersId: membersId ?? [],
           headquaterLocation: headquaterLocation,
           avatar: avatar,
         );
@@ -63,8 +63,8 @@ class AssociationModel extends AssociationEntity {
               .map((member) => MemberModel.fromJson(member))
               .toList()
           : [],
-      adminIds: (json['adminIds'] != null && json['adminIds'] is List)
-          ? List<String>.from(json['adminIds'])
+      membersId: (json['membersId'] != null && json['membersId'] is List)
+          ? List<String>.from(json['membersId'])
           : [],
       headquaterLocation: json['headquaterLocation'] ?? '',
       avatar:
@@ -85,7 +85,7 @@ class AssociationModel extends AssociationEntity {
       'loanConditions': loanConditions,
       'transactions': transactions,
       'members': members.map((member) => member.toJson()).toList(),
-      'adminIds': adminIds,
+      'membersId': membersId,
       'headquaterLocation': headquaterLocation,
       'avatar': avatar?.toJson(),
     };

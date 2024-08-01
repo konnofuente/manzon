@@ -8,4 +8,5 @@ class AppRouteNames {
   static const String otp = '/otp';
   static const String createAssociation = '/create_association';
   static const String createAssociationLoader = '/create_association_loader';
+  static const String associationPage = '/association_page';
 }

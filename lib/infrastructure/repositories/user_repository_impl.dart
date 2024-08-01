@@ -3,6 +3,7 @@ import 'package:manzon/infrastructure/models/user_model.dart';
 import 'package:manzon/infrastructure/models/media_model.dart';
 import 'package:manzon/infrastructure/mappers/user_mapper.dart';
 import 'package:manzon/domain/repositories/user_repository.dart';
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/user_data_source.dart';
 
 class UserRepositoryImpl implements UserRepository {
@@ -28,7 +29,13 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> updateUser(UserEntity user) async {
      await _userDataSource.updateUser(UserMapper.toModel(user));
-    throw UnimplementedError();
+    // throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateUserWithMembership(String userId, AssociationMembership associationMemberShip) async {
+     await _userDataSource.updateUserWithMembership(userId,associationMemberShip);
+    // throw UnimplementedError();
   }
 
 }
