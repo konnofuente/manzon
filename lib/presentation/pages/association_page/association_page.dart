@@ -79,7 +79,9 @@ class AssociationPage extends StatelessWidget {
                   TontinesView(
                     tontines: controller.tontines,
                   ),
-                  MembresView(),
+                  MembresView(
+                    members: controller.members,
+                  ),
                   BankView(),
                 ],
               ),

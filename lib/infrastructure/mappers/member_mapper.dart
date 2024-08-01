@@ -9,6 +9,7 @@ class MemberMapper {
       name: entity.name,
       role: entity.role,
       userId: entity.userId,
+      phoneNumber: entity.phoneNumber, // Map phoneNumber from Entity to Model
     );
   }
 
@@ -19,6 +20,7 @@ class MemberMapper {
       name: model.name,
       role: model.role,
       userId: model.userId,
+      phoneNumber: model.phoneNumber, // Map phoneNumber from Model to Entity
     );
   }
 }

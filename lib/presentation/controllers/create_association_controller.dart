@@ -152,6 +152,7 @@ class CreateAssociationController extends GetxController {
           name: user.name ?? "",
           role: Role.admin.toString(),
           userId: user.id,
+          phoneNumber: user.phoneNumber
         ),
       ],
       membersId: [user.id],
@@ -167,6 +168,7 @@ class CreateAssociationController extends GetxController {
           name: user.name ?? "",
           role: Role.admin.toString(),
           userId: user.id,
+          phoneNumber: user.phoneNumber
         ),
       );
     } catch (e) {
