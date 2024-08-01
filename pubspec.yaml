@@ -55,6 +55,8 @@ dependencies:
   uuid: ^4.4.2
   percent_indicator: ^4.2.3
   skeletonizer: ^1.4.1+1
+  permission_handler: ^11.3.1
+  contacts_service: ^0.6.3
 
 dev_dependencies:
   flutter_test:

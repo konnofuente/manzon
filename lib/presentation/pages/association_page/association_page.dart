@@ -4,8 +4,10 @@ import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 import 'package:manzon/presentation/pages/association_page/components/member_view.dart';
 import 'package:manzon/presentation/pages/association_page/components/tontine_view.dart';
+import 'package:manzon/presentation/pages/association_page/widgets/invite_link_modal.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
 import 'package:manzon/presentation/pages/association_page/components/contribution_view.dart';
+import 'package:manzon/presentation/pages/association_page/components/select_contact_view.dart';
 
 class AssociationPage extends StatelessWidget {
   final AssociationController controller = Get.put(AssociationController());
@@ -17,15 +19,14 @@ class AssociationPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-             AssociationHeader(
+            AssociationHeader(
               name: 'name'.tr,
               imageUrl: '',
               createdDate: 'fake_date'.tr,
             ),
-
             const SizedBox(height: 16),
             // Action Buttons
-            const ActionButton(),
+            ActionButton(),
             const SizedBox(height: 16),
             // Tab Navigation
             TabBar(
@@ -41,7 +42,7 @@ class AssociationPage extends StatelessWidget {
                 insets: EdgeInsets
                     .zero, // No padding, makes the underline fill the tab width
               ),
-              tabs:  [
+              tabs: [
                 Tab(
                   child: Text('tontines'.tr,
                       style: const TextStyle(
@@ -65,9 +66,6 @@ class AssociationPage extends StatelessWidget {
                 ),
               ],
             ),
-
-            // const SizedBox(height: 8),
-            // Tab Views
             Expanded(
               child: TabBarView(
                 controller: controller.tabController,
@@ -106,7 +104,9 @@ class ActionButton extends StatelessWidget {
         children: [
           TextButton.icon(
             autofocus: false,
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => SelectContactsView());
+            },
             icon: const Icon(Icons.person_add_alt,
                 size: 24, color: AppColors.blackNormal),
             label: Text(
@@ -118,7 +118,9 @@ class ActionButton extends StatelessWidget {
             ),
           ),
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              showInviteLinkModal(context);
+            },
             icon: const Icon(Icons.link,
                 size: 24, color: AppColors.primaryNormal),
             label: Text(

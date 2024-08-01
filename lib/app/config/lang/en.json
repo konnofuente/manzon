@@ -94,7 +94,12 @@
    "no_contributions": "No Contributions",
    "fake_date_range": "April 27 - May 30",
    "recent": "Recent",
-   "create_contribution": "Create Contribution"
+   "create_contribution": "Create Contribution",
+   "invite_link": "Invitation Link",
+   "invite_description": "For people who cannot be contacted by phone number",
+   "url": "https://manzon/1000Fcfa/week",
+   "copied_to_clipboard": "Copied to clipboard",
+   "copy": "Copy"
 
 
 

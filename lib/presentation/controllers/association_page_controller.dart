@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
+import 'package:contacts_service/contacts_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:manzon/domain/entities/tontine_entity.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
-class AssociationController extends GetxController
-    with SingleGetTickerProviderMixin {
+class AssociationController extends GetxController with SingleGetTickerProviderMixin {
   late TabController tabController;
   var tontines = <TontineEntity>[].obs;
   var members = <MemberEntity>[].obs;
   var contributions = <ContributionEntity>[].obs;
+  var contacts = <Contact>[].obs;
+  var selectedContacts = <Contact>[].obs;  // Add this line
 
   @override
   void onInit() {
@@ -18,6 +21,28 @@ class AssociationController extends GetxController
     _generateFakeTontines();
     _generateFakeMembers();
     fetchFakeContributions();
+    fetchContacts();  // Fetch contacts on initialization
+  }
+
+  void fetchContacts() async {
+    PermissionStatus permissionStatus = await _getContactPermission();
+    if (permissionStatus == PermissionStatus.granted) {
+      Iterable<Contact> contactsIterable = await ContactsService.getContacts();
+      contacts.value = contactsIterable.toList();
+    } else {
+      // Handle the case when the permission is not granted
+      print("Contacts permission not granted");
+    }
+  }
+
+  Future<PermissionStatus> _getContactPermission() async {
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted) {
+      Map<Permission, PermissionStatus> permissionStatus = await [Permission.contacts].request();
+      return permissionStatus[Permission.contacts] ?? PermissionStatus.denied;
+    } else {
+      return permission;
+    }
   }
 
   void fetchFakeContributions() {
@@ -64,6 +89,20 @@ class AssociationController extends GetxController
         userId: 'user$index',
         phoneNumber: '+237 699 442 188',
       );
+    });
+  }
+
+  void addSelectedContactsToMembers() {
+    selectedContacts.forEach((contact) {
+      final phoneNumber = contact.phones?.isNotEmpty == true ? contact.phones!.first.value : '';
+      final newMember = MemberEntity(
+        id: Uuid().v4(),
+        name: contact.displayName ?? 'Unknown',
+        role: 'Member',
+        userId: '',  // You may want to handle this appropriately
+        phoneNumber: phoneNumber ?? 'Unknown',
+      );
+      members.add(newMember);
     });
   }
 

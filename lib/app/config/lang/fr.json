@@ -98,5 +98,10 @@
   "no_contributions": "Aucune contribution",
   "fake_date_range": "27 Avril - 30 Mai",
   "recent": "Recents",
-  "create_contribution": "Créer une contribution"
+  "create_contribution": "Créer une contribution",
+  "invite_link": "Lien d'invitation",
+  "invite_description": "Pour les personnes qui n'ont pas la possibilité d'être contacté par numéro de téléphone",
+  "url": "https://manzon/1000Fcfa/semaine",
+  "copied_to_clipboard": "Copié dans le presse-papiers",
+  "copy": "Copier"
 }

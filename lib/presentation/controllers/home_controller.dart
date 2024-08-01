@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
@@ -29,7 +30,9 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchUser();
-    fetchAssociations();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchAssociations();
+    });
   }
 
   void fetchUser() async {
@@ -56,15 +59,17 @@ class HomeController extends GetxController {
   }
 
   void fetchAssociations() async {
-    isFetchingAssociations.value = true; 
-    try {
-      var fetchedAssociations = await getUserAssociationUseCase.call();
-      associations.value = fetchedAssociations;
-    } catch (e) {
-      ToastUtils.showError(
-          Get.context!, 'Error', 'Failed to fetch associations');
-    } finally {
-      isFetchingAssociations.value = false; 
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      isFetchingAssociations.value = true; 
+      try {
+        var fetchedAssociations = await getUserAssociationUseCase.call();
+        associations.value = fetchedAssociations;
+      } catch (e) {
+        ToastUtils.showError(
+            Get.context!, 'Error', 'Failed to fetch associations');
+      } finally {
+        isFetchingAssociations.value = false; 
+      }
+    });
   }
 }
