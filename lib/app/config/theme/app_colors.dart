@@ -38,7 +38,7 @@ class AppColors {
 
   static const Color secondaryNormal = Color(0xFFf5f5dc);
   static const Color secondaryNormalHover = Color(0xFFddddc6);
-  static const Color secondaryNormalActive = Color(0xFFc4c4b0);
+  static const Color secondaryNormalActive = Color.fromARGB(255, 128, 127, 127);
 
   static const Color secondaryDark = Color(0xFFb8b8a5);
   static const Color secondaryDarkHover = Color(0xFF939384);
@@ -67,4 +67,5 @@ class AppColors {
   static const Color error = Color(0xFFDD0303);
   static const Color success = Color(0xFF45BB4B);
   static const Color warning = Color(0xFFEBBC46);
+  static const Color bg = Color(0xFFFDFCFB);
 }

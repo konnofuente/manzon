@@ -6,3 +6,4 @@ export './user_entity.dart';
 export './member_entity.dart';
 export './association_member_ship.dart';
 export './association_entity.dart';
+export './tontine_entity.dart';

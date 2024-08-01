@@ -70,13 +70,15 @@ class AssociationPage extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 16),
+            // const SizedBox(height: 8),
             // Tab Views
             Expanded(
               child: TabBarView(
                 controller: controller.tabController,
                 children: [
-                  TontinesView(),
+                  TontinesView(
+                    tontines: controller.tontines,
+                  ),
                   MembresView(),
                   BankView(),
                 ],
