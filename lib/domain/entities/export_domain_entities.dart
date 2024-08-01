@@ -7,3 +7,4 @@ export './member_entity.dart';
 export './association_member_ship.dart';
 export './association_entity.dart';
 export './tontine_entity.dart';
+export './contribution_entity.dart';

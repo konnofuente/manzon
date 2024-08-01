@@ -6,10 +6,10 @@ import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
-import 'package:manzon/presentation/pages/association_page/components/bank_view.dart';
 import 'package:manzon/presentation/pages/association_page/components/member_view.dart';
 import 'package:manzon/presentation/pages/association_page/components/tontine_view.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
+import 'package:manzon/presentation/pages/association_page/components/contribution_view.dart';
 
 class AssociationPage extends StatelessWidget {
   final AssociationController controller = Get.put(AssociationController());
@@ -61,7 +61,7 @@ class AssociationPage extends StatelessWidget {
                       )),
                 ),
                 Tab(
-                  child: Text('Caisses',
+                  child: Text('Contribution',
                       style: TextStyle(
                         fontSize: FontSize.s14,
                         fontWeight: FontWeight.w400,
@@ -82,7 +82,9 @@ class AssociationPage extends StatelessWidget {
                   MembresView(
                     members: controller.members,
                   ),
-                  BankView(),
+                  ContributionView(
+                    contributions: controller.contributions,
+                  ),
                 ],
               ),
             ),

@@ -9,6 +9,7 @@ class AssociationController extends GetxController
   late TabController tabController;
   var tontines = <TontineEntity>[].obs;
   var members = <MemberEntity>[].obs;
+  var contributions = <ContributionEntity>[].obs;
 
   @override
   void onInit() {
@@ -16,6 +17,25 @@ class AssociationController extends GetxController
     tabController = TabController(length: 3, vsync: this);
     _generateFakeTontines();
     _generateFakeMembers();
+    fetchFakeContributions();
+  }
+
+  void fetchFakeContributions() {
+    contributions.value = List.generate(
+      5,
+      (index) => ContributionEntity(
+        id: 'id_$index',
+        name: 'Contribution $index',
+        associationId: 'association_id_$index',
+        members: ['member1', 'member2'],
+        balance: 100000.0,
+        contributionFrequency: 'mois',
+        contributionAmount: 1000000.0,
+        cycleDuration: '1 mois',
+        currentCycle: index,
+        transactions: [],
+      ),
+    );
   }
 
   void _generateFakeTontines() {
