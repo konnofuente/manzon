@@ -11,7 +11,7 @@ class SelectContactsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Contacts'),
+        title: const Text('Select Contacts'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,7 +35,7 @@ class SelectContactsView extends StatelessWidget {
             Expanded(
               child: Obx(() {
                 if (controller.contacts.isEmpty) {
-                  return Center(
+                  return const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -54,7 +54,7 @@ class SelectContactsView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final contact = controller.contacts[index];
                       return ListTile(
-                        leading: CircleAvatar(
+                        leading: const CircleAvatar(
                           backgroundColor: AppColors.grayNormal,
                           child: Icon(Icons.person, color: AppColors.grayNormal),
                         ),

@@ -16,10 +16,11 @@ class AuthenticationDataSource {
       verificationFailed: verificationFailed,
       codeSent: codeSent,
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+        forceResendingToken: null,
     );
   }
 
   Future<UserCredential> signInWithPhoneAuthCredential(PhoneAuthCredential credential) async {
-    return await _firebaseAuth.signInWithCredential(credential);
+    return await _firebaseAuth.signInWithCredential(credential,);
   }
 }

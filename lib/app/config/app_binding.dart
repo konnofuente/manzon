@@ -70,5 +70,6 @@ class AppBindings extends Bindings {
     Get.lazyPut<AuthentificationController>(() => AuthentificationController(
         VerifyPhoneNumberUseCase(authRepositoryImp),
         SignInWithPhoneNumberUseCase(authRepositoryImp)));
+
   }
 }
