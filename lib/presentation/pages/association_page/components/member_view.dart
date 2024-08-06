@@ -14,7 +14,7 @@ class _MembresViewState extends State<MembresView> {
   @override
   Widget build(BuildContext context) {
     final AssociationController controller = Get.find();
-    
+
     return Obx(() {
       final members = controller.members;
 
@@ -34,7 +34,7 @@ class _MembresViewState extends State<MembresView> {
                   const Spacer(),
                   DefaultButton(
                     onTap: () {
-                      Get.to(() => SelectContactsView());
+                      Get.to(() => SelectContactsPage());
                     },
                     backgroundColor: AppColors.primaryNormal,
                     text: 'add_member',
@@ -121,7 +121,7 @@ class _MembresViewState extends State<MembresView> {
                 ),
                 DefaultButton(
                   onTap: () {
-                    Get.to(() => SelectContactsView());
+                    Get.to(() => SelectContactsPage());
                   },
                   backgroundColor: AppColors.primaryNormal,
                   text: 'add_member'.tr,

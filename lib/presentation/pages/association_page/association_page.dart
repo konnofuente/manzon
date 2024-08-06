@@ -5,9 +5,9 @@ import 'package:manzon/presentation/controllers/export_controllers.dart';
 import 'package:manzon/presentation/pages/association_page/components/member_view.dart';
 import 'package:manzon/presentation/pages/association_page/components/tontine_view.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/invite_link_modal.dart';
+import 'package:manzon/presentation/pages/association_page/pages/select_contact_page.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
 import 'package:manzon/presentation/pages/association_page/components/contribution_view.dart';
-import 'package:manzon/presentation/pages/association_page/components/select_contact_view.dart';
 
 class AssociationPage extends StatelessWidget {
   final AssociationController controller = Get.put(AssociationController());
@@ -99,7 +99,7 @@ class ActionButton extends StatelessWidget {
           TextButton.icon(
             autofocus: false,
             onPressed: () {
-              Get.to(() => SelectContactsView());
+              Get.to(() => SelectContactsPage());
             },
             icon: const Icon(Icons.person_add_alt,
                 size: 24, color: AppColors.blackNormal),

@@ -4,7 +4,7 @@ import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 
-class SelectContactsView extends StatelessWidget {
+class SelectContactsPage extends StatelessWidget {
   final AssociationController controller = Get.find();
 
   @override
@@ -28,7 +28,8 @@ class SelectContactsView extends StatelessWidget {
                   ),
                 ),
                 onChanged: (value) {
-                  controller.searchQuery.value = value; // Bind search input to controller
+                  controller.searchQuery.value =
+                      value; // Bind search input to controller
                 },
               ),
             ),
@@ -50,22 +51,30 @@ class SelectContactsView extends StatelessWidget {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount: controller.filteredContacts.length, // Use filtered contacts
+                    itemCount: controller
+                        .filteredContacts.length, // Use filtered contacts
                     itemBuilder: (context, index) {
                       final contact = controller.filteredContacts[index];
                       return ListTile(
                         leading: const CircleAvatar(
                           backgroundColor: AppColors.grayNormal,
-                          child: Icon(Icons.person, color: AppColors.grayNormal),
+                          child:
+                              Icon(Icons.person, color: AppColors.grayNormal),
                         ),
                         title: Text(contact.displayName ?? '',
                             style: getBoldStyle(
-                                color: AppColors.blackNormal, fontSize: FontSize.s16)),
-                        subtitle: Text(contact.phones?.isNotEmpty ?? false ? contact.phones!.first.value! : '',
+                                color: AppColors.blackNormal,
+                                fontSize: FontSize.s16)),
+                        subtitle: Text(
+                            contact.phones?.isNotEmpty ?? false
+                                ? contact.phones!.first.value!
+                                : '',
                             style: getRegularStyle(
-                                color: AppColors.grayNormal, fontSize: FontSize.s14)),
+                                color: AppColors.grayNormal,
+                                fontSize: FontSize.s14)),
                         trailing: Obx(() {
-                          final isSelected = controller.selectedContacts.contains(contact);
+                          final isSelected =
+                              controller.selectedContacts.contains(contact);
                           return Checkbox(
                             value: isSelected,
                             onChanged: (bool? value) {
