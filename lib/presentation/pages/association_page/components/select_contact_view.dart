@@ -28,7 +28,7 @@ class SelectContactsView extends StatelessWidget {
                   ),
                 ),
                 onChanged: (value) {
-                  // Implement search logic if needed
+                  controller.searchQuery.value = value; // Bind search input to controller
                 },
               ),
             ),
@@ -50,9 +50,9 @@ class SelectContactsView extends StatelessWidget {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount: controller.contacts.length,
+                    itemCount: controller.filteredContacts.length, // Use filtered contacts
                     itemBuilder: (context, index) {
-                      final contact = controller.contacts[index];
+                      final contact = controller.filteredContacts[index];
                       return ListTile(
                         leading: const CircleAvatar(
                           backgroundColor: AppColors.grayNormal,
@@ -86,7 +86,7 @@ class SelectContactsView extends StatelessWidget {
             DefaultButton(
               onTap: () {
                 controller.addSelectedContactsToMembers();
-                Get.back();
+                // Get.back();
               },
               backgroundColor: AppColors.primaryNormal,
               text: 'Enregistrer',

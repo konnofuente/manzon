@@ -51,4 +51,5 @@ class AppRadius {
 class DurationConstant {
   static const int d300 = 300;
   static const int s3 = 3;
+  static const int s2 = 2;
 }

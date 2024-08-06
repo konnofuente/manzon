@@ -70,15 +70,9 @@ class AssociationPage extends StatelessWidget {
               child: TabBarView(
                 controller: controller.tabController,
                 children: [
-                  TontinesView(
-                    tontines: controller.tontines,
-                  ),
-                  MembresView(
-                    members: controller.members,
-                  ),
-                  ContributionView(
-                    contributions: controller.contributions,
-                  ),
+                  TontinesView(),
+                  MembresView(),
+                  ContributionView(),
                 ],
               ),
             ),
