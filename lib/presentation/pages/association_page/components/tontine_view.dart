@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 
 class TontinesView extends StatefulWidget {
-
-
   @override
   State<TontinesView> createState() => _TontinesViewState();
 }
@@ -17,8 +16,6 @@ class _TontinesViewState extends State<TontinesView> {
     final AssociationController controller = Get.find();
 
     return Obx(() {
-
-
       return controller.tontines.isEmpty
           ? Center(
               child: Column(
@@ -64,7 +61,7 @@ class _TontinesViewState extends State<TontinesView> {
                                   fontSize: FontSize.s16),
                             ),
                             subtitle: Text(
-                              'Bouffe : ${tontine.balance}Fcfa',
+                              'Bouffe : ${tontine.contributionAmount}Fcfa',
                               style: getRegularStyle(
                                   color: AppColors.secondaryNormalActive,
                                   fontSize: FontSize.s14),
@@ -76,7 +73,9 @@ class _TontinesViewState extends State<TontinesView> {
                   ),
                 ),
                 DefaultButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.createTontinePage);
+                  },
                   backgroundColor: AppColors.primaryNormal,
                   text: 'create_tontine'.tr,
                   width: double.infinity,

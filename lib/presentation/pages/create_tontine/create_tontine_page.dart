@@ -4,7 +4,6 @@ import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
-
 class CreateTontinePage extends StatefulWidget {
   @override
   State<CreateTontinePage> createState() => _CreateTontinePageState();
@@ -69,27 +68,51 @@ class _CreateTontinePageState extends State<CreateTontinePage> {
               Text('Amande en cas d\'echec',
                   style: getMediumStyle(
                       color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              DropdownButtonFormField<String>(
-                value: controller.penalty.value,
-                items: [
-                  DropdownMenuItem(
-                    value: 'Casier de bieres',
-                    child: Text('Casier de bieres'),
+              Obx(() => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DropdownButtonFormField<String>(
+                    value: controller.penalty.value,
+                    items: [
+                      DropdownMenuItem(
+                        value: 'Casier de bieres',
+                        child: Text('Casier de bieres'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Montant fixe',
+                        child: Text('Montant fixe'),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      controller.penalty.value = value!;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                   ),
-                  DropdownMenuItem(
-                    value: 'Montant fixe',
-                    child: Text('Montant fixe'),
-                  ),
+                  if (controller.penalty.value == 'Montant fixe')
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: AppSize.s16),
+                        Text('Entrez le montant fixe:',
+                            style: getMediumStyle(
+                                color: AppColors.blackNormal,
+                                fontSize: FontSize.s16)),
+                        TextFieldWidget(
+                          prefixIcon: Icons.attach_money,
+                          hintText: "Montant fixe en Fcfa",
+                          controller: controller.fixedPenaltyAmountController,
+                          isPassword: false,
+                          keyboardType: TextInputType.number,
+                          readOnly: false,
+                        ),
+                      ],
+                    ),
                 ],
-                onChanged: (value) {
-                  controller.penalty.value = value!;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ),
+              )),
               SizedBox(height: AppSize.s16),
               Text('Frequence de bouffe',
                   style: getMediumStyle(

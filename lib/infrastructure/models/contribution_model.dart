@@ -1,8 +1,7 @@
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
-
-class ContributionModel extends ContributionEntity {
-  ContributionModel({
+class AssociationContributionModel extends AssociationContributionEntity {
+  AssociationContributionModel({
     required String id,
     required String name,
     required String associationId,
@@ -26,8 +25,8 @@ class ContributionModel extends ContributionEntity {
           transactions: transactions,
         );
 
-  factory ContributionModel.fromJson(Map<String, dynamic> json) {
-    return ContributionModel(
+  factory AssociationContributionModel.fromJson(Map<String, dynamic> json) {
+    return AssociationContributionModel(
       id: json['id'],
       name: json['name'],
       associationId: json['associationId'],

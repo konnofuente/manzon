@@ -25,5 +25,6 @@ class AppRoutes {
     GetPage(name: AppRouteNames.createAssociationLoader, page: () => CreateAssociationLoading()),
     GetPage(name: AppRouteNames.associationPage, page: () => AssociationPage()),
     GetPage(name: AppRouteNames.createTontinePage, page: () => CreateTontinePage()),
+    GetPage(name: AppRouteNames.createTontinePage, page: () => CreateTontinePage()),
   ];
 }

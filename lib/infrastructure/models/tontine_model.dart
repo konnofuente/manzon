@@ -1,58 +1,83 @@
-import 'package:manzon/domain/entities/export_domain_entities.dart';
+import 'member_model.dart';
+import 'package:manzon/domain/entities/tontine_entity.dart';
+import 'package:manzon/infrastructure/models/cycle_model.dart';
+
 
 
 class TontineModel extends TontineEntity {
   TontineModel({
-    String? uniqueId,
+    required String id,
     required String name,
-    required String associationId,
-    required List<String> members,
-    required double balance,
-    required String contributionFrequency,
     required double contributionAmount,
+    String? contributionFrequency,
+    String? receiverFrequency,
+    List<MemberModel>? members,
+    List<String>? membersId,
+    List<MemberModel>? orderList,
+    List<CycleModel>? cycles,
+    required String associationId,
+    double? balance,
     required int cycleDuration,
+    List<String>? transactions,
     required int currentCycle,
-    required List<String> transactions,
   }) : super(
-          uniqueId: uniqueId,
+          id: id,
           name: name,
-          associationId: associationId,
-          members: members,
-          balance: balance,
-          contributionFrequency: contributionFrequency,
           contributionAmount: contributionAmount,
+          contributionFrequency: contributionFrequency,
+          receiverFrequency: receiverFrequency,
+          members: members,
+          membersId: membersId,
+          orderList: orderList,
+          cycles: cycles,
+          associationId: associationId,
+          balance: balance,
           cycleDuration: cycleDuration,
-          currentCycle: currentCycle,
           transactions: transactions,
+          currentCycle: currentCycle,
         );
 
   factory TontineModel.fromJson(Map<String, dynamic> json) {
     return TontineModel(
-      uniqueId: json['uniqueId'],
+      id: json['id'],
       name: json['name'],
-      associationId: json['associationId'],
-      members: List<String>.from(json['members']),
-      balance: (json['balance'] as num).toDouble(),
+      contributionAmount: json['contributionAmount'],
       contributionFrequency: json['contributionFrequency'],
-      contributionAmount: (json['contributionAmount'] as num).toDouble(),
+      receiverFrequency: json['receiverFrequency'],
+      members: (json['members'] as List<dynamic>?)
+          ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      membersId: (json['membersId'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      orderList: (json['orderList'] as List<dynamic>?)
+          ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      cycles: (json['cycles'] as List<dynamic>?)
+          ?.map((e) => CycleModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      associationId: json['associationId'],
+      balance: json['balance'],
       cycleDuration: json['cycleDuration'],
+      transactions: (json['transactions'] as List<dynamic>?)?.map((e) => e as String).toList(),
       currentCycle: json['currentCycle'],
-      transactions: List<String>.from(json['transactions']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'uniqueId': uniqueId,
+      'id': id,
       'name': name,
-      'associationId': associationId,
-      'members': members,
-      'balance': balance,
-      'contributionFrequency': contributionFrequency,
       'contributionAmount': contributionAmount,
+      'contributionFrequency': contributionFrequency,
+      'receiverFrequency': receiverFrequency,
+      'members': members?.map((e) => (e as MemberModel).toJson()).toList(),
+      'membersId': membersId,
+      'orderList': orderList?.map((e) => (e as MemberModel).toJson()).toList(),
+      'cycles': cycles?.map((e) => (e as CycleModel).toJson()).toList(),
+      'associationId': associationId,
+      'balance': balance,
       'cycleDuration': cycleDuration,
-      'currentCycle': currentCycle,
       'transactions': transactions,
+      'currentCycle': currentCycle,
     };
   }
 }

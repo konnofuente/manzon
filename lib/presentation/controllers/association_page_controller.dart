@@ -11,7 +11,7 @@ class AssociationController extends GetxController
   late TabController tabController;
   var tontines = <TontineEntity>[].obs;
   var members = <MemberEntity>[].obs;
-  var contributions = <ContributionEntity>[].obs;
+  var contributions = <AssociationContributionEntity>[].obs;
   var contacts = <Contact>[].obs;
   var selectedContacts = <Contact>[].obs;
   var searchQuery = ''.obs;
@@ -44,7 +44,8 @@ class AssociationController extends GetxController
   Future<PermissionStatus> _getContactPermission() async {
     PermissionStatus permission = await Permission.contacts.status;
     if (permission != PermissionStatus.granted) {
-      Map<Permission, PermissionStatus> permissionStatus = await [Permission.contacts].request();
+      Map<Permission, PermissionStatus> permissionStatus =
+          await [Permission.contacts].request();
       return permissionStatus[Permission.contacts] ?? PermissionStatus.denied;
     } else {
       return permission;
@@ -70,26 +71,28 @@ class AssociationController extends GetxController
         name: contact.displayName ?? '',
         role: 'Member',
         userId: contact.identifier ?? '',
-        phoneNumber: contact.phones?.isNotEmpty ?? false ? contact.phones!.first.value! : '',
+        phoneNumber: contact.phones?.isNotEmpty ?? false
+            ? contact.phones!.first.value!
+            : '',
       );
       members.add(member);
-       Get.back();
+      Get.back();
     }
   }
 
   void _generateFakeTontines() {
     tontines.value = List.generate(15, (index) {
       return TontineEntity(
-        uniqueId: Uuid().v4(),
+        id: Uuid().v4(),
         name: 'Tontine ${index + 1}',
         associationId: 'fake_association_id',
-        members: ['user1', 'user2', 'user3'],
+        membersId: ['user1', 'user2', 'user3'],
         balance: 100000 * (index + 1).toDouble(),
         contributionFrequency: 'mois',
         contributionAmount: 1000 * (index + 1).toDouble(),
         cycleDuration: 12,
         currentCycle: index + 1,
-        transactions: [],
+        transactions: [], members: [],
       );
     });
   }
@@ -109,7 +112,7 @@ class AssociationController extends GetxController
   void fetchFakeContributions() {
     contributions.value = List.generate(
       5,
-      (index) => ContributionEntity(
+      (index) => AssociationContributionEntity(
         id: 'id_$index',
         name: 'Contribution $index',
         associationId: 'association_id_$index',

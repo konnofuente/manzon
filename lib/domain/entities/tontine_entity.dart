@@ -1,41 +1,55 @@
+import 'cycle_entity.dart';
+import 'member_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class TontineEntity extends Equatable {
-  final String? uniqueId;
+  final String id;
   final String name;
-  final String associationId;
-  final List<String> members;
-  final double balance;
-  final String contributionFrequency;
   final double contributionAmount;
+  final String? contributionFrequency;
+  final String? receiverFrequency;
+  final List<MemberEntity>? members;
+  final List<String>? membersId;
+  final List<MemberEntity>? orderList;
+  final List<CycleEntity>? cycles;
+  final String associationId;
+  final double? balance;
   final int cycleDuration;
+  final List<String>? transactions;
   final int currentCycle;
-  final List<String> transactions;
 
-  TontineEntity({
-    this.uniqueId,
+  TontineEntity( {
+    required this.id,
+    this.membersId,
     required this.name,
-    required this.associationId,
-    required this.members,
-    required this.balance,
-    required this.contributionFrequency,
     required this.contributionAmount,
+    this.contributionFrequency,
+    this.receiverFrequency,
+    required this.members,
+    this.orderList,
+    this.cycles,
+    required this.associationId,
+    this.balance,
     required this.cycleDuration,
+    this.transactions,
     required this.currentCycle,
-    required this.transactions,
   });
 
   @override
   List<Object?> get props => [
-        uniqueId,
+        id,
         name,
-        associationId,
-        members,
-        balance,
-        contributionFrequency,
         contributionAmount,
+        contributionFrequency,
+        receiverFrequency,
+        members,
+        membersId,
+        orderList,
+        cycles,
+        associationId,
+        balance,
         cycleDuration,
-        currentCycle,
         transactions,
+        currentCycle,
       ];
 }

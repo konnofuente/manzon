@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class ContributionEntity extends Equatable {
+class AssociationContributionEntity extends Equatable {
   final String id;
   final String name;
   final String associationId;
@@ -12,7 +12,7 @@ class ContributionEntity extends Equatable {
   final int currentCycle;
   final List<String> transactions;
 
-  ContributionEntity({
+  AssociationContributionEntity({
     required this.id,
     required this.name,
     required this.associationId,
