@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:manzon/app/core/helpers/export_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:manzon/domain/entities/tontine_entity.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
@@ -31,7 +32,7 @@ class AssociationController extends GetxController
   }
 
   void fetchContacts() async {
-    PermissionStatus permissionStatus = await _getContactPermission();
+    PermissionStatus permissionStatus = await getContactPermission();
     if (permissionStatus == PermissionStatus.granted) {
       Iterable<Contact> contactsIterable = await ContactsService.getContacts();
       contacts.value = contactsIterable.toList();
@@ -41,16 +42,7 @@ class AssociationController extends GetxController
     }
   }
 
-  Future<PermissionStatus> _getContactPermission() async {
-    PermissionStatus permission = await Permission.contacts.status;
-    if (permission != PermissionStatus.granted) {
-      Map<Permission, PermissionStatus> permissionStatus =
-          await [Permission.contacts].request();
-      return permissionStatus[Permission.contacts] ?? PermissionStatus.denied;
-    } else {
-      return permission;
-    }
-  }
+
 
   void filterContacts() {
     if (searchQuery.value.isEmpty) {
@@ -88,11 +80,12 @@ class AssociationController extends GetxController
         associationId: 'fake_association_id',
         membersId: ['user1', 'user2', 'user3'],
         balance: 100000 * (index + 1).toDouble(),
-        contributionFrequency: 'mois',
+        contributionFrequency: ContributionFrequency.monthly,
+        receiverFrequency: ReceiverFrequency.monthly,
         contributionAmount: 1000 * (index + 1).toDouble(),
         cycleDuration: 12,
         currentCycle: index + 1,
-        transactions: [], members: [],
+        transactions: [], members: [], 
       );
     });
   }

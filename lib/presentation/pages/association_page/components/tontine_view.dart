@@ -55,7 +55,7 @@ class _TontinesViewState extends State<TontinesView> {
                                   color: AppColors.primaryNormal),
                             ),
                             title: Text(
-                              '${tontine.contributionAmount}Fcfa/${tontine.contributionFrequency}',
+                              '${tontine.contributionAmount}Fcfa/${tontine.contributionFrequency.name}',
                               style: getSemiBoldStyle(
                                   color: AppColors.blackNormal,
                                   fontSize: FontSize.s16),
@@ -74,7 +74,7 @@ class _TontinesViewState extends State<TontinesView> {
                 ),
                 DefaultButton(
                   onTap: () {
-                    Get.toNamed(AppRouteNames.createTontinePage);
+                    Get.toNamed(AppRouteNames.selectTontineMember);
                   },
                   backgroundColor: AppColors.primaryNormal,
                   text: 'create_tontine'.tr,

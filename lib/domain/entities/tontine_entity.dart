@@ -1,13 +1,15 @@
-import 'cycle_entity.dart';
-import 'member_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:manzon/domain/entities/export_domain_entities.dart';
+
+
+
 
 class TontineEntity extends Equatable {
   final String id;
   final String name;
   final double contributionAmount;
-  final String? contributionFrequency;
-  final String? receiverFrequency;
+  final ContributionFrequency contributionFrequency;
+  final ReceiverFrequency receiverFrequency;
   final List<MemberEntity>? members;
   final List<String>? membersId;
   final List<MemberEntity>? orderList;
@@ -18,13 +20,13 @@ class TontineEntity extends Equatable {
   final List<String>? transactions;
   final int currentCycle;
 
-  TontineEntity( {
+  TontineEntity({
     required this.id,
     this.membersId,
     required this.name,
     required this.contributionAmount,
-    this.contributionFrequency,
-    this.receiverFrequency,
+    required this.contributionFrequency,
+    required this.receiverFrequency,
     required this.members,
     this.orderList,
     this.cycles,

@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import '../../presentation/controllers/export_controllers.dart';
 import 'package:manzon/domain/usecases/export_domain_repositories.dart';
-import 'package:manzon/domain/repositories/export_domain_repository.dart';
 import 'package:manzon/infrastructure/services/local_storage_service.dart';
 import 'package:manzon/infrastructure/repositories/media_repository_implt.dart';
 import '../../infrastructure/repositories/export_infrastructure_repositories.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/media_data_source.dart';
+import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data_source.dart';
 
 class AppBindings extends Bindings {
@@ -15,6 +15,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => ConnectivityService());
     Get.lazyPut(() => LocalStorageService());
     Get.put(UserDataSource());
+    Get.put(TontineDataSource());
+    Get.put(CreateTontineController(Get.find()));
 
     //data stores
     Get.lazyPut(() => AssociationDataSource());
@@ -70,6 +72,5 @@ class AppBindings extends Bindings {
     Get.lazyPut<AuthentificationController>(() => AuthentificationController(
         VerifyPhoneNumberUseCase(authRepositoryImp),
         SignInWithPhoneNumberUseCase(authRepositoryImp)));
-
   }
 }

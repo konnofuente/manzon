@@ -10,4 +10,5 @@ class AppRouteNames {
   static const String createAssociationLoader = '/create_association_loader';
   static const String associationPage = '/association_page';
   static const String createTontinePage = '/create_tontine_page';
+  static const String selectTontineMember = '/select_tontine_member';
 }

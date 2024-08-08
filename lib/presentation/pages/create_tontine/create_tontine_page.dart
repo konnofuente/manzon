@@ -1,180 +1,127 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
-import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
-class CreateTontinePage extends StatefulWidget {
-  @override
-  State<CreateTontinePage> createState() => _CreateTontinePageState();
-}
+import '../../../infrastructure/data_sources/firebase/tontine_data_source.dart';
+import 'package:manzon/presentation/pages/create_tontine/components/export_create_tonine_component.dart';
 
-class _CreateTontinePageState extends State<CreateTontinePage> {
-  final CreateTontineController controller = Get.put(CreateTontineController());
+
+class CreateTontinePage extends StatelessWidget {
+  final CreateTontineController controller = Get.put(CreateTontineController(Get.put(TontineDataSource())));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Creer une tontine'),
-        backgroundColor: AppColors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.blackNormal),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
       body: Padding(
         padding: EdgeInsets.all(ScreenSize.horizontalPadding),
-        child: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(color: Color(0xFFFBFBFD)),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Quel est le nom de la tontine?',
-                  style: getMediumStyle(
-                      color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              TextFieldWidget(
-                prefixIcon: Icons.location_city,
-                hintText: "Nom de la tontine".tr,
-                controller: controller.tontineNameController,
-                isPassword: false,
-                keyboardType: TextInputType.text,
-                readOnly: false,
+              CustomNavigationBar(controller: controller),
+              Text(
+                'creating_tontine'.tr,
+                style: getBlackStyle(
+                    fontSize: FontSize.s24, color: AppColors.blackNormal),
               ),
-              SizedBox(height: AppSize.s16),
-              Text('Montant individuel',
-                  style: getMediumStyle(
-                      color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              TextFieldWidget(
-                prefixIcon: Icons.money,
-                hintText: "10000 Fcfa".tr,
-                controller: controller.individualAmountController,
-                isPassword: false,
-                keyboardType: TextInputType.number,
-                readOnly: false,
+              SizedBox(
+                height: AppSize.s40,
               ),
-              SizedBox(height: AppSize.s16),
-              Text('Nombre de membre',
-                  style: getMediumStyle(
-                      color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              TextFieldWidget(
-                prefixIcon: Icons.numbers,
-                hintText: "10".tr,
-                controller: controller.numberOfMembersController,
-                isPassword: false,
-                keyboardType: TextInputType.number,
-                readOnly: false,
-              ),
-              SizedBox(height: AppSize.s16),
-              Text('Amande en cas d\'echec',
-                  style: getMediumStyle(
-                      color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              Obx(() => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Expanded(
+                  child: PageView(
+                controller: controller.pageController,
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  DropdownButtonFormField<String>(
-                    value: controller.penalty.value,
-                    items: [
-                      DropdownMenuItem(
-                        value: 'Casier de bieres',
-                        child: Text('Casier de bieres'),
-                      ),
-                      DropdownMenuItem(
-                        value: 'Montant fixe',
-                        child: Text('Montant fixe'),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      controller.penalty.value = value!;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                  if (controller.penalty.value == 'Montant fixe')
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: AppSize.s16),
-                        Text('Entrez le montant fixe:',
-                            style: getMediumStyle(
-                                color: AppColors.blackNormal,
-                                fontSize: FontSize.s16)),
-                        TextFieldWidget(
-                          prefixIcon: Icons.attach_money,
-                          hintText: "Montant fixe en Fcfa",
-                          controller: controller.fixedPenaltyAmountController,
-                          isPassword: false,
-                          keyboardType: TextInputType.number,
-                          readOnly: false,
-                        ),
-                      ],
-                    ),
+                  // SelectMembers(),
+                  OrderMembers(),
+                  TontineInformation(),
+                  FinancialInformation(),
+                  VerificationScreen(),
                 ],
               )),
-              SizedBox(height: AppSize.s16),
-              Text('Frequence de bouffe',
-                  style: getMediumStyle(
-                      color: AppColors.blackNormal, fontSize: FontSize.s16)),
-              Column(
-                children: [
-                  Obx(() => Row(
-                        children: [
-                          Radio<String>(
-                            value: 'Toutes les semaines',
-                            groupValue: controller.frequency.value,
-                            onChanged: (value) {
-                              controller.updateFrequency(value!);
-                            },
-                          ),
-                          Text('Toutes les semaines'),
-                        ],
-                      )),
-                  Obx(() => Row(
-                        children: [
-                          Radio<String>(
-                            value: 'Tous les mois',
-                            groupValue: controller.frequency.value,
-                            onChanged: (value) {
-                              controller.updateFrequency(value!);
-                            },
-                          ),
-                          Text('Tous les mois'),
-                        ],
-                      )),
-                ],
-              ),
-              SizedBox(height: AppSize.s16),
-              TextButton.icon(
-                onPressed: () {
-                  // Navigate to SelectContactsView to add members
-                },
-                icon: Icon(Icons.person_add_alt),
-                label: Text('Ajouter des membres',
-                    style: getMediumStyle(
-                        color: AppColors.primaryNormal,
-                        fontSize: FontSize.s16)),
-              ),
-              SizedBox(height: AppSize.s16),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: DefaultButton(
-          onTap: () {
-            // Handle form submission
-            controller.submit();
-          },
-          backgroundColor: AppColors.primaryNormal,
-          text: 'Continuer',
-          width: double.infinity,
-          fontWeight: FontWeight.w600,
-          borderRadius: 50.0,
-        ),
+    );
+  }
+}
+
+class CustomNavigationBar extends StatelessWidget {
+  final CreateTontineController controller;
+
+  CustomNavigationBar({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 28.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: const Icon(
+                size: AppSize.s24,
+                Icons.arrow_back,
+                color: AppColors.blackNormal),
+            onPressed: () {
+              if (controller.currentStep.value == 0) {
+                Get.back();
+              } else {
+                controller.previousStep();
+              }
+            },
+          ),
+          Obx(() {
+            return StepProgressIndicator(
+              totalSteps: controller.totalStep,
+              currentStep: controller.currentStep.value + 1,
+              selectedColor: AppColors.primaryNormal,
+              unselectedColor: AppColors.primaryLightHover,
+            );
+          }),
+          TextButton(
+            onPressed: controller.nextStep,
+            child: controller.currentStep.value < controller.totalStep ? Text('Skip',
+                style: getRegularStyle(
+                    fontSize: FontSize.s14,
+                    color: AppColors.secondaryDarkHover)) : Container(),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class StepProgressIndicator extends StatelessWidget {
+  final int totalSteps;
+  final int currentStep;
+  final Color selectedColor;
+  final Color unselectedColor;
+
+  StepProgressIndicator({
+    required this.totalSteps,
+    required this.currentStep,
+    required this.selectedColor,
+    required this.unselectedColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(totalSteps, (index) {
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: AppMargin.m8),
+          width: AppSize.s32,
+          height: AppSize.s4,
+          decoration: BoxDecoration(
+            color: index < currentStep ? selectedColor : unselectedColor,
+            borderRadius: BorderRadius.circular(2.0),
+          ),
+        );
+      }),
     );
   }
 }

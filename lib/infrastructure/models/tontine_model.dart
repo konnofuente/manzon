@@ -1,16 +1,14 @@
 import 'member_model.dart';
-import 'package:manzon/domain/entities/tontine_entity.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
-
-
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class TontineModel extends TontineEntity {
   TontineModel({
     required String id,
     required String name,
     required double contributionAmount,
-    String? contributionFrequency,
-    String? receiverFrequency,
+    required ContributionFrequency contributionFrequency,
+    required ReceiverFrequency receiverFrequency,
     List<MemberModel>? members,
     List<String>? membersId,
     List<MemberModel>? orderList,
@@ -42,8 +40,8 @@ class TontineModel extends TontineEntity {
       id: json['id'],
       name: json['name'],
       contributionAmount: json['contributionAmount'],
-      contributionFrequency: json['contributionFrequency'],
-      receiverFrequency: json['receiverFrequency'],
+      contributionFrequency: ContributionFrequency.values[json['contributionFrequency']],
+      receiverFrequency: ReceiverFrequency.values[json['receiverFrequency']],
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -67,8 +65,8 @@ class TontineModel extends TontineEntity {
       'id': id,
       'name': name,
       'contributionAmount': contributionAmount,
-      'contributionFrequency': contributionFrequency,
-      'receiverFrequency': receiverFrequency,
+      'contributionFrequency': contributionFrequency.index,
+      'receiverFrequency': receiverFrequency.index,
       'members': members?.map((e) => (e as MemberModel).toJson()).toList(),
       'membersId': membersId,
       'orderList': orderList?.map((e) => (e as MemberModel).toJson()).toList(),
@@ -79,5 +77,39 @@ class TontineModel extends TontineEntity {
       'transactions': transactions,
       'currentCycle': currentCycle,
     };
+  }
+
+  TontineModel copyWith({
+    String? id,
+    String? name,
+    double? contributionAmount,
+    ContributionFrequency? contributionFrequency,
+    ReceiverFrequency? receiverFrequency,
+    List<MemberModel>? members,
+    List<String>? membersId,
+    List<MemberModel>? orderList,
+    List<CycleModel>? cycles,
+    String? associationId,
+    double? balance,
+    int? cycleDuration,
+    List<String>? transactions,
+    int? currentCycle,
+  }) {
+    return TontineModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      contributionAmount: contributionAmount ?? this.contributionAmount,
+      contributionFrequency: contributionFrequency ?? this.contributionFrequency,
+      receiverFrequency: receiverFrequency ?? this.receiverFrequency,
+      members: members ?? this.members?.map((e) => e as MemberModel).toList(),
+      membersId: membersId ?? this.membersId,
+      orderList: orderList ?? this.orderList?.map((e) => e as MemberModel).toList(),
+      cycles: cycles ?? this.cycles?.map((e) => e as CycleModel).toList(),
+      associationId: associationId ?? this.associationId,
+      balance: balance ?? this.balance,
+      cycleDuration: cycleDuration ?? this.cycleDuration,
+      transactions: transactions ?? this.transactions,
+      currentCycle: currentCycle ?? this.currentCycle,
+    );
   }
 }
