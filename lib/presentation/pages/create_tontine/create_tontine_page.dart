@@ -12,26 +12,35 @@ class CreateTontinePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(ScreenSize.horizontalPadding),
-        child: Container(
-          decoration: BoxDecoration(color: AppColors.white),
-          child: Column(
-            children: [
-              CustomNavigationBar(controller: controller),
-              Expanded(
-                  child: PageView(
-                controller: controller.pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  OrderMembers(),
-                  TontineInformation(),
-                  FinancialInformation(),
-                  VerificationScreen(),
-                ],
-              )),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (controller.currentStep.value > 0) {
+          controller.previousStep();
+          return false; // Prevent default back navigation
+        }
+        return true; // Allow default back navigation
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(ScreenSize.horizontalPadding),
+          child: Container(
+            decoration: BoxDecoration(color: AppColors.white),
+            child: Column(
+              children: [
+                CustomNavigationBar(controller: controller),
+                Expanded(
+                    child: PageView(
+                  controller: controller.pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    OrderMembers(),
+                    TontineInformation(),
+                    FinancialInformation(),
+                    VerificationScreen(),
+                  ],
+                )),
+              ],
+            ),
           ),
         ),
       ),

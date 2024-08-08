@@ -92,9 +92,7 @@ class _OrderMembersState extends State<OrderMembers> {
             }),
           ),
           DefaultButton(
-            onTap: () {
-              controller.nextStep();
-            },
+            onTap: controller.validateOrder() ? controller.nextStep : null,
             backgroundColor: AppColors.primaryNormal,
             text: 'Continuer',
             width: double.infinity,

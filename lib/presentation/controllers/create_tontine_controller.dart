@@ -4,8 +4,8 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:manzon/app/core/helpers/export_helper.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
+import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.dart';
@@ -46,6 +46,7 @@ class CreateTontineController extends GetxController {
   void onInit() {
     super.onInit();
     // Listen to changes in search query and filter contacts
+    fetchContacts();
     ever(searchQuery, (_) => filterContacts());
   }
 
@@ -72,6 +73,17 @@ class CreateTontineController extends GetxController {
     }
   }
 
+  Future<PermissionStatus> getContactPermission() async {
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted) {
+      Map<Permission, PermissionStatus> permissionStatus =
+          await [Permission.contacts].request();
+      return permissionStatus[Permission.contacts] ?? PermissionStatus.denied;
+    } else {
+      return permission;
+    }
+  }
+
   void addSelectedContactsToMembers() {
     if (selectedContacts.isEmpty) {
       log('No contacts selected'); // Log or handle the empty state as needed
@@ -79,7 +91,8 @@ class CreateTontineController extends GetxController {
       return; // Exit the function if there are no selected contacts
     }
 
-    for (var contact in selectedContacts) {
+    selectedMembers.clear();
+    selectedContacts.forEach((contact) {
       final member = MemberEntity(
         id: Uuid().v4(),
         name: contact.displayName ?? '',
@@ -90,10 +103,10 @@ class CreateTontineController extends GetxController {
             : '',
       );
       selectedMembers.add(member);
-      log('clicked');
-      Get.toNamed(AppRouteNames.createTontinePage);
-      // Get.back();
-    }
+    });
+    memberOrder.assignAll(
+        List<int>.generate(selectedMembers.length, (index) => index + 1));
+    Get.toNamed(AppRouteNames.createTontinePage);
   }
 
   void nextStep() {
@@ -113,14 +126,45 @@ class CreateTontineController extends GetxController {
   }
 
   void updateOrder(int index, int order) {
+    if (order > selectedMembers.length || order < 1) {
+      ToastUtils.showError(Get.context!, "Invalid Order",
+          "Order must be between 1 and ${selectedMembers.length}.");
+      return;
+    }
+
+    if (memberOrder.contains(order)) {
+      ToastUtils.showError(Get.context!, "Duplicate Order",
+          "This order number has already been assigned.");
+      return;
+    }
+
     memberOrder[index] = order;
   }
 
+bool validateOrder() {
+    bool isValid = true;
+    for (int order in memberOrder) {
+      if (order == 0 || order > selectedMembers.length || memberOrder.where((e) => e == order).length > 1) {
+        isValid = false;
+        break;
+      }
+    }
+
+    if (!isValid) {
+      ToastUtils.showError(Get.context!, "Verification",
+          "The is an error of order in your list.");
+    }
+
+    return isValid;
+  }
   TextEditingController getOrderController(int index) {
     final controller = TextEditingController();
-    controller.text = memberOrder[index].toString();
+    if (index < memberOrder.length) {
+      controller.text = memberOrder[index].toString();
+    }
     return controller;
   }
+
 
   void updatePenaltyType(String value) {
     penaltyType.value = value;

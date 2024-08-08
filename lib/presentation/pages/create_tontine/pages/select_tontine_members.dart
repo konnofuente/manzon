@@ -14,16 +14,24 @@ class SelectTontineMembers extends StatefulWidget {
 class _SelectTontineMembersState extends State<SelectTontineMembers> {
   final CreateTontineController controller = Get.find();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Select Contacts',
-          style: getSemiBoldStyle(
-              color: AppColors.blackNormal, fontSize: FontSize.s18),
+        title: Center(
+          child: Text(
+            'Selectioner vos membre',
+            style: getSemiBoldStyle(
+              color: AppColors.blackNormal,
+              fontSize: FontSize.s18,
+            ),
+          ),
         ),
         backgroundColor: AppColors.white,
+        iconTheme: const IconThemeData(
+          color: AppColors.blackNormal,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -38,8 +46,7 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
                 ),
               ),
               onChanged: (value) {
-                controller.searchQuery.value =
-                    value; 
+                controller.searchQuery.value = value;
               },
             ),
             Expanded(
@@ -103,7 +110,6 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
             ),
             DefaultButton(
               onTap: () {
-               
                 controller.addSelectedContactsToMembers();
                 // Get.back();
               },
