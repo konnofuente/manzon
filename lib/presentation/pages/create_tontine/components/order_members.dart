@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
+import 'package:manzon/presentation/pages/create_tontine/widgets/step_information.dart';
 
 class OrderMembers extends StatefulWidget {
   @override
@@ -17,6 +18,10 @@ class _OrderMembersState extends State<OrderMembers> {
     return Scaffold(
       body: Column(
         children: [
+          const StepInformation(
+            title: 'Creating Tontine',
+            description: 'Enter the rank of food for each member',
+          ),
           TextField(
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),

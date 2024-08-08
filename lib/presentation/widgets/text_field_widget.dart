@@ -24,7 +24,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.hintText,
     this.labelText,
     this.labelStyle,
-     this.prefixIcon,
+    this.prefixIcon,
     required this.controller,
     this.readOnly = false,
     this.isPassword = false,
@@ -82,11 +82,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             onChanged: _validate,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
+              fillColor: AppColors.white,
               hintText: widget.hintText,
               hintStyle: getRegularStyle(
                   fontSize: AppSize.s16, color: AppColors.fontLightDisabled),
               prefixIcon:
-                    Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
+                  Icon(widget.prefixIcon, color: AppColors.fontLightDisabled),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 borderSide: BorderSide(color: AppColors.fontLightDisabled),

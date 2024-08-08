@@ -20,14 +20,6 @@ class CreateTontinePage extends StatelessWidget {
           child: Column(
             children: [
               CustomNavigationBar(controller: controller),
-              Text(
-                'creating_tontine'.tr,
-                style: getBlackStyle(
-                    fontSize: FontSize.s24, color: AppColors.blackNormal),
-              ),
-              SizedBox(
-                height: AppSize.s28,
-              ),
               Expanded(
                   child: PageView(
                 controller: controller.pageController,
@@ -55,7 +47,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 28.0),
+      padding: const EdgeInsets.symmetric(vertical: 18.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
