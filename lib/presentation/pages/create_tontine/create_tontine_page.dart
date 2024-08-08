@@ -6,9 +6,9 @@ import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
 import '../../../infrastructure/data_sources/firebase/tontine_data_source.dart';
 import 'package:manzon/presentation/pages/create_tontine/components/export_create_tonine_component.dart';
 
-
 class CreateTontinePage extends StatelessWidget {
-  final CreateTontineController controller = Get.put(CreateTontineController(Get.put(TontineDataSource())));
+  final CreateTontineController controller =
+      Get.put(CreateTontineController(Get.put(TontineDataSource())));
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CreateTontinePage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(ScreenSize.horizontalPadding),
         child: Container(
-          decoration: BoxDecoration(color: Color(0xFFFBFBFD)),
+          decoration: BoxDecoration(color: AppColors.white),
           child: Column(
             children: [
               CustomNavigationBar(controller: controller),
@@ -26,14 +26,13 @@ class CreateTontinePage extends StatelessWidget {
                     fontSize: FontSize.s24, color: AppColors.blackNormal),
               ),
               SizedBox(
-                height: AppSize.s40,
+                height: AppSize.s28,
               ),
               Expanded(
                   child: PageView(
                 controller: controller.pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  // SelectMembers(),
                   OrderMembers(),
                   TontineInformation(),
                   FinancialInformation(),
@@ -83,10 +82,12 @@ class CustomNavigationBar extends StatelessWidget {
           }),
           TextButton(
             onPressed: controller.nextStep,
-            child: controller.currentStep.value < controller.totalStep ? Text('Skip',
-                style: getRegularStyle(
-                    fontSize: FontSize.s14,
-                    color: AppColors.secondaryDarkHover)) : Container(),
+            child: controller.currentStep.value < controller.totalStep
+                ? Text('Skip',
+                    style: getRegularStyle(
+                        fontSize: FontSize.s14,
+                        color: AppColors.secondaryDarkHover))
+                : Container(),
           ),
         ],
       ),

@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
@@ -41,7 +39,7 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
               ),
               onChanged: (value) {
                 controller.searchQuery.value =
-                    value; // Bind search input to controller
+                    value; 
               },
             ),
             Expanded(
@@ -55,7 +53,7 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
                           'Loading contacts...',
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
-                        SizedBox(height: 20), // space between text and loader
+                        SizedBox(height: 20),
                         CircularProgressIndicator(),
                       ],
                     ),

@@ -9,7 +9,6 @@ import 'package:manzon/presentation/widgets/toast_utils.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
 import '../../domain/usecases/export_domain_repositories.dart';
-import 'package:manzon/domain/entities/association_entity.dart';
 import 'package:manzon/infrastructure/services/local_storage_service.dart';
 
 class CreateAssociationController extends GetxController {
