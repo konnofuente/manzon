@@ -36,7 +36,8 @@ class CreateTontineController extends GetxController {
       TextEditingController();
 
   // Step 4: Financial Information
-  final RxString penaltyType = 'Pourcentage'.obs;
+  // final RxString penaltyType = 'Pourcentage'.obs;
+  final Rx<PenaltyType> penaltyType = PenaltyType.fixAmount.obs;
   final TextEditingController penaltyAmountController = TextEditingController();
   final Rx<ContributionFrequency> contributionFrequency =
       ContributionFrequency.weekly.obs;
@@ -178,7 +179,7 @@ class CreateTontineController extends GetxController {
     return controller;
   }
 
-  void updatePenaltyType(String value) {
+  void updatePenaltyType(PenaltyType value) {
     penaltyType.value = value;
   }
 

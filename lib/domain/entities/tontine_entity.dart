@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
-
-
-
 class TontineEntity extends Equatable {
   final String id;
   final String name;
@@ -19,6 +16,7 @@ class TontineEntity extends Equatable {
   final int cycleDuration;
   final List<String>? transactions;
   final int currentCycle;
+  final double? penaltyAmount; // Added penaltyAmount
 
   TontineEntity({
     required this.id,
@@ -35,6 +33,7 @@ class TontineEntity extends Equatable {
     required this.cycleDuration,
     this.transactions,
     required this.currentCycle,
+    this.penaltyAmount, // Initialize penaltyAmount, defaulted to null
   });
 
   @override
@@ -53,5 +52,6 @@ class TontineEntity extends Equatable {
         cycleDuration,
         transactions,
         currentCycle,
+        penaltyAmount, // Include penaltyAmount in props
       ];
 }

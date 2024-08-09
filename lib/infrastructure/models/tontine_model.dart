@@ -18,6 +18,7 @@ class TontineModel extends TontineEntity {
     required int cycleDuration,
     List<String>? transactions,
     required int currentCycle,
+     double? penaltyAmount,
   }) : super(
           id: id,
           name: name,
@@ -33,6 +34,7 @@ class TontineModel extends TontineEntity {
           cycleDuration: cycleDuration,
           transactions: transactions,
           currentCycle: currentCycle,
+          penaltyAmount: penaltyAmount,
         );
 
   factory TontineModel.fromJson(Map<String, dynamic> json) {
@@ -57,6 +59,7 @@ class TontineModel extends TontineEntity {
       cycleDuration: json['cycleDuration'],
       transactions: (json['transactions'] as List<dynamic>?)?.map((e) => e as String).toList(),
       currentCycle: json['currentCycle'],
+      penaltyAmount: json['penaltyAmount'],
     );
   }
 
@@ -76,6 +79,7 @@ class TontineModel extends TontineEntity {
       'cycleDuration': cycleDuration,
       'transactions': transactions,
       'currentCycle': currentCycle,
+      'penaltyAmount': penaltyAmount,
     };
   }
 
@@ -94,6 +98,7 @@ class TontineModel extends TontineEntity {
     int? cycleDuration,
     List<String>? transactions,
     int? currentCycle,
+    double? penaltyAmount,
   }) {
     return TontineModel(
       id: id ?? this.id,
@@ -110,6 +115,7 @@ class TontineModel extends TontineEntity {
       cycleDuration: cycleDuration ?? this.cycleDuration,
       transactions: transactions ?? this.transactions,
       currentCycle: currentCycle ?? this.currentCycle,
+      penaltyAmount: penaltyAmount ?? this.penaltyAmount,
     );
   }
 }

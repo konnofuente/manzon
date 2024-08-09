@@ -1,10 +1,11 @@
 import 'member_model.dart';
+import 'penalty_model.dart';
 import 'package:manzon/domain/entities/cycle_entity.dart';
 import 'package:manzon/infrastructure/models/tontine_contribution_model.dart';
 
-
-
 class CycleModel extends CycleEntity {
+  // final List<PenaltyModel>? penalties;
+
   CycleModel({
     required String id,
     required int number,
@@ -15,6 +16,7 @@ class CycleModel extends CycleEntity {
     required DateTime endDate,
     required bool isCompleted,
     required List<TontineContributionModel> contributions,
+     List<PenaltyModel>? penalties,
   }) : super(
           id: id,
           number: number,
@@ -25,6 +27,7 @@ class CycleModel extends CycleEntity {
           endDate: endDate,
           isCompleted: isCompleted,
           contributions: contributions,
+          penalties: penalties,
         );
 
   factory CycleModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +43,7 @@ class CycleModel extends CycleEntity {
       contributions: (json['contributions'] as List<dynamic>)
           .map((e) => TontineContributionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      penalties: (json['penalties'] as List<dynamic>)?.map((e) => PenaltyModel.fromJson(e as Map<String, dynamic>)).toList(),
     );
   }
 
@@ -54,6 +58,7 @@ class CycleModel extends CycleEntity {
       'endDate': endDate.toIso8601String(),
       'isCompleted': isCompleted,
       'contributions': contributions.map((e) => (e as TontineContributionModel).toJson()).toList(),
+      // 'penalties': penalties?.map((e) =>  e.toJson()).toList(),
     };
   }
 }

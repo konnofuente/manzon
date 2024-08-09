@@ -1,6 +1,7 @@
 import 'package:manzon/domain/entities/cycle_entity.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
 import 'package:manzon/infrastructure/mappers/member_mapper.dart';
+import 'package:manzon/infrastructure/mappers/penalty_mapper.dart';
 import 'package:manzon/infrastructure/mappers/tontine_contribution_mapper.dart';
 
 class CycleMapper {
@@ -14,7 +15,9 @@ class CycleMapper {
       startDate: entity.startDate,
       endDate: entity.endDate,
       isCompleted: entity.isCompleted,
-      contributions: entity.contributions.map((e) => TontineContributionMapper.toModel(e)).toList(),
+      contributions: entity.contributions.map((e) => TontineContributionMapper.toModel(e)).toList(), 
+      // penalties: entity.penalties,
+      penalties: entity.penalties?.map((e) => PenaltyMapper.toModel(e)).toList(),
     );
   }
 
@@ -29,6 +32,7 @@ class CycleMapper {
       endDate: model.endDate,
       isCompleted: model.isCompleted,
       contributions: model.contributions.map((e) => TontineContributionMapper.toModel(e)).toList(),
+      penalties: model.penalties,
     );
   }
 }

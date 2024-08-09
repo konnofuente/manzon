@@ -1,6 +1,7 @@
+import 'member_entity.dart';
+import 'penalty_entity.dart';
 import 'package:equatable/equatable.dart';
-import 'package:manzon/domain/entities/export_domain_entities.dart';
-
+import 'tontine_contribution_entity.dart';
 
 class CycleEntity extends Equatable {
   final String id;
@@ -12,6 +13,7 @@ class CycleEntity extends Equatable {
   final DateTime endDate;
   final bool isCompleted;
   final List<TontineContributionEntity> contributions;
+  final List<PenaltyEntity>? penalties; 
 
   CycleEntity({
     required this.id,
@@ -23,6 +25,7 @@ class CycleEntity extends Equatable {
     required this.endDate,
     required this.isCompleted,
     required this.contributions,
+    this.penalties ,
   });
 
   @override
@@ -35,6 +38,7 @@ class CycleEntity extends Equatable {
         startDate,
         endDate,
         isCompleted,
-        contributions
+        contributions,
+        penalties 
       ];
 }
