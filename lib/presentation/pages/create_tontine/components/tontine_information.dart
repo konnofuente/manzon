@@ -54,73 +54,73 @@ class _TontineInformationState extends State<TontineInformation> {
           keyboardType: TextInputType.number,
           readOnly: false,
         ),
-        Text('Frequence de bouffe',
+        Text('Frequence de Contribution',
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
-        Column(
-          children: [
-            Row(
-              children: [
-                Radio(
-                  value: ContributionFrequency.weekly,
-                  groupValue: controller.contributionFrequency.value,
-                  onChanged: (value) {
-                    controller.updateContributionFrequency(
-                        value as ContributionFrequency);
-                  },
-                ),
-                Text('Toutes les semaines'),
-              ],
-            ),
-            Row(
-              children: [
-                Radio(
-                  value: ContributionFrequency.monthly,
-                  groupValue: controller.contributionFrequency.value,
-                  onChanged: (value) {
-                    controller.updateContributionFrequency(
-                        value as ContributionFrequency);
-                  },
-                ),
-                Text('Tous les mois'),
-              ],
-            ),
-          ],
-        ),
+        Obx(() {
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Radio<ContributionFrequency>(
+                    value: ContributionFrequency.weekly,
+                    groupValue: controller.contributionFrequency.value,
+                    onChanged: (value) {
+                      controller.updateContributionFrequency(value!);
+                    },
+                  ),
+                  const Text('Toutes les semaines'),
+                ],
+              ),
+              Row(
+                children: [
+                  Radio<ContributionFrequency>(
+                    value: ContributionFrequency.biWeekly,
+                    groupValue: controller.contributionFrequency.value,
+                    onChanged: (value) {
+                      controller.updateContributionFrequency(value!);
+                    },
+                  ),
+                  const Text('Chaque 2 semain'),
+                ],
+              ),
+            ],
+          );
+        }),
         SizedBox(height: AppSize.s16),
-        Text('Frequence de contribution',
+        Text('Frequence de Bouffe',
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
-        Column(
-          children: [
-            Row(
-              children: [
-                Radio(
-                  value: ReceiverFrequency.monthly,
-                  groupValue: controller.receiverFrequency.value,
-                  onChanged: (value) {
-                    controller
-                        .updateReceiverFrequency(value as ReceiverFrequency);
-                  },
-                ),
-                Text('Toutes les semaines'),
-              ],
-            ),
-            Row(
-              children: [
-                Radio(
-                  value: ReceiverFrequency.monthly,
-                  groupValue: controller.receiverFrequency.value,
-                  onChanged: (value) {
-                    controller
-                        .updateReceiverFrequency(value as ReceiverFrequency);
-                  },
-                ),
-                Text('Tous les mois'),
-              ],
-            ),
-          ],
-        ),
+        Obx(() {
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Radio<ReceiverFrequency>(
+                    value: ReceiverFrequency.monthly,
+                    groupValue: controller.receiverFrequency.value,
+                    onChanged: (value) {
+                      controller.updateReceiverFrequency(value!);
+                    },
+                  ),
+                  Text('Chaque mois'),
+                ],
+              ),
+              Row(
+                children: [
+                  Radio<ReceiverFrequency>(
+                    value: ReceiverFrequency.biMonthly,
+                    groupValue: controller.receiverFrequency.value,
+                    onChanged: (value) {
+                      controller.updateReceiverFrequency(value!);
+                    },
+                  ),
+                  Text('Chaque 2 mois'),
+                ],
+              ),
+            ],
+          );
+        }),
         const Spacer(),
         DefaultButton(
           onTap: controller.nextStep,

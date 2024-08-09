@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
-import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
 import 'package:manzon/presentation/pages/create_tontine/widgets/step_information.dart';
 

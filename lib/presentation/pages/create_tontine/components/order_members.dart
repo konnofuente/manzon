@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:manzon/app/core/utils/enums/button_status.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
@@ -80,8 +82,12 @@ class _OrderMembersState extends State<OrderMembers> {
                           ),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
-                            int order = int.tryParse(value) ?? 0;
-                            controller.updateOrder(index, order);
+
+                            int order = int.tryParse(value) ??
+                                -1; // Use -1 instead of 0 to signify invalid input
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              controller.updateOrder(index, order);
+                            });
                           },
                         ),
                       ),
@@ -91,14 +97,17 @@ class _OrderMembersState extends State<OrderMembers> {
               }
             }),
           ),
-          DefaultButton(
-            onTap: controller.validateOrder() ? controller.nextStep : null,
-            backgroundColor: AppColors.primaryNormal,
-            text: 'Continuer',
-            width: double.infinity,
-            fontWeight: FontWeight.w600,
-            borderRadius: 50.0,
-          ),
+          Obx(
+            () => DefaultButton(
+              onTap: controller.validateOrder() ? controller.nextStep : null,
+              status: controller.orderVerficication.value ? ButtonState.enable : ButtonState.disable,
+              backgroundColor: AppColors.primaryNormal,
+              text: 'Continuer',
+              width: double.infinity,
+              fontWeight: FontWeight.w600,
+              borderRadius: 50.0,
+            ),
+          )
         ],
       ),
     );

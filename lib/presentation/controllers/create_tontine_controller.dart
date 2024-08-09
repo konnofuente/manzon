@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
@@ -19,6 +20,7 @@ class CreateTontineController extends GetxController {
   var contacts = <Contact>[].obs;
   var filteredContacts = <Contact>[].obs;
   var selectedContacts = <Contact>[].obs;
+  final RxBool orderVerficication = true.obs;
 
   // Step 1: Select Members
   final RxList<MemberEntity> selectedMembers = <MemberEntity>[].obs;
@@ -126,25 +128,34 @@ class CreateTontineController extends GetxController {
   }
 
   void updateOrder(int index, int order) {
-    if (order > selectedMembers.length || order < 1) {
-      ToastUtils.showError(Get.context!, "Invalid Order",
-          "Order must be between 1 and ${selectedMembers.length}.");
+    if (order > selectedMembers.length || order < 0) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        ToastUtils.showError(Get.context!, "Invalid Order",
+            "Order must be between 1 and ${selectedMembers.length}.");
+      });
+      orderVerficication(false);
       return;
     }
 
-    if (memberOrder.contains(order)) {
-      ToastUtils.showError(Get.context!, "Duplicate Order",
-          "This order number has already been assigned.");
-      return;
-    }
+    // if (memberOrder.contains(order)) {
+    //   SchedulerBinding.instance.addPostFrameCallback((_) {
+    //     ToastUtils.showError(Get.context!, "Duplicate Order",
+    //         "This order number has already been assigned.");
+    //   });
+    //   orderVerficication(false);
+    //   return;
+    // }
 
+    orderVerficication(true);
     memberOrder[index] = order;
   }
 
-bool validateOrder() {
+  bool validateOrder() {
     bool isValid = true;
     for (int order in memberOrder) {
-      if (order == 0 || order > selectedMembers.length || memberOrder.where((e) => e == order).length > 1) {
+      if (order == 0 ||
+          order > selectedMembers.length ||
+          memberOrder.where((e) => e == order).length > 1) {
         isValid = false;
         break;
       }
@@ -153,10 +164,12 @@ bool validateOrder() {
     if (!isValid) {
       ToastUtils.showError(Get.context!, "Verification",
           "The is an error of order in your list.");
+      return false;
     }
 
     return isValid;
   }
+
   TextEditingController getOrderController(int index) {
     final controller = TextEditingController();
     if (index < memberOrder.length) {
@@ -164,7 +177,6 @@ bool validateOrder() {
     }
     return controller;
   }
-
 
   void updatePenaltyType(String value) {
     penaltyType.value = value;
