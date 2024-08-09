@@ -14,7 +14,7 @@ import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.
 class CreateTontineController extends GetxController {
   final PageController pageController = PageController();
   final TontineDataSource tontineDataSource;
-  final int totalStep = 5;
+  final int totalStep = 4;
   final RxInt currentStep = 0.obs;
   var searchQuery = ''.obs;
   var contacts = <Contact>[].obs;

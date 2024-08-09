@@ -72,31 +72,57 @@ class FinancialInformation extends StatelessWidget {
                 ],
               ),
             )),
-        Text('Entrer le pourcentage',
-            style: getMediumStyle(
-                color: AppColors.blackNormal, fontSize: FontSize.s16)),
-        SizedBox(height: AppSize.s8),
-        TextFieldWidget(
-          prefixIcon: Icons.percent,
-          hintText: "Entrer le pourcentage".tr,
-          controller: controller.penaltyAmountController,
-          isPassword: false,
-          keyboardType: TextInputType.number,
-          readOnly: false,
-        ),
-        // SizedBox(height: AppSize.s14),
-        Text('Entrer le montant',
-            style: getMediumStyle(
-                color: AppColors.blackNormal, fontSize: FontSize.s16)),
-        SizedBox(height: AppSize.s8),
-        TextFieldWidget(
-          prefixIcon: Icons.percent,
-          hintText: "Entrer le pourcentage".tr,
-          controller: controller.penaltyAmountController,
-          isPassword: false,
-          keyboardType: TextInputType.number,
-          readOnly: false,
-        ),
+        Obx(() {
+          if (controller.penaltyType.value == PenaltyType.percentage) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Entrer le pourcentage',
+                  style: getMediumStyle(
+                    color: AppColors.blackNormal,
+                    fontSize: FontSize.s16,
+                  ),
+                ),
+                SizedBox(height: AppSize.s8),
+                TextFieldWidget(
+                  prefixIcon: Icons.percent,
+                  hintText: "Entrer le pourcentage".tr,
+                  controller: controller.penaltyAmountController,
+                  isPassword: false,
+                  keyboardType: TextInputType.number,
+                  readOnly: false,
+                ),
+              ],
+            );
+          } else if (controller.penaltyType.value == PenaltyType.fixAmount) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Entrer le montant',
+                  style: getMediumStyle(
+                    color: AppColors.blackNormal,
+                    fontSize: FontSize.s16,
+                  ),
+                ),
+                SizedBox(height: AppSize.s8),
+                TextFieldWidget(
+                  prefixIcon: Icons.attach_money,
+                  hintText: "Entrer le montant".tr,
+                  controller: controller.penaltyAmountController,
+                  isPassword: false,
+                  keyboardType: TextInputType.number,
+                  readOnly: false,
+                ),
+              ],
+            );
+          } else {
+            // Return null or handle another case if needed
+            return SizedBox.shrink();
+          }
+        }),
         Spacer(),
         DefaultButton(
           onTap: controller.nextStep,

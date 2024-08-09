@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
+import 'package:manzon/presentation/widgets/tiles/verification_tiles.dart';
 import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
 
 class VerificationScreen extends StatelessWidget {
@@ -18,96 +19,71 @@ class VerificationScreen extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Text(
-                  '${controller.tontineNameController.text}/Semaine',
-                  style: getBoldStyle(
+                VerificationTile(
+                  title:
+                      '${controller.individualAmountController.text}/${controller.contributionFrequency.value.toShortString()}',
+                  subtitle: '${controller.selectedMembers.length} Membres',
+                  titleStyle: getBoldStyle(
                       color: AppColors.primaryNormal, fontSize: FontSize.s20),
-                ),
-                SizedBox(height: AppSize.s10),
-                Text(
-                  '${controller.selectedMembers.length} Membres',
-                  style: getRegularStyle(
+                  subtitleStyle: getRegularStyle(
                       color: AppColors.blackNormal, fontSize: FontSize.s16),
                 ),
               ],
             ),
           ),
-          SizedBox(height: AppSize.s40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Montant individuel',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-              Text(
-                '${controller.individualAmountController.text} FCFA',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-            ],
+          Expanded(
+            child: ListView(
+              children: [
+                VerificationTile(
+                  title: 'Montant individuel',
+                  subtitle:
+                      '${controller.individualAmountController.text} FCFA',
+                  titleStyle: getRegularStyle(
+                    color: AppColors.fontLightDisabled,
+                    fontSize: FontSize.s16,
+                  ),
+                  subtitleStyle: getRegularStyle(
+                      color: AppColors.blackNormal, fontSize: FontSize.s14),
+                ),
+                SizedBox(height: AppSize.s20),
+                VerificationTile(
+                  title: 'Amande',
+                  subtitle: '${controller.penaltyAmountController.text} FCFA',
+                  titleStyle: getRegularStyle(
+                    color: AppColors.fontLightDisabled,
+                    fontSize: FontSize.s16,
+                  ),
+                  subtitleStyle: getRegularStyle(
+                      color: AppColors.blackNormal, fontSize: FontSize.s14),
+                ),
+                SizedBox(height: AppSize.s20),
+                VerificationTile(
+                  title: 'Fréquence de bouffe',
+                  subtitle:
+                      'Tous les ${controller.receiverFrequency.value.toShortString()}',
+                  titleStyle: getRegularStyle(
+                    color: AppColors.fontLightDisabled,
+                    fontSize: FontSize.s16,
+                  ),
+                  subtitleStyle: getRegularStyle(
+                      color: AppColors.blackNormal, fontSize: FontSize.s14),
+                ),
+                SizedBox(height: AppSize.s20),
+                VerificationTile(
+                  title: 'Fréquence de contribution',
+                  subtitle:
+                      'Tous les ${controller.contributionFrequency.value.toShortString()}',
+                  titleStyle: getRegularStyle(
+                    color: AppColors.fontLightDisabled,
+                    fontSize: FontSize.s16,
+                  ),
+                  subtitleStyle: getRegularStyle(
+                      color: AppColors.blackNormal, fontSize: FontSize.s14),
+                ),
+                SizedBox(height: AppSize.s20),
+              ],
+            ),
           ),
-          SizedBox(height: AppSize.s20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Amande',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-              Text(
-                '${controller.penaltyAmountController.text}%',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-            ],
-          ),
-          SizedBox(height: AppSize.s20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Fréquence de bouffe',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-              Text(
-                controller.receiverFrequency.value == ReceiverFrequency.monthly
-                    ? 'Tous les mois'
-                    : controller.receiverFrequency.value ==
-                            ReceiverFrequency.biMonthly
-                        ? 'Tous les deux mois'
-                        : 'Tous les trimestres',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-            ],
-          ),
-          SizedBox(height: AppSize.s20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Fréquence de contribution',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-              Text(
-                controller.contributionFrequency.value ==
-                        ContributionFrequency.weekly
-                    ? 'Toutes les semaines'
-                    : controller.contributionFrequency.value ==
-                            ContributionFrequency.biWeekly
-                        ? 'Toutes les deux semaines'
-                        : 'Tous les mois',
-                style: getRegularStyle(
-                    color: AppColors.blackNormal, fontSize: FontSize.s16),
-              ),
-            ],
-          ),
-          Spacer(),
           DefaultButton(
             onTap: controller.createTontine,
             backgroundColor: AppColors.primaryNormal,
