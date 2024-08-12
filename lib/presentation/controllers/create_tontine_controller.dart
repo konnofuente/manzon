@@ -7,6 +7,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
+import 'package:manzon/infrastructure/mappers/member_mapper.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.dart';
@@ -100,7 +101,9 @@ class CreateTontineController extends GetxController {
         id: Uuid().v4(),
         name: contact.displayName ?? '',
         role: 'Member',
-        userId: contact.identifier ?? '',
+        userId: contact.phones?.isNotEmpty ?? false
+            ? contact.phones!.first.value!
+            : contact.identifier!,
         phoneNumber: contact.phones?.isNotEmpty ?? false
             ? contact.phones!.first.value!
             : '',
@@ -191,23 +194,47 @@ class CreateTontineController extends GetxController {
     receiverFrequency.value = value;
   }
 
-  void createTontine() async {
+void createTontine() async {
     final tontine = TontineModel(
       id: Uuid().v4(),
       name: tontineNameController.text,
       contributionAmount: double.parse(individualAmountController.text),
       contributionFrequency: contributionFrequency.value,
       receiverFrequency: receiverFrequency.value,
-      members: selectedMembers.map((e) => e as MemberModel).toList(),
+      members: selectedMembers.map((e) => MemberMapper.toModel(e)).toList(),
       membersId: selectedMembers.map((m) => m.id).toList(),
-      orderList: selectedMembers.map((e) => e as MemberModel).toList(),
+      orderList: selectedMembers.map((e) => MemberMapper.toModel(e)).toList(),
       cycles: [],
       associationId: 'association_id', // Replace with actual association ID
       cycleDuration: 4, // Example value, replace with actual cycle duration
       currentCycle: 0,
     );
 
-    await tontineDataSource.addTontine(tontine);
-    Get.back();
+    // Printing all tontine values for debugging
+    print('Tontine Values:');
+    print('ID: ${tontine.id}');
+    print('Name: ${tontine.name}');
+    print('Contribution Amount: ${tontine.contributionAmount}');
+    print('Contribution Frequency: ${tontine.contributionFrequency}');
+    print('Receiver Frequency: ${tontine.receiverFrequency}');
+    print('Members: ${tontine.members}');
+    print('Members ID: ${tontine.membersId}');
+    print('Order List: ${tontine.orderList}');
+    print('Cycles: ${tontine.cycles}');
+    print('Association ID: ${tontine.associationId}');
+    print('Cycle Duration: ${tontine.cycleDuration}');
+    print('Current Cycle: ${tontine.currentCycle}');
+
+  try {
+      await tontineDataSource.addTontine(tontine);
+      ToastUtils.showSuccess(Get.context!, "Tontine", "Your Tontine was successfully created");
+  } catch (e) {
+      // Handle any exceptions that occur during the execution of the code inside the try block
+      print('Error: $e');
+      ToastUtils.showError(Get.context!, "Error", "An error occurred while creating the Tontine");
   }
+  
+    Get.toNamed(AppRouteNames.associationPage);
+}
+
 }
