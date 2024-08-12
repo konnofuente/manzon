@@ -23,6 +23,7 @@ class AppBindings extends Bindings {
     final associationDataSource = AssociationDataSource();
     final mediaDataSource = MediaDataSource();
     final userDataSource = UserDataSource();
+    Get.put(ModifyAssociationController(associationDataSource));
 
     //repository
     final associationRepositoryImp =
