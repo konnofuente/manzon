@@ -28,7 +28,7 @@ class SplashController extends GetxController {
   }
 
   void startTimer() {
-    Timer(const Duration(seconds: DurationConstant.s3), () {
+    Timer(const Duration(seconds: DurationConstant.s2), () {
       _checkAuthStatus();
     });
   }

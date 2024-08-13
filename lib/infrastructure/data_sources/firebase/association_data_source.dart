@@ -62,32 +62,29 @@ class AssociationDataSource {
     }
   }
 
+  Future<List<AssociationModel>> getUserAssociations() async {
+    try {
+      String? userId = _firebaseAuth.currentUser?.uid;
 
+      if (userId == null) {
+        throw Exception('User ID is null');
+      }
 
+      final querySnapshot =
+          await associationRef.where('membersId', arrayContains: userId).get();
 
-Future<List<AssociationModel>> getUserAssociations() async {
-  try {
-    String? userId = _firebaseAuth.currentUser?.uid;
-    
-    if (userId == null) {
-      throw Exception('User ID is null');
+      final userAssociations = querySnapshot.docs.map((doc) {
+        return doc.data();
+      }).toList();
+
+      log('this is the number of asso ${userAssociations.length}');
+
+      return userAssociations;
+    } catch (e) {
+      print('Failed to get user associations: $e');
+      return [];
     }
-
-    final querySnapshot = await associationRef.where('membersId', arrayContains: userId).get();
-    
-    final userAssociations = querySnapshot.docs.map((doc) {
-      return doc.data();
-    }).toList();
-    
-    log('this is the number of asso ${userAssociations.length}');
-    
-    return userAssociations;
-  } catch (e) {
-    print('Failed to get user associations: $e');
-    return [];
   }
-}
-
 
   Future<AssociationModel?> getAssociationById(String id) async {
     final doc = await associationRef.doc(id).get();

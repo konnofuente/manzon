@@ -1,41 +1,57 @@
 import 'package:equatable/equatable.dart';
+import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class TontineEntity extends Equatable {
-  final String? uniqueId;
+  final String id;
   final String name;
-  final String associationId;
-  final List<String> members;
-  final double balance;
-  final String contributionFrequency;
   final double contributionAmount;
+  final ContributionFrequency contributionFrequency;
+  final ReceiverFrequency receiverFrequency;
+  final List<MemberEntity>? members;
+  final List<String>? membersId;
+  final List<MemberEntity>? orderList;
+  final List<CycleEntity>? cycles;
+  final String associationId;
+  final double? balance;
   final int cycleDuration;
+  final List<String>? transactions;
   final int currentCycle;
-  final List<String> transactions;
+  final double? penaltyAmount; // Added penaltyAmount
 
   TontineEntity({
-    this.uniqueId,
+    required this.id,
+    this.membersId,
     required this.name,
-    required this.associationId,
-    required this.members,
-    required this.balance,
-    required this.contributionFrequency,
     required this.contributionAmount,
+    required this.contributionFrequency,
+    required this.receiverFrequency,
+    required this.members,
+    this.orderList,
+    this.cycles,
+    required this.associationId,
+    this.balance,
     required this.cycleDuration,
+    this.transactions,
     required this.currentCycle,
-    required this.transactions,
+    this.penaltyAmount, // Initialize penaltyAmount, defaulted to null
   });
 
   @override
   List<Object?> get props => [
-        uniqueId,
+        id,
         name,
-        associationId,
-        members,
-        balance,
-        contributionFrequency,
         contributionAmount,
+        contributionFrequency,
+        receiverFrequency,
+        members,
+        membersId,
+        orderList,
+        cycles,
+        associationId,
+        balance,
         cycleDuration,
-        currentCycle,
         transactions,
+        currentCycle,
+        penaltyAmount, // Include penaltyAmount in props
       ];
 }

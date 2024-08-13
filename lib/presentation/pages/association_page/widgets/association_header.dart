@@ -26,12 +26,14 @@ class AssociationHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
-                icon: const Icon(Icons.arrow_back, color: AppColors.blackNormal),
+                icon:
+                    const Icon(Icons.arrow_back, color: AppColors.blackNormal),
                 onPressed: () => Get.back(),
               ),
               ClipOval(
                 child: FadeInImage.assetNetwork(
-                  placeholder: ImageAssets.peigne1, // Add your placeholder image here
+                  placeholder:
+                      ImageAssets.peigne1, // Add your placeholder image here
                   image: imageUrl, // Dynamic URL passed as a prop
                   width: AppSize.s60,
                   height: AppSize.s60,
@@ -61,7 +63,7 @@ class AssociationHeader extends StatelessWidget {
                     ),
                     // SizedBox(height: 4),
                     Text(
-                      '${'created_on.tr'} $createdDate', // Dynamic createdDate passed as a prop
+                      '${'created_on'.tr} $createdDate', // Dynamic createdDate passed as a prop
                       style: getMediumStyle(
                         color: AppColors.grayNormal,
                         fontSize: FontSize.s12,
@@ -78,7 +80,7 @@ class AssociationHeader extends StatelessWidget {
                   print(result);
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                   PopupMenuItem<String>(
+                  PopupMenuItem<String>(
                     value: 'Details de l’’association',
                     child: Text('association_details'.tr),
                   ),

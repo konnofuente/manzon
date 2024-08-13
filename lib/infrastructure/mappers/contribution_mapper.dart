@@ -1,12 +1,10 @@
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
 
-
-
-
 class ContributionMapper {
-  static ContributionModel toModel(ContributionEntity contributionEntity) {
-    return ContributionModel(
+  static AssociationContributionModel toModel(
+      AssociationContributionEntity contributionEntity) {
+    return AssociationContributionModel(
       id: contributionEntity.id,
       name: contributionEntity.name,
       associationId: contributionEntity.associationId,
@@ -20,8 +18,9 @@ class ContributionMapper {
     );
   }
 
-  static ContributionEntity toEntity(ContributionModel contributionModel) {
-    return ContributionEntity(
+  static AssociationContributionEntity toEntity(
+      AssociationContributionModel contributionModel) {
+    return AssociationContributionEntity(
       id: contributionModel.id,
       name: contributionModel.name,
       associationId: contributionModel.associationId,

@@ -8,6 +8,9 @@ import 'package:manzon/presentation/pages/onboarding/onboarding_view.dart';
 import 'package:manzon/presentation/pages/auth/register/register_view.dart';
 import 'package:manzon/presentation/pages/auth/user_role/user_role_view.dart';
 import 'package:manzon/presentation/pages/association_page/association_page.dart';
+import 'package:manzon/presentation/pages/create_tontine/create_tontine_page.dart';
+import 'package:manzon/presentation/pages/modify_association/modify_association_page.dart';
+import 'package:manzon/presentation/pages/create_tontine/pages/select_tontine_members.dart';
 import 'package:manzon/presentation/pages/create_association/export_create_association.dart';
 
 
@@ -23,5 +26,9 @@ class AppRoutes {
     GetPage(name: AppRouteNames.createAssociation, page: () => CreateAssociation()),
     GetPage(name: AppRouteNames.createAssociationLoader, page: () => CreateAssociationLoading()),
     GetPage(name: AppRouteNames.associationPage, page: () => AssociationPage()),
+    GetPage(name: AppRouteNames.createTontinePage, page: () => CreateTontinePage()),
+    GetPage(name: AppRouteNames.createTontinePage, page: () => CreateTontinePage()),
+    GetPage(name: AppRouteNames.selectTontineMember, page: () => SelectTontineMembers()),
+    GetPage(name: AppRouteNames.modifyAssociation, page: () => ModifyAssociationPage()),
   ];
 }

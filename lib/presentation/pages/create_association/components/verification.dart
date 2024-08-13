@@ -2,12 +2,10 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
-import 'package:manzon/app/config/theme/app_colors.dart';
-import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/presentation/widgets/list_title.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
-import 'package:manzon/app/core/utils/constants/value_manager.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';
+import 'package:manzon/presentation/widgets/tiles/verification_tiles.dart';
 import 'package:manzon/presentation/controllers/create_association_controller.dart';
 
 class Verification extends StatelessWidget {
@@ -29,14 +27,14 @@ class Verification extends StatelessWidget {
           SizedBox(
             height: AppSize.s24,
           ),
-          // Display the summary of entered data
           Expanded(
             child: Container(
-              height: ScreenSize.blockSizeVertical * 20,
+              height: ScreenSize.blockSizeVertical * 15,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.circular(AppSize.s8),
+                borderRadius: BorderRadius.circular(
+                    50.0), 
               ),
               child: controller.imagePath.value.isEmpty
                   ? SizedBox.shrink()
@@ -46,22 +44,46 @@ class Verification extends StatelessWidget {
                     ),
             ),
           ),
+
+          SizedBox(
+            height: AppSize.s24,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTitle(
-                  title: 'name'.tr,
-                  value: controller.associationNameController.text),
-              ListTitle(
-                  title: 'location'.tr,
-                  value:
-                      '${controller.headquaterTownController.text}, ${controller.headquaterLocationController.text}'),
-              ListTitle(
-                  title: 'meeting_frequency'.tr,
-                  value: '${controller.meetingFrequency.value} fois par mois'),
-              ListTitle(
-                  title: 'meeting_days'.tr,
-                  value: controller.meetingDays.join(', ')),
+              VerificationTile(
+                title: controller.associationNameController.text,
+                subtitle: '0 Members',
+                titleStyle: getBoldStyle(
+                    color: AppColors.primaryNormal, fontSize: FontSize.s20),
+                subtitleStyle: getRegularStyle(
+                    color: AppColors.blackNormal, fontSize: FontSize.s16),
+              ),
+              VerificationTile(
+                title: 'created_on'.tr,
+                subtitle:
+                    '${controller.headquaterTownController.text}, ${controller.headquaterLocationController.text}',
+                titleStyle: getRegularStyle(
+                    color: AppColors.fontDarkSecondary, fontSize: FontSize.s16),
+                subtitleStyle: getRegularStyle(
+                    color: AppColors.blackNormal, fontSize: FontSize.s16),
+              ),
+              VerificationTile(
+                title: 'meeting_frequency'.tr,
+                subtitle: '${controller.meetingFrequency.value} fois par mois',
+                titleStyle: getRegularStyle(
+                    color: AppColors.fontDarkSecondary, fontSize: FontSize.s16),
+                subtitleStyle: getRegularStyle(
+                    color: AppColors.blackNormal, fontSize: FontSize.s16),
+              ),
+              VerificationTile(
+                title: 'office_days'.tr,
+                subtitle: controller.meetingDays.join(', '),
+                titleStyle: getRegularStyle(
+                    color: AppColors.fontDarkSecondary, fontSize: FontSize.s16),
+                subtitleStyle: getRegularStyle(
+                    color: AppColors.blackNormal, fontSize: FontSize.s16),
+              ),
             ],
           ),
 

@@ -4,14 +4,14 @@ import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 
-class SelectContactsView extends StatelessWidget {
+class SelectContactsPage extends StatelessWidget {
   final AssociationController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Contacts'),
+        title:  Text('select_contacts_page'.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -22,25 +22,26 @@ class SelectContactsView extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
-                  hintText: 'Search',
+                  hintText: 'search'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 onChanged: (value) {
-                  // Implement search logic if needed
+                  controller.searchQuery.value =
+                      value; // Bind search input to controller
                 },
               ),
             ),
             Expanded(
               child: Obx(() {
                 if (controller.contacts.isEmpty) {
-                  return Center(
+                  return  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Loading contacts...',
+                          'loading_contacts'.tr,
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                         SizedBox(height: 20), // space between text and loader
@@ -50,22 +51,30 @@ class SelectContactsView extends StatelessWidget {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount: controller.contacts.length,
+                    itemCount: controller
+                        .filteredContacts.length, // Use filtered contacts
                     itemBuilder: (context, index) {
-                      final contact = controller.contacts[index];
+                      final contact = controller.filteredContacts[index];
                       return ListTile(
-                        leading: CircleAvatar(
+                        leading: const CircleAvatar(
                           backgroundColor: AppColors.grayNormal,
-                          child: Icon(Icons.person, color: AppColors.grayNormal),
+                          child:
+                              Icon(Icons.person, color: AppColors.grayNormal),
                         ),
                         title: Text(contact.displayName ?? '',
                             style: getBoldStyle(
-                                color: AppColors.blackNormal, fontSize: FontSize.s16)),
-                        subtitle: Text(contact.phones?.isNotEmpty ?? false ? contact.phones!.first.value! : '',
+                                color: AppColors.blackNormal,
+                                fontSize: FontSize.s16)),
+                        subtitle: Text(
+                            contact.phones?.isNotEmpty ?? false
+                                ? contact.phones!.first.value!
+                                : '',
                             style: getRegularStyle(
-                                color: AppColors.grayNormal, fontSize: FontSize.s14)),
+                                color: AppColors.grayNormal,
+                                fontSize: FontSize.s14)),
                         trailing: Obx(() {
-                          final isSelected = controller.selectedContacts.contains(contact);
+                          final isSelected =
+                              controller.selectedContacts.contains(contact);
                           return Checkbox(
                             value: isSelected,
                             onChanged: (bool? value) {
@@ -86,10 +95,10 @@ class SelectContactsView extends StatelessWidget {
             DefaultButton(
               onTap: () {
                 controller.addSelectedContactsToMembers();
-                Get.back();
+                // Get.back();
               },
               backgroundColor: AppColors.primaryNormal,
-              text: 'Enregistrer',
+              text: 'enregistrer'.tr,
               width: double.infinity,
               fontWeight: FontWeight.w600,
               borderRadius: 50.0,

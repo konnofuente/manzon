@@ -99,8 +99,52 @@
    "invite_description": "For people who cannot be contacted by phone number",
    "url": "https://manzon/1000Fcfa/week",
    "copied_to_clipboard": "Copied to clipboard",
-   "copy": "Copy"
+   "copy": "Copy",
 
 
+   "search": "Search",
+   "no_member_selected": "No member selected.",
+   "enter_the_rank_for_each_member": "Enter each member's collection rank",
+   "ranking": "Ranking",
+   "what_is_the_name_of_the_tontine": "What is the name of the tontine?",
+   "food_frequency": "Food Frequency",
+
+   
+
+   "select_contacts_page": "Select Contacts",
+   "loading_contacts": "Loading contacts...",
+   "enregistrer": "Enregistrer",
+   "office_days": "Office Days",
+   "financial_information": "Financial Information",
+   "enter_tontine_financial_information": "Enter financial information for the tontine",
+   "individual_amount": "Individual amount",
+   "fine_type": "Type of fine",
+   "fixed_amount": "Fixed amount",
+   "percentage": "Percentage",
+   "enter_percentage": "Enter the percentage",
+   "enter_amount": "Enter the amount",
+   "creating_tontine": "Creating Tontine",
+   "enter_the_rank_of_food_for_each_member": "Enter the rank of food for each member",
+
+   "monthly": "Chaque mois",
+   "bi_monthly": "Chaque 2 mois",
+   "basic_information": "Basic Information",
+   "enter_the_basic_information_of_the_tontine": "Enter the basic information of the tontine",
+   "what_is_the_tontine_name": "What is the tontine name?",
+   "number_of_member": "Number of members",
+   "every_week": "Every week",
+   "every_2_weeks": "Every 2 weeks",
+   "every_month": "Every month",
+   "every_2_months": "Every 2 months",
+   "fine": "Fine",
+   "collection_frequency": "Collection Frequency",
+   "contribution_frequency": "Contribution Frequency"
+
+
+
+  
+  
 
 }
+
+

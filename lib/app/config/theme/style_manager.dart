@@ -12,13 +12,13 @@ TextStyle _getTextStyle(
 }
 
 TextStyle getRegularStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.regular, color);
 }
 
 TextStyle getLightStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.light, color);
 }
@@ -30,25 +30,25 @@ TextStyle getBoldStyle(
 }
 
 TextStyle getSemiBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.semiBold, color);
 }
 
 TextStyle getMediumStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.medium, color);
 }
 
 TextStyle getExtraBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.extraBold, color);
 }
 
 TextStyle getBlackStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.black, color);
 }
