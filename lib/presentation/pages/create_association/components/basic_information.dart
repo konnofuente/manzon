@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:manzon/app/core/helpers/keyboard.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
-import 'package:manzon/app/config/theme/app_colors.dart';
-import 'package:manzon/app/config/theme/style_manager.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/widgets/text_field_widget.dart';
 import 'package:manzon/presentation/widgets/buttons/default_button.dart';

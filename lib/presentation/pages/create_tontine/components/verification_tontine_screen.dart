@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/app/core/utils/enums/button_status.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
-import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/presentation/widgets/tiles/verification_tiles.dart';
 import 'package:manzon/presentation/controllers/create_tontine_controller.dart';
 
@@ -35,7 +35,7 @@ class VerificationScreen extends StatelessWidget {
             child: ListView(
               children: [
                 VerificationTile(
-                  title: 'Montant individuel',
+                  title: 'individual_amount'.tr,
                   subtitle:
                       '${controller.individualAmountController.text} FCFA',
                   titleStyle: getRegularStyle(
@@ -47,7 +47,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSize.s20),
                 VerificationTile(
-                  title: 'Amande',
+                  title: 'fine'.tr,
                   subtitle: '${controller.penaltyAmountController.text} FCFA',
                   titleStyle: getRegularStyle(
                     color: AppColors.fontLightDisabled,
@@ -58,7 +58,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSize.s20),
                 VerificationTile(
-                  title: 'Fréquence de bouffe',
+                  title: 'collection_frequency'.tr,
                   subtitle:
                       'Tous les ${controller.receiverFrequency.value.toShortString()}',
                   titleStyle: getRegularStyle(
@@ -70,7 +70,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSize.s20),
                 VerificationTile(
-                  title: 'Fréquence de contribution',
+                  title: 'contribution_frequency'.tr,
                   subtitle:
                       'Tous les ${controller.contributionFrequency.value.toShortString()}',
                   titleStyle: getRegularStyle(
@@ -84,14 +84,16 @@ class VerificationScreen extends StatelessWidget {
               ],
             ),
           ),
-          DefaultButton(
+          Obx(() => DefaultButton(
             onTap: controller.createTontine,
+            status: controller.isCreatingTontine.value ? ButtonState.loading : ButtonState.enable, // Update ButtonState as needed
             backgroundColor: AppColors.primaryNormal,
-            text: 'Créer la tontine',
+            text: 'create_tontine'.tr,
             width: double.infinity,
             fontWeight: FontWeight.w600,
             borderRadius: 50.0,
-          ),
+          )),
+          
         ],
       ),
     );

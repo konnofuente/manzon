@@ -63,7 +63,7 @@ class AssociationHeader extends StatelessWidget {
                     ),
                     // SizedBox(height: 4),
                     Text(
-                      '${'created_on.tr'} $createdDate', // Dynamic createdDate passed as a prop
+                      '${'created_on'.tr} $createdDate', // Dynamic createdDate passed as a prop
                       style: getMediumStyle(
                         color: AppColors.grayNormal,
                         fontSize: FontSize.s12,

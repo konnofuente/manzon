@@ -20,14 +20,14 @@ class _OrderMembersState extends State<OrderMembers> {
     return Scaffold(
       body: Column(
         children: [
-          const StepInformation(
-            title: 'Creating Tontine',
-            description: 'Enter the rank of food for each member',
+           StepInformation(
+            title: 'ranking'.tr,
+            description: 'enter_the_rank_for_each_member'.tr,
           ),
           TextField(
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
-              hintText: 'Rechercher',
+              hintText: 'search'.tr,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
@@ -40,9 +40,9 @@ class _OrderMembersState extends State<OrderMembers> {
           Expanded(
             child: Obx(() {
               if (controller.selectedMembers.isEmpty) {
-                return const Center(
+                return  Center(
                   child: Text(
-                    'Aucun membre sélectionné.',
+                    'no_member_selected'.tr,
                     style: TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                 );
@@ -102,7 +102,7 @@ class _OrderMembersState extends State<OrderMembers> {
               onTap: controller.validateOrder() ? controller.nextStep : null,
               status: controller.orderVerficication.value ? ButtonState.enable : ButtonState.disable,
               backgroundColor: AppColors.primaryNormal,
-              text: 'Continuer',
+              text: 'continue'.tr,
               width: double.infinity,
               fontWeight: FontWeight.w600,
               borderRadius: 50.0,

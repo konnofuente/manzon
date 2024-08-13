@@ -103,5 +103,46 @@
   "invite_description": "Pour les personnes qui n'ont pas la possibilité d'être contacté par numéro de téléphone",
   "url": "https://manzon/1000Fcfa/semaine",
   "copied_to_clipboard": "Copié dans le presse-papiers",
-  "copy": "Copier"
+  "copy": "Copier",
+
+  "search": "Rechercher",
+  "no_member_selected": "Aucun membre sélectionné.",
+  "enter_the_rank_for_each_member": "Enter each member's collection rank",
+  "ranking":"Ranking",
+  "what_is_the_name_of_the_tontine": "Quel est le nom de la tontine?",
+  "food_frequency": "Frequence de Bouffe",
+
+
+
+      "select_contacts_page": "Sélectionner des contacts",
+      "loading_contacts": "Chargement des contacts...",
+      "enregistrer": "Enregistrer",
+      "office_days": "Jours de bureau",
+      "financial_information": "Informations financières",
+      "enter_tontine_financial_information": "Entrez les informations financières pour la tontine",
+      "individual_amount": "Montant individuel",
+      "fine_type": "Type d'amende",
+      "fixed_amount": "Montant fixe",
+      "percentage": "Pourcentage",
+      "enter_percentage": "Entrer le pourcentage",
+      "enter_amount": "Entrer le montant",
+      "creating_tontine": "Création de la tontine",
+      "enter_the_rank_of_food_for_each_member": "Entrez le rang de nourriture pour chaque membre",
+  
+      "monthly": "Chaque mois",
+      "bi_monthly": "Chaque 2 mois",
+      "basic_information": "Informations de base",
+      "enter_the_basic_information_of_the_tontine": "Entrez les informations de base de la tontine",
+      "what_is_the_tontine_name": "Quel est le nom de la tontine?",
+      "number_of_member": "Nombre de membres",
+      "every_week": "Chaque semaine",
+      "every_2_weeks": "Toutes les 2 semaines",
+      "every_month": "Chaque mois",
+      "every_2_months": "Chaque 2 mois",
+      "fine": "Amende",
+      "collection_frequency": "Fréquence de collecte",
+      "contribution_frequency": "Fréquence de contribution"
+
+  
+
 }

@@ -22,6 +22,7 @@ class CreateTontineController extends GetxController {
   var filteredContacts = <Contact>[].obs;
   var selectedContacts = <Contact>[].obs;
   final RxBool orderVerficication = true.obs;
+  var isCreatingTontine = false.obs;
 
   // Step 1: Select Members
   final RxList<MemberEntity> selectedMembers = <MemberEntity>[].obs;
@@ -194,7 +195,7 @@ class CreateTontineController extends GetxController {
     receiverFrequency.value = value;
   }
 
-void createTontine() async {
+  void createTontine() async {
     final tontine = TontineModel(
       id: Uuid().v4(),
       name: tontineNameController.text,
@@ -205,36 +206,24 @@ void createTontine() async {
       membersId: selectedMembers.map((m) => m.id).toList(),
       orderList: selectedMembers.map((e) => MemberMapper.toModel(e)).toList(),
       cycles: [],
-      associationId: 'association_id', // Replace with actual association ID
-      cycleDuration: 4, // Example value, replace with actual cycle duration
+      associationId: 'association_id',
+      cycleDuration: 4,
       currentCycle: 0,
     );
 
-    // Printing all tontine values for debugging
-    print('Tontine Values:');
-    print('ID: ${tontine.id}');
-    print('Name: ${tontine.name}');
-    print('Contribution Amount: ${tontine.contributionAmount}');
-    print('Contribution Frequency: ${tontine.contributionFrequency}');
-    print('Receiver Frequency: ${tontine.receiverFrequency}');
-    print('Members: ${tontine.members}');
-    print('Members ID: ${tontine.membersId}');
-    print('Order List: ${tontine.orderList}');
-    print('Cycles: ${tontine.cycles}');
-    print('Association ID: ${tontine.associationId}');
-    print('Cycle Duration: ${tontine.cycleDuration}');
-    print('Current Cycle: ${tontine.currentCycle}');
-
-  try {
+    try {
+      isCreatingTontine.value = true;
       await tontineDataSource.addTontine(tontine);
-      ToastUtils.showSuccess(Get.context!, "Tontine", "Your Tontine was successfully created");
-  } catch (e) {
-      // Handle any exceptions that occur during the execution of the code inside the try block
+      isCreatingTontine.value = false;
+      ToastUtils.showSuccess(
+          Get.context!, "Tontine", "Your Tontine was successfully created");
+    } catch (e) {
       print('Error: $e');
-      ToastUtils.showError(Get.context!, "Error", "An error occurred while creating the Tontine");
-  }
-  
-    Get.toNamed(AppRouteNames.associationPage);
-}
+      isCreatingTontine.value = false;
+      ToastUtils.showError(Get.context!, "Error",
+          "An error occurred while creating the Tontine");
+    }
 
+    Get.toNamed(AppRouteNames.associationPage);
+  }
 }

@@ -11,7 +11,7 @@ class SelectContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Contacts'),
+        title:  Text('select_contacts_page'.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -22,7 +22,7 @@ class SelectContactsPage extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
-                  hintText: 'Search',
+                  hintText: 'search'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -36,12 +36,12 @@ class SelectContactsPage extends StatelessWidget {
             Expanded(
               child: Obx(() {
                 if (controller.contacts.isEmpty) {
-                  return const Center(
+                  return  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Loading contacts...',
+                          'loading_contacts'.tr,
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                         SizedBox(height: 20), // space between text and loader
@@ -98,7 +98,7 @@ class SelectContactsPage extends StatelessWidget {
                 // Get.back();
               },
               backgroundColor: AppColors.primaryNormal,
-              text: 'Enregistrer',
+              text: 'enregistrer'.tr,
               width: double.infinity,
               fontWeight: FontWeight.w600,
               borderRadius: 50.0,

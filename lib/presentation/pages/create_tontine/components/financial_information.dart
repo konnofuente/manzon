@@ -14,11 +14,11 @@ class FinancialInformation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const StepInformation(
-          title: 'Informations financieres',
-          description: 'Entrer les informations financieres de la tontine',
+         StepInformation(
+          title: 'financial_information'.tr,
+          description: 'enter_tontine_financial_information'.tr,
         ),
-        Text('Montant individuel',
+        Text('individual_amount'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         const SizedBox(
@@ -32,7 +32,7 @@ class FinancialInformation extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: false,
         ),
-        Text('Type d\'amande',
+        Text('fine_type'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         Container(
@@ -51,7 +51,7 @@ class FinancialInformation extends StatelessWidget {
                             controller.updatePenaltyType(value!);
                           },
                         ),
-                        Text('Montant fixe'),
+                        Text('fixed_amount'.tr),
                       ],
                     ),
                   ),
@@ -65,7 +65,7 @@ class FinancialInformation extends StatelessWidget {
                             controller.updatePenaltyType(value!);
                           },
                         ),
-                        Text('Pourcentage'),
+                        Text('percentage'.tr),
                       ],
                     ),
                   ),
@@ -79,7 +79,7 @@ class FinancialInformation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Entrer le pourcentage',
+                  'enter_percentage'.tr,
                   style: getMediumStyle(
                     color: AppColors.blackNormal,
                     fontSize: FontSize.s16,
@@ -88,7 +88,7 @@ class FinancialInformation extends StatelessWidget {
                 SizedBox(height: AppSize.s8),
                 TextFieldWidget(
                   prefixIcon: Icons.percent,
-                  hintText: "Entrer le pourcentage".tr,
+                  hintText: "enter_percentage".tr,
                   controller: controller.penaltyAmountController,
                   isPassword: false,
                   keyboardType: TextInputType.number,
@@ -101,7 +101,7 @@ class FinancialInformation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Entrer le montant',
+                  'enter_amount'.tr,
                   style: getMediumStyle(
                     color: AppColors.blackNormal,
                     fontSize: FontSize.s16,
@@ -110,7 +110,7 @@ class FinancialInformation extends StatelessWidget {
                 SizedBox(height: AppSize.s8),
                 TextFieldWidget(
                   prefixIcon: Icons.attach_money,
-                  hintText: "Entrer le montant".tr,
+                  hintText: "enter_amount".tr,
                   controller: controller.penaltyAmountController,
                   isPassword: false,
                   keyboardType: TextInputType.number,
@@ -127,7 +127,7 @@ class FinancialInformation extends StatelessWidget {
         DefaultButton(
           onTap: controller.nextStep,
           backgroundColor: AppColors.primaryNormal,
-          text: 'Continuer',
+          text: 'continue'.tr,
           width: double.infinity,
           fontWeight: FontWeight.w600,
           borderRadius: 50.0,

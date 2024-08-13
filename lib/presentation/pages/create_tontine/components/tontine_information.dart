@@ -19,14 +19,14 @@ class _TontineInformationState extends State<TontineInformation> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const StepInformation(
-          title: 'Creating Tontine',
-          description: 'Enter the rank of food for each member',
+         StepInformation(
+          title: 'basic_information'.tr,
+          description: 'enter_the_basic_information_of_the_tontine'.tr,
         ),
         SizedBox(
           height: AppSize.s12,
         ),
-        Text('Quel est le nom de la tontine?',
+        Text('what_is_the_tontine_name'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         const SizedBox(
@@ -34,13 +34,13 @@ class _TontineInformationState extends State<TontineInformation> {
         ),
         TextFieldWidget(
           prefixIcon: Icons.location_city,
-          hintText: "Nom de la tontine".tr,
+          hintText: "name".tr,
           controller: controller.tontineNameController,
           isPassword: false,
           keyboardType: TextInputType.text,
           readOnly: false,
         ),
-        Text('Nombre de membre',
+        Text('number_of_member'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         const SizedBox(
@@ -54,7 +54,7 @@ class _TontineInformationState extends State<TontineInformation> {
           keyboardType: TextInputType.number,
           readOnly: false,
         ),
-        Text('Frequence de Contribution',
+        Text('contribution_frequency'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         Obx(() {
@@ -69,7 +69,7 @@ class _TontineInformationState extends State<TontineInformation> {
                       controller.updateContributionFrequency(value!);
                     },
                   ),
-                  const Text('Toutes les semaines'),
+                   Text('every_week'.tr),
                 ],
               ),
               Row(
@@ -81,14 +81,14 @@ class _TontineInformationState extends State<TontineInformation> {
                       controller.updateContributionFrequency(value!);
                     },
                   ),
-                  const Text('Chaque 2 semain'),
+                   Text('every_2_weeks'.tr),
                 ],
               ),
             ],
           );
         }),
         SizedBox(height: AppSize.s16),
-        Text('Frequence de Bouffe',
+        Text('collection_frequency'.tr,
             style: getMediumStyle(
                 color: AppColors.blackNormal, fontSize: FontSize.s16)),
         Obx(() {
@@ -103,7 +103,7 @@ class _TontineInformationState extends State<TontineInformation> {
                       controller.updateReceiverFrequency(value!);
                     },
                   ),
-                  Text('Chaque mois'),
+                  Text('every_month'.tr),
                 ],
               ),
               Row(
@@ -115,7 +115,7 @@ class _TontineInformationState extends State<TontineInformation> {
                       controller.updateReceiverFrequency(value!);
                     },
                   ),
-                  Text('Chaque 2 mois'),
+                  Text('every_2_months'.tr),
                 ],
               ),
             ],
@@ -125,7 +125,7 @@ class _TontineInformationState extends State<TontineInformation> {
         DefaultButton(
           onTap: controller.nextStep,
           backgroundColor: AppColors.primaryNormal,
-          text: 'Continuer',
+          text: 'continue'.tr,
           width: double.infinity,
           fontWeight: FontWeight.w600,
           borderRadius: 50.0,

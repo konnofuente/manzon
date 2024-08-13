@@ -21,7 +21,7 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
       appBar: AppBar(
         title: Center(
           child: Text(
-            'Selectioner vos membre',
+            'select_contacts_page'.tr,
             style: getSemiBoldStyle(
               color: AppColors.blackNormal,
               fontSize: FontSize.s18,
@@ -52,12 +52,12 @@ class _SelectTontineMembersState extends State<SelectTontineMembers> {
             Expanded(
               child: Obx(() {
                 if (controller.contacts.isEmpty) {
-                  return const Center(
+                  return  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Loading contacts...',
+                          'loading_contacts'.tr,
                           style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                         SizedBox(height: 20),
