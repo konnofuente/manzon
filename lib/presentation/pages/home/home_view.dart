@@ -5,6 +5,7 @@ import '../../widgets/cards/association_card.dart';
 import '../../../app/config/theme/style_manager.dart';
 import 'package:manzon/app/core/utils/screen_util.dart';
 import 'package:manzon/app/config/theme/app_colors.dart';
+import '../../../domain/entities/export_domain_entities.dart';
 import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/home_controller.dart';
@@ -70,12 +71,18 @@ class _HomeViewState extends State<HomeView> {
                   return ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) {
+                      AssociationEntity fakeassociation = AssociationEntity(
+                        name: '',
+                        members: [],
+                        headquaterCity: '',
+                        headquaterLocation: '',
+                        avatar: MediaEntity(
+                            link: 'dfdfd', type: FileType.image, mediaId: ''),
+                      );
+
                       return Skeletonizer(
                         child: AssociationCard(
-                          name: '',
-                          description: '',
-                          location: '',
-                          imageUrl: null,
+                          association: fakeassociation,
                           isActive: false,
                         ),
                       );
@@ -95,10 +102,7 @@ class _HomeViewState extends State<HomeView> {
                     itemBuilder: (context, index) {
                       final association = controller.associations[index];
                       return AssociationCard(
-                        name: association.name,
-                        description: 'fake_descrition'.tr,
-                        location: association.headquaterLocation,
-                        imageUrl: association.avatar?.link,
+                        association: association,
                         isActive: index % 2 == 0 ? false : true,
                       );
                     },
