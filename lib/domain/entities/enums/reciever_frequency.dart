@@ -15,4 +15,17 @@ enum ReceiverFrequency {
         return "";
     }
   }
+
+  // Convert enum to JSON
+  String toJson() {
+    return this.toString().split('.').last; // Convert enum to string
+  }
+
+  // Convert JSON to enum
+  static ReceiverFrequency fromJson(String jsonString) {
+    return ReceiverFrequency.values.firstWhere(
+      (e) => e.toString().split('.').last == jsonString,
+      orElse: () => ReceiverFrequency.monthly, // Default value if not found
+    );
+  }
 }

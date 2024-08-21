@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,9 @@ import 'package:manzon/app/core/helpers/export_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:manzon/domain/entities/tontine_entity.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
+import 'package:manzon/presentation/controllers/export_controllers.dart';
+import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.dart';
+
 
 class AssociationController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -17,12 +21,16 @@ class AssociationController extends GetxController
   var selectedContacts = <Contact>[].obs;
   var searchQuery = ''.obs;
   var filteredContacts = <Contact>[].obs;
+    String associationId = '';
+  final TontineDataSource tontineDataSource = TontineDataSource();
 
   @override
   void onInit() {
     super.onInit();
     tabController = TabController(length: 3, vsync: this);
-    _generateFakeTontines();
+     final StateController stateController = Get.find();
+    associationId = stateController.selectedAssociationId.value;
+    fetchTontinesByAssociation(associationId);
     // _generateFakeMembers();
     fetchFakeContributions();
     fetchContacts();
@@ -72,22 +80,14 @@ class AssociationController extends GetxController
     }
   }
 
-  void _generateFakeTontines() {
-    tontines.value = List.generate(15, (index) {
-      return TontineEntity(
-        id: Uuid().v4(),
-        name: 'Tontine ${index + 1}',
-        associationId: 'fake_association_id',
-        membersId: ['user1', 'user2', 'user3'],
-        balance: 100000 * (index + 1).toDouble(),
-        contributionFrequency: ContributionFrequency.monthly,
-        receiverFrequency: ReceiverFrequency.monthly,
-        contributionAmount: 1000 * (index + 1).toDouble(),
-        cycleDuration: 12,
-        currentCycle: index + 1,
-        transactions: [], members: [], 
-      );
-    });
+
+ Future<void> fetchTontinesByAssociation(String associationId) async {
+    try {
+      final tontineList = await tontineDataSource.getTontinesByAssociationId(associationId);
+      tontines.assignAll(tontineList);
+    } catch (e) {
+      log('Error fetching tontines: $e');
+    }
   }
 
   void _generateFakeMembers() {

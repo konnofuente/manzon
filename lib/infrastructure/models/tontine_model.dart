@@ -1,7 +1,6 @@
 import 'member_model.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
-
 class TontineModel extends TontineEntity {
   TontineModel({
     required String id,
@@ -18,7 +17,7 @@ class TontineModel extends TontineEntity {
     required int cycleDuration,
     List<String>? transactions,
     required int currentCycle,
-     double? penaltyAmount,
+    double? penaltyAmount,
   }) : super(
           id: id,
           name: name,
@@ -39,27 +38,33 @@ class TontineModel extends TontineEntity {
 
   factory TontineModel.fromJson(Map<String, dynamic> json) {
     return TontineModel(
-      id: json['id'],
-      name: json['name'],
-      contributionAmount: json['contributionAmount'],
-      contributionFrequency: ContributionFrequency.values[json['contributionFrequency']],
-      receiverFrequency: ReceiverFrequency.values[json['receiverFrequency']],
+      id: json['id'] ?? "",
+      name: json['name'] ?? "",
+      contributionAmount: json['contributionAmount']?.toDouble() ?? 0.0,
+      contributionFrequency: ContributionFrequency.fromJson(
+          json['contributionFrequency'] ?? "weekly"), // Default to weekly
+      receiverFrequency: ReceiverFrequency.fromJson(
+          json['receiverFrequency'] ?? "monthly"), // Default to monthly
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      membersId: (json['membersId'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      orderList: (json['orderList'] as List<dynamic>?)
-          ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      cycles: (json['cycles'] as List<dynamic>?)
-          ?.map((e) => CycleModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      associationId: json['associationId'],
-      balance: json['balance'],
-      cycleDuration: json['cycleDuration'],
-      transactions: (json['transactions'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      currentCycle: json['currentCycle'],
-      penaltyAmount: json['penaltyAmount'],
+      // membersId: (json['membersId'] as List<dynamic>?)
+      //     ?.map((e) => e as String)
+      //     .toList(),
+      // orderList: (json['orderList'] as List<dynamic>?)
+      //     ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
+      //     .toList(),
+      // cycles: (json['cycles'] as List<dynamic>?)
+      //     ?.map((e) => CycleModel.fromJson(e as Map<String, dynamic>))
+      //     .toList(),
+      associationId: json['associationId'] ?? "",
+      balance: json['balance']?.toDouble(),
+      cycleDuration: json['cycleDuration']?.toInt() ?? 0,
+      // transactions: (json['transactions'] as List<dynamic>?)
+      //     ?.map((e) => e as String)
+      //     .toList(),
+      currentCycle: json['currentCycle']?.toInt() ?? 0,
+      penaltyAmount: json['penaltyAmount']?.toDouble(),
     );
   }
 
@@ -68,8 +73,8 @@ class TontineModel extends TontineEntity {
       'id': id,
       'name': name,
       'contributionAmount': contributionAmount,
-      'contributionFrequency': contributionFrequency.index,
-      'receiverFrequency': receiverFrequency.index,
+      'contributionFrequency': contributionFrequency.toJson(), // Use enum toJson method
+      'receiverFrequency': receiverFrequency.toJson(), // Use enum toJson method
       'members': members?.map((e) => (e as MemberModel).toJson()).toList(),
       'membersId': membersId,
       'orderList': orderList?.map((e) => (e as MemberModel).toJson()).toList(),
@@ -104,7 +109,8 @@ class TontineModel extends TontineEntity {
       id: id ?? this.id,
       name: name ?? this.name,
       contributionAmount: contributionAmount ?? this.contributionAmount,
-      contributionFrequency: contributionFrequency ?? this.contributionFrequency,
+      contributionFrequency:
+          contributionFrequency ?? this.contributionFrequency,
       receiverFrequency: receiverFrequency ?? this.receiverFrequency,
       members: members ?? this.members?.map((e) => e as MemberModel).toList(),
       membersId: membersId ?? this.membersId,

@@ -28,6 +28,36 @@ class TontineDataSource {
     contributionRef = _createContributionRef;
   }
 
+  Future<void> addTontine(TontineModel tontineModel) async {
+    await tontineRef.doc(tontineModel.id).set(tontineModel);
+    await _generateCycles(tontineModel);
+    associationDataSource.addTontine(
+        tontineModel.associationId, tontineModel.id);
+  }
+
+
+Future<List<TontineModel>> getTontinesByAssociationId(String associationId) async {
+  try {
+    final querySnapshot = await tontineRef
+        .where('associationId', isEqualTo: associationId)
+        .get();
+
+
+  final tontines = querySnapshot.docs.map((doc) {
+        return doc.data();
+      }).toList();
+
+    log('Fetched tontines for association $associationId: ${tontines.length}');
+    return tontines;
+  } catch (e) {
+    log('Failed to fetch tontines: $e');
+    return [];
+  }
+}
+
+
+
+
   CollectionReference<CycleModel> _createCycleRef(String tontineId) {
     return tontineRef
         .doc(tontineId)
@@ -51,12 +81,7 @@ class TontineDataSource {
         );
   }
 
-  Future<void> addTontine(TontineModel tontineModel) async {
-    await tontineRef.doc(tontineModel.id).set(tontineModel);
-    await _generateCycles(tontineModel);
-    associationDataSource.addTontine(
-        tontineModel.associationId, tontineModel.id);
-  }
+
 
   Future<TontineModel?> getTontineById(String id) async {
     final doc = await tontineRef.doc(id).get();

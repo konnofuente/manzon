@@ -21,6 +21,7 @@ class _TontinesViewState extends State<TontinesView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  
                   const Icon(Icons.money,
                       size: 100, color: AppColors.grayNormal),
                   const SizedBox(height: 16),
@@ -28,6 +29,17 @@ class _TontinesViewState extends State<TontinesView> {
                     'empty_tontine'.tr,
                     style: getRegularStyle(
                         color: AppColors.grayNormal, fontSize: FontSize.s16),
+                  ),
+                  Spacer(),
+                  DefaultButton(
+                    onTap: () {
+                      Get.toNamed(AppRouteNames.selectTontineMember);
+                    },
+                    backgroundColor: AppColors.primaryNormal,
+                    text: 'create_tontine'.tr,
+                    width: double.infinity,
+                    fontWeight: FontWeight.w600,
+                    borderRadius: 50.0,
                   ),
                 ],
               ),
