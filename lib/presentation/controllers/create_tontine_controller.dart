@@ -56,9 +56,9 @@ class CreateTontineController extends GetxController {
     final StateController stateController = Get.find();
     associationId = stateController.selectedAssociationId.value;
     print('this is the assoca if $associationId');
-    if (filteredContacts.isNotEmpty) {
+
       fetchContacts();
-    }
+
     ever(searchQuery, (_) => filterContacts());
   }
 
@@ -111,6 +111,7 @@ class CreateTontineController extends GetxController {
   }
 
   void fetchContacts() async {
+    log('start fetching contant ');
     PermissionStatus permissionStatus = await getContactPermission();
     if (permissionStatus == PermissionStatus.granted) {
       Iterable<Contact> contactsIterable = await ContactsService.getContacts();
@@ -260,7 +261,7 @@ class CreateTontineController extends GetxController {
 
       isCreatingTontine.value = false;
       reset();
-    Get.offAllNamed(AppRouteNames.associationPage);
+      Get.offNamed(AppRouteNames.associationPage);
       ToastUtils.showSuccess(
           Get.context!, "Tontine", "Your Tontine was successfully created");
     } catch (e) {
@@ -269,6 +270,5 @@ class CreateTontineController extends GetxController {
       ToastUtils.showError(Get.context!, "Error",
           "An error occurred while creating the Tontine");
     }
-
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
@@ -6,9 +7,11 @@ import 'package:manzon/infrastructure/mappers/member_mapper.dart';
 import 'package:manzon/app/core/utils/constants/app_api_key.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
+import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data_source.dart';
 
 class TontineDataSource {
   late final CollectionReference<TontineModel> tontineRef;
+   final AssociationDataSource associationDataSource = Get.put(AssociationDataSource());
   late final Function(String) cycleRef;
   late final Function(String, String) contributionRef;
 
@@ -51,6 +54,8 @@ class TontineDataSource {
   Future<void> addTontine(TontineModel tontineModel) async {
     await tontineRef.doc(tontineModel.id).set(tontineModel);
     await _generateCycles(tontineModel);
+    associationDataSource.addTontine(
+        tontineModel.associationId, tontineModel.id);
   }
 
   Future<TontineModel?> getTontineById(String id) async {

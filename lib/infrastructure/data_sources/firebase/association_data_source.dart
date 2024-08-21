@@ -2,9 +2,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:manzon/infrastructure/models/member_model.dart';
 import 'package:manzon/app/core/utils/constants/app_api_key.dart';
-import 'package:manzon/infrastructure/models/association_model.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data_source.dart';
 
@@ -18,7 +16,7 @@ class AssociationDataSource {
       );
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final UserDataSource userDataSource = Get.find();
+  final UserDataSource userDataSource = Get.put(UserDataSource());
 
   Future<AssociationModel> addAssociation(
       AssociationModel associationModel) async {
@@ -58,6 +56,23 @@ class AssociationDataSource {
       }
     } catch (e) {
       log('Failed to add member: $e'); // You can replace this with your preferred error logging method
+      throw Exception('Failed to add member');
+    }
+  }
+
+  Future<void> addTontine(String associationId, String tontineId) async {
+    try {
+      final doc = await associationRef.doc(associationId).get();
+      if (doc.exists) {
+        final association = doc.data();
+        if (association != null) {
+          association.tontines!.add(tontineId);
+          await associationRef.doc(associationId).update(
+              {'tontines': association.tontines!.map((e) => e).toList()});
+        }
+      }
+    } catch (e) {
+      log('Failed to add tontine in association: $e'); // You can replace this with your preferred error logging method
       throw Exception('Failed to add member');
     }
   }

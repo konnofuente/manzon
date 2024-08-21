@@ -96,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Text(
                       'no_associations_created'.tr,
                       style: getRegularStyle(
-                          color: AppColors.blackLight, fontSize: FontSize.s18),
+                          color: AppColors.blackNormal, fontSize: FontSize.s18),
                     ),
                   );
                 } else {

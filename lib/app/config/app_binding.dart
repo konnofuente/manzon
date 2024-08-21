@@ -13,9 +13,9 @@ class AppBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ConnectivityService());
+    Get.put(TontineDataSource());
     Get.lazyPut(() => LocalStorageService());
     Get.put(UserDataSource());
-    Get.put(TontineDataSource());
     Get.put(CreateTontineController(Get.find()));
      Get.put(StateController());
 

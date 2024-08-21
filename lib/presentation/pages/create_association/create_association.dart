@@ -11,38 +11,48 @@ import 'package:manzon/presentation/controllers/create_association_controller.da
 class CreateAssociation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final CreateAssociationController controller =
-        Get.put(CreateAssociationController(Get.find(), Get.find(),Get.find(),Get.find()));
+    final CreateAssociationController controller = Get.put(
+        CreateAssociationController(
+            Get.find(), Get.find(), Get.find(), Get.find()));
 
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(ScreenSize.horizontalPadding),
-        child: Container(
-          decoration: BoxDecoration(color: Color(0xFFFBFBFD)),
-          child: Column(
-            children: [
-              CustomNavigationBar(controller: controller),
-              Text(
-                'creating_association'.tr,
-                style: getBlackStyle(
-                    fontSize: FontSize.s24, color: AppColors.blackNormal),
-              ),
-              SizedBox(
-                height: AppSize.s40,
-              ),
-              Expanded(
-                  child: PageView(
-                controller: controller.pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  BasicInformation(),
-                  Headquarters(),
-                  MeetingFrequency(),
-                  MeetingDays(),
-                  Verification(),
-                ],
-              )),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (controller.currentStep.value > 0) {
+          controller.previousStep();
+          return false;
+        }
+        return true; 
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(ScreenSize.horizontalPadding),
+          child: Container(
+            decoration: BoxDecoration(color: Color(0xFFFBFBFD)),
+            child: Column(
+              children: [
+                CustomNavigationBar(controller: controller),
+                Text(
+                  'creating_association'.tr,
+                  style: getBlackStyle(
+                      fontSize: FontSize.s24, color: AppColors.blackNormal),
+                ),
+                SizedBox(
+                  height: AppSize.s40,
+                ),
+                Expanded(
+                    child: PageView(
+                  controller: controller.pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    BasicInformation(),
+                    Headquarters(),
+                    MeetingFrequency(),
+                    MeetingDays(),
+                    Verification(),
+                  ],
+                )),
+              ],
+            ),
           ),
         ),
       ),
