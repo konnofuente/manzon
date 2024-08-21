@@ -15,8 +15,8 @@ class CycleMapper {
       startDate: entity.startDate,
       endDate: entity.endDate,
       isCompleted: entity.isCompleted,
-      contributions: entity.contributions.map((e) => TontineContributionMapper.toModel(e)).toList(), 
-      // penalties: entity.penalties,
+      contributions: entity.contributions?.map((e) => TontineContributionMapper.toModel(e)).toList(), 
+      
       penalties: entity.penalties?.map((e) => PenaltyMapper.toModel(e)).toList(),
     );
   }
@@ -31,7 +31,7 @@ class CycleMapper {
       startDate: model.startDate,
       endDate: model.endDate,
       isCompleted: model.isCompleted,
-      contributions: model.contributions.map((e) => TontineContributionMapper.toModel(e)).toList(),
+      contributions: model.contributions?.map((e) => TontineContributionMapper.toModel(e)).toList(),
       penalties: model.penalties,
     );
   }

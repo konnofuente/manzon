@@ -1,6 +1,7 @@
 import 'member_model.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
+
 class TontineModel extends TontineEntity {
   TontineModel({
     required String id,
@@ -48,21 +49,21 @@ class TontineModel extends TontineEntity {
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      // membersId: (json['membersId'] as List<dynamic>?)
-      //     ?.map((e) => e as String)
-      //     .toList(),
-      // orderList: (json['orderList'] as List<dynamic>?)
-      //     ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
-      //     .toList(),
-      // cycles: (json['cycles'] as List<dynamic>?)
-      //     ?.map((e) => CycleModel.fromJson(e as Map<String, dynamic>))
-      //     .toList(),
+      membersId: (json['membersId'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      orderList: (json['orderList'] as List<dynamic>?)
+          ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      cycles: (json['cycles'] as List<dynamic>?)
+          ?.map((e) => CycleModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       associationId: json['associationId'] ?? "",
       balance: json['balance']?.toDouble(),
       cycleDuration: json['cycleDuration']?.toInt() ?? 0,
-      // transactions: (json['transactions'] as List<dynamic>?)
-      //     ?.map((e) => e as String)
-      //     .toList(),
+      transactions: (json['transactions'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       currentCycle: json['currentCycle']?.toInt() ?? 0,
       penaltyAmount: json['penaltyAmount']?.toDouble(),
     );
@@ -73,7 +74,8 @@ class TontineModel extends TontineEntity {
       'id': id,
       'name': name,
       'contributionAmount': contributionAmount,
-      'contributionFrequency': contributionFrequency.toJson(), // Use enum toJson method
+      'contributionFrequency':
+          contributionFrequency.toJson(), // Use enum toJson method
       'receiverFrequency': receiverFrequency.toJson(), // Use enum toJson method
       'members': members?.map((e) => (e as MemberModel).toJson()).toList(),
       'membersId': membersId,
@@ -114,7 +116,8 @@ class TontineModel extends TontineEntity {
       receiverFrequency: receiverFrequency ?? this.receiverFrequency,
       members: members ?? this.members?.map((e) => e as MemberModel).toList(),
       membersId: membersId ?? this.membersId,
-      orderList: orderList ?? this.orderList?.map((e) => e as MemberModel).toList(),
+      orderList:
+          orderList ?? this.orderList?.map((e) => e as MemberModel).toList(),
       cycles: cycles ?? this.cycles?.map((e) => e as CycleModel).toList(),
       associationId: associationId ?? this.associationId,
       balance: balance ?? this.balance,

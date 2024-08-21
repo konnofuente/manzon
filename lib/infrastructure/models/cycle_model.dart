@@ -1,7 +1,9 @@
 import 'member_model.dart';
 import 'penalty_model.dart';
 import 'package:manzon/domain/entities/cycle_entity.dart';
+import 'package:manzon/infrastructure/mappers/penalty_mapper.dart';
 import 'package:manzon/infrastructure/models/tontine_contribution_model.dart';
+
 
 class CycleModel extends CycleEntity {
   // final List<PenaltyModel>? penalties;
@@ -15,7 +17,7 @@ class CycleModel extends CycleEntity {
     required DateTime startDate,
     required DateTime endDate,
     required bool isCompleted,
-    required List<TontineContributionModel> contributions,
+     List<TontineContributionModel>? contributions,
      List<PenaltyModel>? penalties,
   }) : super(
           id: id,
@@ -57,8 +59,8 @@ class CycleModel extends CycleEntity {
       'startDate': startDate.toIso8601String(),
       'endDate': endDate.toIso8601String(),
       'isCompleted': isCompleted,
-      'contributions': contributions.map((e) => (e as TontineContributionModel).toJson()).toList(),
-      // 'penalties': penalties?.map((e) =>  e.toJson()).toList(),
+      'contributions': contributions?.map((e) => (e as TontineContributionModel).toJson()).toList(),
+      'penalties': penalties?.map((e) => PenaltyMapper.toModel(e).toJson()).toList(),
     };
   }
 }

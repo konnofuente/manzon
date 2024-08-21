@@ -11,7 +11,8 @@ import 'package:manzon/infrastructure/data_sources/firebase/export_firebase_data
 
 class TontineDataSource {
   late final CollectionReference<TontineModel> tontineRef;
-   final AssociationDataSource associationDataSource = Get.put(AssociationDataSource());
+  final AssociationDataSource associationDataSource =
+      Get.put(AssociationDataSource());
   late final Function(String) cycleRef;
   late final Function(String, String) contributionRef;
 
@@ -35,28 +36,24 @@ class TontineDataSource {
         tontineModel.associationId, tontineModel.id);
   }
 
+  Future<List<TontineModel>> getTontinesByAssociationId(
+      String associationId) async {
+    try {
+      final querySnapshot = await tontineRef
+          .where('associationId', isEqualTo: associationId)
+          .get();
 
-Future<List<TontineModel>> getTontinesByAssociationId(String associationId) async {
-  try {
-    final querySnapshot = await tontineRef
-        .where('associationId', isEqualTo: associationId)
-        .get();
-
-
-  final tontines = querySnapshot.docs.map((doc) {
+      final tontines = querySnapshot.docs.map((doc) {
         return doc.data();
       }).toList();
 
-    log('Fetched tontines for association $associationId: ${tontines.length}');
-    return tontines;
-  } catch (e) {
-    log('Failed to fetch tontines: $e');
-    return [];
+      log('Fetched tontines for association $associationId: ${tontines.length}');
+      return tontines;
+    } catch (e) {
+      log('Failed to fetch tontines: $e');
+      return [];
+    }
   }
-}
-
-
-
 
   CollectionReference<CycleModel> _createCycleRef(String tontineId) {
     return tontineRef
@@ -80,8 +77,6 @@ Future<List<TontineModel>> getTontinesByAssociationId(String associationId) asyn
           toFirestore: (contribution, _) => contribution.toJson(),
         );
   }
-
-
 
   Future<TontineModel?> getTontineById(String id) async {
     final doc = await tontineRef.doc(id).get();
