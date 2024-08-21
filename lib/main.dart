@@ -6,8 +6,10 @@ import 'package:manzon/app/config/firebase_options.dart';
 import 'package:manzon/app/config/lang/translations.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:manzon/app/services/connectivity_service.dart';
+import 'package:manzon/presentation/controllers/export_controllers.dart';
 void initServices() {
   Get.lazyPut(() => ConnectivityService());
+    Get.put(StateController());
 }
 
 void main() async {

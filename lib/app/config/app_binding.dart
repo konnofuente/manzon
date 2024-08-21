@@ -17,6 +17,7 @@ class AppBindings extends Bindings {
     Get.put(UserDataSource());
     Get.put(TontineDataSource());
     Get.put(CreateTontineController(Get.find()));
+     Get.put(StateController());
 
     //data stores
     Get.lazyPut(() => AssociationDataSource());

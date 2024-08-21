@@ -9,8 +9,21 @@ import 'package:manzon/presentation/pages/association_page/pages/select_contact_
 import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
 import 'package:manzon/presentation/pages/association_page/components/contribution_view.dart';
 
-class AssociationPage extends StatelessWidget {
+class AssociationPage extends StatefulWidget {
+  @override
+  State<AssociationPage> createState() => _AssociationPageState();
+}
+
+class _AssociationPageState extends State<AssociationPage> {
   final AssociationController controller = Get.put(AssociationController());
+
+  @override
+  void dispose() {
+    final StateController stateController = Get.find();
+    stateController.clearAssociationId();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,11 @@ class SelectTontineMembers extends StatefulWidget {
 class _SelectTontineMembersState extends State<SelectTontineMembers> {
   final CreateTontineController controller = Get.find();
 
+  @override
+  void initState() {
+    super.initState();
+    controller.onInit();
+  }
 
   @override
   Widget build(BuildContext context) {

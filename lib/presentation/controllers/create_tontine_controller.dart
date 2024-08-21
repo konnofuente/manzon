@@ -9,11 +9,13 @@ import 'package:manzon/app/config/routes/app_route_names.dart';
 import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/infrastructure/mappers/member_mapper.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
+import 'package:manzon/presentation/controllers/export_controllers.dart';
 import 'package:manzon/infrastructure/models/export_infrastruture_models.dart';
 import 'package:manzon/infrastructure/data_sources/firebase/tontine_data_source.dart';
 
 class CreateTontineController extends GetxController {
-  final PageController pageController = PageController();
+  PageController pageController = PageController();
+
   final TontineDataSource tontineDataSource;
   final int totalStep = 4;
   final RxInt currentStep = 0.obs;
@@ -23,6 +25,7 @@ class CreateTontineController extends GetxController {
   var selectedContacts = <Contact>[].obs;
   final RxBool orderVerficication = true.obs;
   var isCreatingTontine = false.obs;
+  String associationId = '';
 
   // Step 1: Select Members
   final RxList<MemberEntity> selectedMembers = <MemberEntity>[].obs;
@@ -50,9 +53,49 @@ class CreateTontineController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Listen to changes in search query and filter contacts
-    fetchContacts();
+    final StateController stateController = Get.find();
+    associationId = stateController.selectedAssociationId.value;
+    print('this is the assoca if $associationId');
+    if (filteredContacts.isNotEmpty) {
+      fetchContacts();
+    }
     ever(searchQuery, (_) => filterContacts());
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    pageController.dispose();
+  }
+
+  void reset() {
+    currentStep.value = 0;
+    searchQuery.value = '';
+    contacts.clear();
+    // filteredContacts.clear();
+    selectedContacts.clear();
+    orderVerficication.value = true;
+    isCreatingTontine.value = false;
+
+    // Clear selected members and their orders
+    selectedMembers.clear();
+    memberOrder.clear();
+
+    // Reset text controllers
+    tontineNameController.clear();
+    individualAmountController.clear();
+    numberOfMembersController.clear();
+    penaltyAmountController.clear();
+
+    // Reset drop-downs or Rx variables to their default values
+    penaltyType.value = PenaltyType.fixAmount;
+    contributionFrequency.value = ContributionFrequency.weekly;
+    receiverFrequency.value = ReceiverFrequency.monthly;
+
+    pageController.dispose();
+    pageController = PageController();
+
+    debugPrint('All settings have been reset to their default values.');
   }
 
   void filterContacts() {
@@ -206,7 +249,7 @@ class CreateTontineController extends GetxController {
       membersId: selectedMembers.map((m) => m.id).toList(),
       orderList: selectedMembers.map((e) => MemberMapper.toModel(e)).toList(),
       cycles: [],
-      associationId: 'association_id',
+      associationId: associationId,
       cycleDuration: 4,
       currentCycle: 0,
     );
@@ -214,7 +257,10 @@ class CreateTontineController extends GetxController {
     try {
       isCreatingTontine.value = true;
       await tontineDataSource.addTontine(tontine);
+
       isCreatingTontine.value = false;
+      reset();
+    Get.offAllNamed(AppRouteNames.associationPage);
       ToastUtils.showSuccess(
           Get.context!, "Tontine", "Your Tontine was successfully created");
     } catch (e) {
@@ -224,6 +270,5 @@ class CreateTontineController extends GetxController {
           "An error occurred while creating the Tontine");
     }
 
-    Get.toNamed(AppRouteNames.associationPage);
   }
 }
