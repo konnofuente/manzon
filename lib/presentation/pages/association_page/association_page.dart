@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:manzon/presentation/widgets/custom_header.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 import 'package:manzon/presentation/pages/association_page/components/member_view.dart';
-import 'package:manzon/presentation/pages/association_page/components/tontine_view.dart';
 import 'package:manzon/presentation/pages/association_page/widgets/invite_link_modal.dart';
 import 'package:manzon/presentation/pages/association_page/pages/select_contact_page.dart';
-import 'package:manzon/presentation/pages/association_page/widgets/association_header.dart';
 import 'package:manzon/presentation/pages/association_page/components/contribution_view.dart';
+import 'package:manzon/presentation/pages/association_page/components/association_tontines_view.dart';
 
 class AssociationPage extends StatefulWidget {
   @override
@@ -32,10 +32,21 @@ class _AssociationPageState extends State<AssociationPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            AssociationHeader(
-              name: 'name'.tr,
-              imageUrl: '',
-              createdDate: 'fake_date'.tr,
+            CustomHeader(
+              name: "John Doe",
+              imageUrl: "path_to_image.jpg",
+              createdDate: "2022-01-01",
+              menuItems: const [
+                PopupMenuItem(value: 'detail', child: Text('Detail')),
+                PopupMenuItem(value: 'delete', child: Text('Delete')),
+              ],
+              onMenuSelected: (value) {
+                if (value == 'detail') {
+                  print('Detail selected');
+                } else if (value == 'delete') {
+                  print('Delete selected');
+                }
+              },
             ),
             const SizedBox(height: 16),
             // Action Buttons
@@ -83,7 +94,7 @@ class _AssociationPageState extends State<AssociationPage> {
               child: TabBarView(
                 controller: controller.tabController,
                 children: [
-                  TontinesView(),
+                  AssociationTontinesView(),
                   MembresView(),
                   ContributionView(),
                 ],

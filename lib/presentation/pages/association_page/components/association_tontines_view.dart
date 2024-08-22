@@ -5,12 +5,13 @@ import 'package:manzon/presentation/widgets/export_widget.dart';
 import 'package:manzon/app/config/theme/export_theme_manager.dart';
 import 'package:manzon/presentation/controllers/export_controllers.dart';
 
-class TontinesView extends StatefulWidget {
+class AssociationTontinesView extends StatefulWidget {
   @override
-  State<TontinesView> createState() => _TontinesViewState();
+  State<AssociationTontinesView> createState() =>
+      _AssociationTontinesViewState();
 }
 
-class _TontinesViewState extends State<TontinesView> {
+class _AssociationTontinesViewState extends State<AssociationTontinesView> {
   @override
   Widget build(BuildContext context) {
     final AssociationController controller = Get.find();
@@ -21,7 +22,6 @@ class _TontinesViewState extends State<TontinesView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  
                   const Icon(Icons.money,
                       size: 100, color: AppColors.grayNormal),
                   const SizedBox(height: 16),

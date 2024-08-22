@@ -4,6 +4,7 @@ import 'package:manzon/presentation/pages/home/home_view.dart';
 import 'package:manzon/presentation/pages/auth/otp/otp_view.dart';
 import 'package:manzon/presentation/pages/splash/splash_view.dart';
 import 'package:manzon/presentation/pages/auth/login/login_view.dart';
+import 'package:manzon/presentation/pages/tontine_page/tontine_page.dart';
 import 'package:manzon/presentation/pages/onboarding/onboarding_view.dart';
 import 'package:manzon/presentation/pages/auth/register/register_view.dart';
 import 'package:manzon/presentation/pages/auth/user_role/user_role_view.dart';
@@ -30,5 +31,6 @@ class AppRoutes {
     GetPage(name: AppRouteNames.createTontinePage, page: () => CreateTontinePage()),
     GetPage(name: AppRouteNames.selectTontineMember, page: () => SelectTontineMembers()),
     GetPage(name: AppRouteNames.modifyAssociation, page: () => ModifyAssociationPage()),
+    GetPage(name: AppRouteNames.tontinePage, page: () => TontinePage()),
   ];
 }

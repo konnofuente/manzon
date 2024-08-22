@@ -7,7 +7,7 @@ class PenaltyMapper {
   static PenaltyModel toModel(PenaltyEntity entity) {
     return PenaltyModel(
       member: MemberMapper.toModel(entity.member),
-      cycle: CycleMapper.toModel(entity.cycle)  ,
+      cycleId: entity.cycleId  ,
       penaltyAmount:
           entity.penaltyAmount, 
     );
@@ -16,7 +16,7 @@ class PenaltyMapper {
   static PenaltyEntity toEntity(PenaltyModel model) {
     return PenaltyEntity(
       member: model.member,
-      cycle: model.cycle,
+      cycleId: model.cycleId,
       penaltyAmount: model.penaltyAmount,
     );
   }

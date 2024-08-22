@@ -78,13 +78,13 @@ class AssociationCard extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: association.avatar?.link != null
-                    ? ClipRRect(
+                    ?ClipRRect(
                         borderRadius:
                             BorderRadius.horizontal(right: Radius.circular(12)),
-                        child: Image.network(
-                          association.avatar!.link!,
-                          height: height,
-                          fit: BoxFit.cover,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: GifAssets.loadingGif,
+                          image: association.avatar!.link!,
+                    
                         ),
                       )
                     : Container(
