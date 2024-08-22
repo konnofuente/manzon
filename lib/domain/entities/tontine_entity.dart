@@ -16,7 +16,7 @@ class TontineEntity extends Equatable {
   final int cycleDuration;
   final List<String>? transactions;
   final int currentCycle;
-  final double? penaltyAmount; // Added penaltyAmount
+  final double? penaltyAmount;
 
   TontineEntity({
     required this.id,
@@ -33,7 +33,7 @@ class TontineEntity extends Equatable {
     required this.cycleDuration,
     this.transactions,
     required this.currentCycle,
-    this.penaltyAmount, // Initialize penaltyAmount, defaulted to null
+    this.penaltyAmount,
   });
 
   @override
@@ -52,6 +52,8 @@ class TontineEntity extends Equatable {
         cycleDuration,
         transactions,
         currentCycle,
-        penaltyAmount, // Include penaltyAmount in props
+        penaltyAmount,
       ];
+
+
 }

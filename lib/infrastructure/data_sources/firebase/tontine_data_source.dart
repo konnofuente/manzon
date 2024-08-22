@@ -183,6 +183,8 @@ class TontineDataSource {
   }
 
   Duration _getDuration(ContributionFrequency frequency) {
+
+    
     switch (frequency) {
       case ContributionFrequency.weekly:
         return Duration(days: 7); // Fixed weekly duration

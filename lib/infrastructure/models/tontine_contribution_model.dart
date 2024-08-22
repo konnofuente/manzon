@@ -8,7 +8,7 @@ class TontineContributionModel extends TontineContributionEntity {
     required MemberModel member,
     required double amount,
     required DateTime date,
-    required String status,
+    required bool status,
   }) : super(
           id: id,
           member: member,

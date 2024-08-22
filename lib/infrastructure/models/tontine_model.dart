@@ -1,5 +1,6 @@
 import 'member_model.dart';
 import 'package:manzon/infrastructure/models/cycle_model.dart';
+import 'package:manzon/infrastructure/mappers/cycle_mapper.dart';
 import 'package:manzon/domain/entities/export_domain_entities.dart';
 
 class TontineModel extends TontineEntity {
@@ -43,9 +44,9 @@ class TontineModel extends TontineEntity {
       name: json['name'] ?? "",
       contributionAmount: json['contributionAmount']?.toDouble() ?? 0.0,
       contributionFrequency: ContributionFrequency.fromJson(
-          json['contributionFrequency'] ?? "weekly"), // Default to weekly
+          json['contributionFrequency'] ?? "weekly"),
       receiverFrequency: ReceiverFrequency.fromJson(
-          json['receiverFrequency'] ?? "monthly"), // Default to monthly
+          json['receiverFrequency'] ?? "monthly"),
       members: (json['members'] as List<dynamic>?)
           ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -74,9 +75,8 @@ class TontineModel extends TontineEntity {
       'id': id,
       'name': name,
       'contributionAmount': contributionAmount,
-      'contributionFrequency':
-          contributionFrequency.toJson(), // Use enum toJson method
-      'receiverFrequency': receiverFrequency.toJson(), // Use enum toJson method
+      'contributionFrequency': contributionFrequency.toJson(),
+      'receiverFrequency': receiverFrequency.toJson(),
       'members': members?.map((e) => (e as MemberModel).toJson()).toList(),
       'membersId': membersId,
       'orderList': orderList?.map((e) => (e as MemberModel).toJson()).toList(),
@@ -90,6 +90,7 @@ class TontineModel extends TontineEntity {
     };
   }
 
+  @override
   TontineModel copyWith({
     String? id,
     String? name,
@@ -118,7 +119,7 @@ class TontineModel extends TontineEntity {
       membersId: membersId ?? this.membersId,
       orderList:
           orderList ?? this.orderList?.map((e) => e as MemberModel).toList(),
-      cycles: cycles ?? this.cycles?.map((e) => e as CycleModel).toList(),
+      cycles: cycles ?? this.cycles?.map((e) => CycleMapper.toModel(e)).toList(),
       associationId: associationId ?? this.associationId,
       balance: balance ?? this.balance,
       cycleDuration: cycleDuration ?? this.cycleDuration,

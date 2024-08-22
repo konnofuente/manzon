@@ -12,7 +12,7 @@ class CycleEntity extends Equatable {
   final DateTime startDate;
   final DateTime endDate;
   final bool isCompleted;
-   List<TontineContributionEntity>? contributions;
+  final List<TontineContributionEntity>? contributions;
   final List<PenaltyEntity>? penalties; 
 
   CycleEntity({

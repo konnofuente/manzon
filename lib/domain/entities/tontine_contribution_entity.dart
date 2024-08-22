@@ -6,7 +6,7 @@ class TontineContributionEntity extends Equatable {
   final MemberEntity member;
   final double amount;
   final DateTime date;
-  final String status;
+  final bool status;
 
   TontineContributionEntity({
     required this.id,
