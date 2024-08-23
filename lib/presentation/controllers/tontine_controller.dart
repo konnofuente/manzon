@@ -65,7 +65,7 @@ class TontineController extends GetxController with SingleGetTickerProviderMixin
           member: MemberMapper.toModel(member) ,
           amount: tontine.contributionAmount,
           date: DateTime.now(), // Assume the contribution is made at the current date for testing
-          status: true, // For testing, we assume all contributions are paid
+          status: false, // For testing, we assume all contributions are paid
         );
       }).toList();
 
